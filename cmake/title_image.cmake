@@ -12,7 +12,7 @@ macro(gen_title_image)
         OUTPUT
         ${TITLE_IMAGE_PATH}
 
-        COMMAND python ${TITLE_IMAGE_SCRIPT}
+        COMMAND python3 ${TITLE_IMAGE_SCRIPT}
         COMMAND cp emu4vita++.png ${TITLE_IMAGE_PATH}
 
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/script

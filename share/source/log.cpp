@@ -3,7 +3,7 @@
 #include <stdarg.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/rtc.h>
-#include <psp2common/kernel/threadmgr.h>
+#include <psp2/kernel/threadmgr.h>
 #include <psp2/kernel/clib.h>
 #include "file.h"
 #include "log.h"

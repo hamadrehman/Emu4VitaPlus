@@ -11,7 +11,7 @@ add_custom_command(
     ${CMAKE_CURRENT_SOURCE_DIR}/pkg/assets/language.zbin
     ${CMAKE_CURRENT_SOURCE_DIR}/pkg/assets/translation.zbin
 
-    COMMAND python export_share.py
+    COMMAND python3 export_share.py
     COMMAND mv language_define.h ${CMAKE_CURRENT_SOURCE_DIR}/source
     COMMAND mv language_define.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source
     COMMAND mv language.zbin ${CMAKE_CURRENT_SOURCE_DIR}/pkg/assets
@@ -42,6 +42,7 @@ if(NOT ${CMAKE_CURRENT_SOURCE_DIR}/source/language_define.cpp IN_LIST SRC)
 endif()
 
 include_directories(
+    ${CMAKE_BINARY_DIR}/include
     ../deps/libretro-common/include
     ../deps/7-Zip/C
     ../deps/lz4/lib)

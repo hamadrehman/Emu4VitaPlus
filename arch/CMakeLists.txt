@@ -45,7 +45,7 @@ add_custom_command(OUTPUT
     ${CMAKE_CURRENT_SOURCE_DIR}/source/language_arch.h
     ${CMAKE_CURRENT_SOURCE_DIR}/source/language_arch.cpp
 
-    COMMAND python export_arch.py
+    COMMAND python3 export_arch.py
     COMMAND mv language_arch.h ${CMAKE_CURRENT_SOURCE_DIR}/source/language_arch.h
     COMMAND mv language_arch.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source/language_arch.cpp
 

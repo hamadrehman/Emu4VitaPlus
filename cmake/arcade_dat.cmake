@@ -13,7 +13,7 @@ macro(gen_arc_dat OUTPUT_PATH ARC_DAT_NAME)
         OUTPUT
         ${ARC_DAT_PATH}
 
-        COMMAND python ${ARC_SCRIPT}
+        COMMAND python3 ${ARC_SCRIPT}
         COMMAND cp ${ARC_DAT_NAME} ${ARC_DAT_PATH}
 
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/script

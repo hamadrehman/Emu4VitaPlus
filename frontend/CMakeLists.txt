@@ -35,7 +35,7 @@ file(GLOB SRC
 add_custom_command(OUTPUT
     ${CMAKE_CURRENT_SOURCE_DIR}/source/language_frontend.h
 
-    COMMAND python export_frontend.py
+    COMMAND python3 export_frontend.py
     COMMAND mv language_frontend.h ${CMAKE_CURRENT_SOURCE_DIR}/source/language_frontend.h
 
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../script
