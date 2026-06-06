@@ -26,7 +26,7 @@ fi
 mkdir -p "$OUT_DIR" "$RELEASE_DIR"
 
 cmake -S "$ROOT" -B "$BUILD_DIR" -DBUILD=Arch -DWITH_LOG=ON
-cmake --build "$BUILD_DIR" --target eboot_Emu4VitaPlus.bin -- -j"$(nproc)"
+cmake --build "$BUILD_DIR" -- -j"$(nproc)"
 
 rm -rf "$STAGE_DIR"
 mkdir -p "$STAGE_DIR"
