@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Install host dependencies
         run: |
@@ -32,6 +30,17 @@ jobs:
         run: |
           vdpm update
           vdpm install -f libjpeg-turbo imgui-vita2d
+
+      - name: Init required submodules
+        run: |
+          git submodule sync --recursive
+          git submodule update --init \
+            deps/simpleini \
+            deps/minizip-ng \
+            deps/7-Zip \
+            deps/libretro-common \
+            deps/lz4 \
+            deps/rcheevos
 
       - name: Fetch upstream release VPK
         run: |
