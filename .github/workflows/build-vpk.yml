@@ -1,0 +1,59 @@
+name: Build Emu4VitaPlus Boot URI VPK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - td/boot-uri-retroflow-launch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: vitasdk/vitasdk:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install host dependencies
+        run: |
+          apt-get update
+          apt-get install -y \
+            curl \
+            python3-lz4 \
+            python3-openpyxl \
+            unzip \
+            zip
+
+      - name: Install VitaSDK packages
+        run: |
+          vdpm update
+          vdpm install -f libjpeg-turbo imgui-vita2d
+
+      - name: Fetch upstream release VPK
+        run: |
+          mkdir -p release
+          curl -L --fail --retry 3 \
+            -o release/Emu4VitaPlus_v0.68.vpk \
+            https://github.com/noword/Emu4VitaPlus/releases/download/v0.68/Emu4VitaPlus_v0.68.vpk
+
+      - name: Build patched VPK
+        run: |
+          chmod +x scripts/build_boot_uri_vpk.sh
+          scripts/build_boot_uri_vpk.sh
+
+      - name: Generate checksums
+        run: |
+          cd out
+          sha256sum Emu4VitaPlus_v0.68_boot-uri.vpk > SHA256SUMS.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: emu4vita-boot-uri
+          path: |
+            out/Emu4VitaPlus_v0.68_boot-uri.vpk
+            out/SHA256SUMS.txt

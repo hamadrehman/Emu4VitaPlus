@@ -1,3 +1,5 @@
 build
 build-*
+out/
+release/
 script/__pycache__/
