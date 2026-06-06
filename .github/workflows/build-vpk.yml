@@ -6,6 +6,9 @@ on:
     branches:
       - td/boot-uri-retroflow-launch
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -59,10 +62,19 @@ jobs:
           cd out
           sha256sum Emu4VitaPlus_v0.68_boot-uri.vpk > SHA256SUMS.txt
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
         with:
-          name: emu4vita-boot-uri
-          path: |
+          tag_name: build-${{ github.sha }}
+          name: Emu4VitaPlus boot-uri build ${{ github.sha }}
+          make_latest: true
+          generate_release_notes: false
+          body: |
+            Automated build from `${{ github.ref_name }}` at `${{ github.sha }}`.
+
+            Assets:
+            - `Emu4VitaPlus_v0.68_boot-uri.vpk`
+            - `SHA256SUMS.txt`
+          files: |
             out/Emu4VitaPlus_v0.68_boot-uri.vpk
             out/SHA256SUMS.txt
