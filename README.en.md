@@ -1,6 +1,15 @@
 # Emu4Vita++
 This is an emulator frontend for the PlayStation Vita, based on the [Libretro API](https://github.com/libretro/libretro-common).
 
+This fork is an unofficial integration branch for RetroFlow. Original project credit remains with `noword`.
+
+## What changed in this fork
+
+- adds boot-URI handling so RetroFlow can launch Emu4Vita++ directly into a selected core and ROM
+- hardens URI parsing and decoding for ROM paths with spaces and special characters
+- keeps the packaged standalone core `eboot_<core>.self` files intact
+- adds a GitHub Actions workflow that rebuilds the patched `eboot.bin` and repacks `Emu4VitaPlus_v0.68_boot-uri.vpk`
+
 * [Download](#Download)
 * [Function Description](#Function-Description)
 * [Supported Cores](#Supported-Cores)
@@ -12,6 +21,12 @@ This is an emulator frontend for the PlayStation Vita, based on the [Libretro AP
 
 ## Download
 [Release](https://github.com/noword/Emu4VitaPlus/releases)
+
+For this forked branch, the patched build output is:
+
+- `Emu4VitaPlus_v0.68_boot-uri.vpk`
+
+This branch does not claim to be the upstream Emu4Vita++ project.
 
 
 ## Function Description

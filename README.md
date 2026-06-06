@@ -3,6 +3,15 @@
 # Emu4Vita++
 这是一个在 PlayStation Vita 使用的, 基于 [Libretro API](https://github.com/libretro/libretro-common) 的模拟器前端。
 
+这个分支是面向 RetroFlow 集成的非官方修改分支，原项目及主要署名仍归 `noword` 所有。
+
+## 这个分支的改动
+
+- 增加 boot URI 启动能力，使 RetroFlow 可以直接指定核心和 ROM 启动 Emu4Vita++
+- 加强 URI 解析和解码，尽量兼容带空格和特殊字符的 ROM 路径
+- 保留打包内的独立核心 `eboot_<core>.self` 文件，不影响各核心的独立使用
+- 增加 GitHub Actions，用于重建补丁后的 `eboot.bin` 并重新打包 `Emu4VitaPlus_v0.68_boot-uri.vpk`
+
 * [下载](#下载)
 * [功能说明](#功能说明)
 * [支持的内核](#支持的内核)
@@ -14,6 +23,12 @@
 
 ## 下载
 [Release](https://github.com/noword/Emu4VitaPlus/releases)
+
+这个分支额外产出：
+
+- `Emu4VitaPlus_v0.68_boot-uri.vpk`
+
+此分支不是官方 Emu4Vita++ 发布分支。
 
 [百度网盘](https://pan.baidu.com/s/1chcOOw9G1GBtlkM9K4MtRg?pwd=E4VP)
 
