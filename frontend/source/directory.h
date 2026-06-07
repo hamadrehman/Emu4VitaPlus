@@ -3,7 +3,7 @@
 #include <set>
 #include <string>
 #include <functional>
-#include <psp2common/kernel/threadmgr.h>
+#include <psp2/kernel/threadmgr.h>
 
 struct DirItem;
 typedef std::function<void(DirItem *)> DirItemUpdateCallbackFunc;

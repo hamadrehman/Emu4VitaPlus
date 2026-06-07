@@ -1,0 +1,15 @@
+#pragma once
+
+enum LANGUAGE{
+    LANGUAGE_ENGLISH,
+    LANGUAGE_CHINESE,
+    LANGUAGE_JAPANESE,
+    LANGUAGE_ITALIAN,
+    LANGUAGE_FRENCH,
+    LANGUAGE_SPANISH,
+    LANGUAGE_RUSSIAN,
+    LANGUAGE_COUNT,
+};
+
+extern const char *gLanguageNames[];
+

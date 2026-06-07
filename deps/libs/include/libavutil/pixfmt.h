@@ -1,0 +1,54 @@
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef enum AVPixelFormat
+{
+    AV_PIX_FMT_NONE = -1,
+    AV_PIX_FMT_YUV420P = 0,
+    AV_PIX_FMT_YUYV422 = 1,
+    AV_PIX_FMT_RGB24 = 2,
+    AV_PIX_FMT_BGR24 = 3,
+    AV_PIX_FMT_YUV422P = 4,
+    AV_PIX_FMT_YUV444P = 5,
+    AV_PIX_FMT_YUV410P = 6,
+    AV_PIX_FMT_YUV411P = 7,
+    AV_PIX_FMT_GRAY8 = 8,
+    AV_PIX_FMT_MONOWHITE = 9,
+    AV_PIX_FMT_MONOBLACK = 10,
+    AV_PIX_FMT_PAL8 = 11,
+    AV_PIX_FMT_YUVJ420P = 12,
+    AV_PIX_FMT_YUVJ422P = 13,
+    AV_PIX_FMT_YUVJ444P = 14,
+    AV_PIX_FMT_UYVY422 = 15,
+    AV_PIX_FMT_UYYVYY411 = 16,
+    AV_PIX_FMT_BGR8 = 17,
+    AV_PIX_FMT_BGR4 = 18,
+    AV_PIX_FMT_BGR4_BYTE = 19,
+    AV_PIX_FMT_RGB8 = 20,
+    AV_PIX_FMT_RGB4 = 21,
+    AV_PIX_FMT_RGB4_BYTE = 22,
+    AV_PIX_FMT_NV12 = 23,
+    AV_PIX_FMT_NV21 = 24,
+    AV_PIX_FMT_ARGB = 25,
+    AV_PIX_FMT_RGBA = 26,
+    AV_PIX_FMT_ABGR = 27,
+    AV_PIX_FMT_BGRA = 28,
+    AV_PIX_FMT_GRAY16BE = 29,
+    AV_PIX_FMT_GRAY16LE = 30,
+    AV_PIX_FMT_YUV440P = 31,
+    AV_PIX_FMT_YUVJ440P = 32,
+    AV_PIX_FMT_YUVA420P = 33,
+    AV_PIX_FMT_RGB48BE = 34,
+    AV_PIX_FMT_RGB48LE = 35,
+    AV_PIX_FMT_RGB565BE = 36,
+    AV_PIX_FMT_RGB565LE = 37,
+    AV_PIX_FMT_RGB555BE = 38,
+    AV_PIX_FMT_RGB555LE = 39
+} AVPixelFormat;
+
+#ifdef __cplusplus
+}
+#endif

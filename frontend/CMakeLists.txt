@@ -16,6 +16,8 @@ include_directories(
     ../deps/libvita2d_ext/libvita2d_ext/include
     ../deps/simpleini
     ../deps/minizip-ng
+    ${CMAKE_BINARY_DIR}/include
+    ../deps/libs/include
     ../deps/7-Zip/C
     ../deps/rcheevos/include
     ../deps/rcheevos/src

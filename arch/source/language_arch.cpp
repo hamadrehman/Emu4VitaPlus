@@ -1,0 +1,382 @@
+#include "language_arch.h"
+
+const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
+// English
+{
+    // INTRO_ATARI2600
+    "The Atari 2600 is a home video game console developed and produced by Atari, Inc. Released in September 1977 as the Atari Video Computer System (Atari VCS), it popularized microprocessor-based hardware and games stored on swappable ROM cartridges, a format first used with the Fairchild Channel F in 1976. The VCS was bundled with two joystick controllers, a conjoined pair of paddle controllers, and a game cartridge—initially Combat and later Pac-Man. Sears sold the system as the Tele-Games Video Arcade. Atari rebranded the VCS as the Atari 2600 in November 1982, alongside the release of the Atari 5200.",
+    // INTRO_ATARI5200
+    "The Atari 5200 SuperSystem or simply Atari 5200 is a home video game console introduced in 1982 by Atari, Inc. as a higher-end complement for the popular Atari Video Computer System. The VCS was renamed to Atari 2600 at the time of the 5200's launch. Created to compete with Mattel's Intellivision, the 5200 wound up a direct competitor of ColecoVision shortly after its release. While the Coleco system shipped with the first home version of Nintendo's Donkey Kong, the 5200 included the 1978 arcade game Super Breakout, which had already appeared on previous Atari home platforms.",
+    // INTRO_ATARI7800
+    "The Atari 7800 ProSystem, or simply the Atari 7800, is a home video game console officially released by Atari Corporation in 1986 as the successor to both the Atari 2600 and Atari 5200. It can run almost all Atari 2600 cartridges, making it one of the first consoles with backward compatibility. It shipped with a different joystick than the 2600-standard CX40 and included Pole Position II as the pack-in game. The European model has a gamepad instead of a joystick. Most of the early releases for the system are ports of 1981–1983 arcade video games. The final wave of 7800 cartridges are closer in style to what was available on other late 1980s consoles, such as Scrapyard Dog and Midnight Mutants.",
+    // INTRO_C64
+    "The Commodore 64, also known as the C64, is an 8-bit home computer introduced in January 1982 by Commodore International (first shown at the Consumer Electronics Show, January 7–10, 1982, in Las Vegas). It has been listed in the Guinness World Records as the highest-selling single computer model of all time, with independent estimates placing the number sold between 12.5 and 17 million units. Volume production started in early 1982, marketing in August for US$595 (equivalent to $1,940 in 2024). Preceded by the VIC-20 and Commodore PET, the C64 took its name from its 64 kilobytes (65,536 bytes) of RAM. With support for multicolor sprites and a custom chip for waveform generation, the C64 could create superior visuals and audio compared to systems without such custom hardware.",
+    // INTRO_VECTREX
+    "The Vectrex is a vector display-based home video game console, the only one ever designed and released for the home market, that was developed by Smith Engineering and manufactured and sold by General Consumer Electronics. It was first released for the North America market in October 1982 and then Europe and Japan in 1983. Originally produced by General Consumer Electronics, it was later licensed to Milton Bradley after they acquired the company. Bandai released the system in Japan.",
+    // INTRO_ZXS
+    "The ZX Spectrum is an 8-bit home computer developed and marketed by Sinclair Research. One of the most influential computers ever made and one of the all-time bestselling British computers, over five million units were sold. It was released in the United Kingdom on 23 April 1982, and around the world in the following years, most notably in Europe, the United States, and Eastern Bloc countries.",
+    // INTRO_DOS
+    "DOS is a family of disk-based operating systems for IBM PC compatible computers. The DOS family primarily consists of IBM PC DOS and a rebranded version, Microsoft's MS-DOS, both of which were introduced in 1981. Later compatible systems from other manufacturers include DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993), and FreeDOS (1994). MS-DOS dominated the IBM PC compatible market between 1981 and 1995.",
+    // INTRO_PC98
+    "The PC-9800 series, commonly shortened to PC-98 or simply 98 (Kyū-hachi), is a lineup of Japanese 16-bit and 32-bit personal computers manufactured by NEC from 1982 to 2003. While based on Intel processors, it uses an in-house architecture making it incompatible with IBM clones; some PC-98 computers used NEC's own V30 processor. The platform established NEC's dominance in the Japanese personal computer market, and, by 1999, more than 18 million units had been sold. While NEC did not market these specific machines in the West, it sold the NEC APC series, which had similar hardware to early PC-98 models.",
+    // INTRO_MSX
+    "MSX is a standardized home computer architecture, announced by ASCII Corporation on June 16, 1983.  It was initially conceived by Microsoft as a product for the Eastern sector, and jointly marketed by Kazuhiko Nishi, the director at ASCII Corporation. Microsoft and Nishi conceived the project as an attempt to create unified standards among various home computing system manufacturers of the period, in the same fashion as the VHS standard for home video tape machines. The first MSX computer sold to the public was a Mitsubishi ML-8000, released on October 21, 1983, thus marking its official release date.",
+    // INTRO_NES
+    "The Nintendo Entertainment System (NES) is an 8-bit home video game console produced by Nintendo. It was first released in Japan on July 15, 1983, as the Family Computer (Famicom). It was released in US test markets as the redesigned NES in October 1985, and fully launched in the US the following year. The NES was distributed in Europe, Australia, and parts of Asia throughout the 1980s under various names. As a third-generation console, it mainly competed with Sega's Master System.",
+    // INTRO_CPC
+    "The Amstrad CPC (short for \"Colour Personal Computer\") is a series of 8-bit home computers produced by Amstrad between 1984 and 1990. It was designed to compete in the mid-1980s home computer market dominated by the Commodore 64 and the ZX Spectrum; it successfully established itself primarily in the United Kingdom, France, Spain, and the German-speaking parts of Europe, and also Canada.",
+    // INTRO_AMIGA
+    "Amiga is a family of personal computers produced by Commodore from 1985 until the company's bankruptcy in 1994, with production by others afterward. The original model is one of a number of mid-1980s computers with 16-bit or 16/32-bit processors, 256 KB or more of RAM, mouse-based GUIs, and significantly improved graphics and audio compared to previous 8-bit systems. These include the Atari ST—released earlier the same year—as well as the Macintosh and Acorn Archimedes. The Amiga differs from its contemporaries through custom hardware to accelerate graphics and sound, including sprites, a blitter, and four channels of sample-based audio. It runs a pre-emptive multitasking operating system called AmigaOS, with a desktop environment called Workbench.",
+    // INTRO_X68000
+    "The X68000 (Hepburn: Ekkusu Rokuman Hassen) is a home computer created by Sharp Corporation. It was first released in 1987 and sold only in Japan.The initial model has a 10 MHz Motorola 68000 CPU, 1 MB of RAM, and lacks a hard drive. The final model was released in 1993 with a 25 MHz Motorola 68030 CPU, 4 MB of RAM, and optional 80 MB SCSI hard drive. RAM in these systems is expandable to 12 MB, though most games and applications do not require more than 2 MB.",
+    // INTRO_PCE
+    "The TurboGrafx-16, known as the PC Engine outside North America, is a home video game console designed by Hudson Soft and sold by NEC Home Electronics. It was the first console marketed in the fourth generation, commonly known as the 16-bit era. It was released in Japan in 1987 and in North America in 1989. In Europe the Japanese model was unofficially imported and distributed in the United Kingdom and France from 1988. In Japan, the system was launched as a competitor to the Famicom, but the delayed United States release meant that it ended up competing with the Sega Genesis and later the Super NES.",
+    // INTRO_MD
+    "The Sega Genesis, known as the Mega Drive outside North America, is a 16-bit fourth generation home video game console developed and sold by Sega. It was Sega's third console and the successor to the Master System. Sega released it in 1988 in Japan as the Mega Drive, and in 1989 in North America as the Genesis. In 1990, it was distributed as the Mega Drive by Virgin Mastertronic in Europe, Ozisoft in Australasia, and Tectoy in Brazil. In South Korea, it was distributed by Samsung Electronics as the Super Gam*Boy and later the Super Aladdin Boy.",
+    // INTRO_LYNX
+    "The Atari Lynx is a fourth-generation hand-held game console released by Atari Corporation in September 1989 in North America and 1990 in Europe and Japan. It was the first handheld game console with a color liquid-crystal display. ",
+    // INTRO_GBC
+    "The Game Boy Color (GBC or CGB) is an 8-bit handheld game console, manufactured by Nintendo, which was released in Japan on October 21, 1998, and to international markets that November. Compared to the original Game Boy, the Game Boy Color features a color TFT screen rather than monochrome, a processor that can operate twice as fast, and four times as much memory. It retains backward compatibility with games initially developed for its predecessor.",
+    // INTRO_SNES
+    "The Super Nintendo Entertainment System, commonly shortened to Super Nintendo, Super NES or SNES, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea, 1991 in North America, 1992 in Europe and Oceania and 1993 in South America. In Japan, it is called the Super Famicom (SFC). In South Korea, it is called the Super Comboy and was distributed by Hyundai Electronics. The system was released in Brazil on August 30, 1993, by Playtronic. In Russia and CIS, the system was distributed by Steepler from 1994 until 1996. Although each version is essentially the same, several forms of regional lockout prevent cartridges for one version from being used in other versions.",
+    // INTRO_NEOCD
+    "The Neo Geo CD (Neo Jio Shī Dī) is a home video game console produced by SNK Corporation, released on September 9, 1994. The system is the same platform as the cartridge-based Neo Geo released four years earlier, but converted to the cheaper CD media format which retailed at $49 to 79 per title compared to over $200 for the equivalent cartridge.",
+    // INTRO_PS1
+    "PlayStation is a video gaming brand owned and produced by Sony Interactive Entertainment (SIE), a division of Japanese conglomerate Sony. Its flagship products consists of a series of home video game consoles produced under the brand; it also consists of handhelds, online services, magazines, and other forms of media.",
+    // INTRO_NGP
+    "The Neo Geo Pocket Color (NGPC) is a 16-bit handheld game console developed and manufactured by SNK, released on March 19, 1999 in Japan with international markets following in August that year. It is an upgrade of the original Neo Geo Pocket, which was released in 1998 and mainly sold in Japan; the Color features a color display instead of a monochrome one, and is fully backward compatible.",
+    // INTRO_WSC
+    "The WonderSwan is a handheld game console released in Japan by Bandai. It was developed by Gunpei Yokoi's company Koto Laboratory and Bandai, and was the last piece of hardware Yokoi developed before his death in 1997. Released in 1999 in the sixth generation of video game consoles, the WonderSwan and its two later models, the WonderSwan Color and SwanCrystal, were officially supported until being discontinued by Bandai in 2003. During its lifespan, no variation of the WonderSwan was released outside of Japan.",
+    // INTRO_GBA
+    "The Game Boy Advance (GBA) is a 32-bit handheld game console, manufactured by Nintendo, which was released in Japan on March 21, 2001, and to international markets that June. It was later released in mainland China in 2004, under the name iQue Game Boy Advance. Compared to the Game Boy Color it succeeded, the console offered a significantly more powerful ARM7 processor and improved graphics, while retaining backward compatibility with games initially developed for its predecessor.",
+    // INTRO_ARC
+    "An arcade video game is an arcade game that takes player input from its controls, processes it through electrical or computerized components, and displays output to an electronic monitor or similar display. All arcade video games are coin-operated or accept other means of payment, housed in an arcade cabinet, and located in amusement arcades alongside other kinds of arcade games. Until the early 2000s, arcade video games were the largest and most technologically advanced segment of the video game industry.",
+    // LANG_MANAGE_ICONS
+    "⇸ Manage icons",
+},
+
+// Chinese
+{
+    // INTRO_ATARI2600
+    "雅达利2600（英语：Atari 2600）是雅达利公司于1977年所推出的一款家用电子游戏机，属第二世代游戏机，发布时初名“Atari Video Computer System”，简称“Atari VCS”，随着后续型号雅达利5200的发布而于1982年更名为雅达利2600。虽然它并不是首台采用ROM卡带作为游戏载体的游戏主机，但它帮助普及了使用ROM卡带作为载体的游戏，同时也帮助了微处理器在民用市场设备的推广。",
+    // INTRO_ATARI5200
+    "雅达利5200（英语：Atari 5200）是雅达利公司于1982年11月所推出的一款家用电子游戏机，全称雅达利5200超级系统（Atari 5200 SuperSystem），与前代产品雅达利2600同属第二世代游戏机，5200搭载了一颗1.79MHz的MOS 6502C微处理器与ANTIC和GTIA两颗图形芯片，配有16KB的RAM与3颗定制VLSI芯片，支持输出320x192分辨率的画面，售价330美元，附有游戏《超级打砖块》的卡带，5200是基于雅达利400/800家用电脑而设计的，因此从技术上来说，前者与后者基本相同。",
+    // INTRO_ATARI7800
+    "雅达利7800（Atari 7800，全称Atari 7800 ProSystem）是雅达利公司（Atari Corporation）在1986年1月官方发售的家用游戏机。因为最初宣称雅达利7800会在1984年5月发行，取代雅达利有限公司的雅达利5200，但公司销售导致全面发售被搁置，所以最初1986年首发有时称为“重新发行”。1986年1月，雅达利7800重新发行并在是年与NES和世嘉Master System竞争。机器使用简单的数字式摇杆，几乎完全向下兼容雅达利2600，是首个无需附加模块便可向下兼容的游戏机。机种售价为多数人可以负担的140美元。",
+    // INTRO_C64
+    "康懋达64（英语：Commodore 64），也称为C64、CBM 64或在瑞典被称作VIC-64是由康懋达国际于1982年1月推出的8位家用电脑（首次在1982年1月7日至10日，于拉斯维加斯消费电子展上展出。）。 它在吉尼斯世界纪录中被列为所有时间最畅销的单一电脑型号，独立估计出售数量在1000至1700万台之间。批量生产始于1982年初，在同年8月以595美元（相等于2023年的1,879美元）价格贩售",
+    // INTRO_VECTREX
+    "Vectrex是Western Technologies/Smith Engineering开发的矢量显示家用游戏机。主机最初由General Consumer Electronics（GCE）授权并销售，后来由收购GCE的Milton Bradley Company发售。主机于1982年11月发行，零售价199美元；Milton Bradley接收后国际销售价下调到150美元，在1983年美国游戏业大萧条前不久下调到100美元。Vectrex在1984年早期退市。",
+    // INTRO_ZXS
+    "ZX Spectrum是1982年由Sinclair公司生产的一款8位个人电脑。在产品开发期间，称作ZX81 Colour及ZX82,该款机器最后被Sinclair公司命名作ZX Spectrum，以强调其彩色显示，并有别于前款机器Sinclair ZX81的黑白显示。ZX Spectrum有8种不同的规格。1987年型号带有软盘驱动器。1980年代初，其竞争对手主要是Commodore 64。其后竞争对手有Amstrad CPC等。",
+    // INTRO_DOS
+    "DOS，是磁盘操作系统（英文：Disk Operating System）的缩写，是个人计算机上的一类操作系统。从1981年直到1995年的15年间，DOS在IBM PC兼容机市场中占有举足轻重的地位。且若将部分以DOS为基础的Microsoft Windows版本，如Windows 95、98和Me等都算入其寿命，那么其商业寿命至少可至2000年。",
+    // INTRO_PC98
+    "PC9800系列，略称PC-98，是日本电气（NEC）独立设计的一系列16位至32位个人电脑产品，包括PC-9800、PC-9821、PC98-NX三个系列。从1982年问世以来，一度垄断日本电脑市场长达十多年，至1999年已售出1800万部以上；NEC亦曾于西方国家销售与早期的PC-98硬件构造相似的NEC APC系列电脑。微软推出Windows操作系统后，PC-98于2003年正式停产。",
+    // INTRO_MSX
+    "MSX是一个标准化的家用计算机体系结构，最早由微软于1983年6月16日提出，并由后来的微软日本副总裁与ASCII主管西和彦构思。尽管有微软的介入，但MSX构架的机器在美国很少出现，而在日本、韩国、中东、巴西、苏联、荷兰、西班牙以及其他几个小型欧洲国家却非常流行。MSX计算机的销售数量难以估计，但仅在日本的最终销量就超过500万。在任天堂的红白机出现之前，MSX是日文主要的游戏平台，如科乐美和Hudson Soft就在这平台上生产游戏软件。比如合金装备系列最初就是为MSX硬件而编写。",
+    // INTRO_NES
+    "FC游戏机，是任天堂生产、发行和销售的8位第三世代家用游戏机日本版，官方名称为家庭电脑（日版名：ファミリーコンピュータ，Family Computer，Famicom），俗称“红白机”，1983年7月15日在日本推出；欧美版名称为任天堂娱乐系统（英文版名：Nintendo Entertainment System，NES），俗称“灰机”，1985年10月18日在美国推出。欧美版主机外型和使用的游戏盒带（卡带），与日本版的红白机完全不同。红白机是当时最畅销的游戏机，全球累计销量超过了6100万台。FC游戏机出现对电子游戏产生了十分深远的影响，让美国电子游戏界从1983年的崩溃中恢复过来，也奠定了任天堂在当今游戏界的地位。",
+    // INTRO_CPC
+    "Amstrad CPC（Colour Personal Computer的缩写）是Amstrad在1984至1990年间制作的一系列8位家用电脑。",
+    // INTRO_AMIGA
+    "Amiga（非正式译名为阿米加）是Amiga公司开发的个人电脑产品系列。在1982年，主要的硬件设计师杰·迈纳开始了Amiga的开发工作。康懋达国际（Commodore International）收购了Amiga公司后，在1985年将Amiga引入市场。",
+    // INTRO_X68000
+    "X68000是由夏普设计的家用电脑，1987到1993年间只在日本贩售，采用由Hudson Soft开发Human68k视窗系统，硬件规格处理器为摩托罗拉6800/16MHz的时脉、记忆体为2MB、硬盘分为SASI与SCSI界面。可以运行游戏，例如任天堂所制作的游戏、或者一般的文书处理，具备GNU C/C++ 编译器、16位元的色彩深度，在当时有不少玩家受其优秀的性能所震撼，曾获认为是游戏界的梦幻机种。另外，官方曾提供论坛让使用者免费下载软件、游戏。",
+    // INTRO_PCE
+    "PC Engine（日版名：PCエンジン，美版名：TurboGrafx-16，简称PCE），是由Hudson Soft与日本电气（NEC）两家日本公司联手开发的家用游戏机，并在1987年10月30日由NEC的子公司“NEC Home Electronics”（简称NEC HE）推出。",
+    // INTRO_MD
+    "Mega Drive（日版名：メガドライブ，美版名：Sega Genesis，简称MD，香港俗称世嘉五代）是世嘉在1988年推出的16-bit家用游戏机，1989年在美国推出，1990年在欧洲推出。Mega Drive在全球共售出3075万台。",
+    // INTRO_LYNX
+    "Atari Lynx是生产商雅达利公司（Atari Corporation）于1989年发布的手提式游戏机，是世上首款设有彩色液晶显示屏的手提电子游戏机，与任天堂的GameBoy游戏机同年推出。",
+    // INTRO_GBC
+    "Game Boy Color（日语：ゲームボーイカラー，简称GBC）是由任天堂开发的一款由电池驱动的彩色屏幕掌上游戏机，是Game Boy的加强版，于1998年10月21日在日本发行。其相对于原版Game Boy的最大特点是彩色屏幕的使用。",
+    // INTRO_SNES
+    "超级任天堂（日版名：スーパーファミコン，Super Famicom，英文版名：Super Nintendo Entertainment System，简称超任；日版简称SFC；欧美版简称Super Nintendo、SNES）是由游戏公司任天堂继红白机后开发的16位家用游戏机。超级任天堂于1990年11月21日在日本开始发售，北美于1991年8月13日发售，欧洲于1992年4月11日发售。手柄改进之处在于第一次加入了肩部按键L/R，并形成了ABXY四个按键的手柄布局。超级任天堂全球累计销量为4910万台。超级任天堂的下一代产品为任天堂64。",
+    // INTRO_NEOCD
+    "Neo Geo CD（日语：ネオジオCD）是SNK公司Neo Geo家族的第二款家用游戏机，发行于1994年9月9日。同四年前的卡带版主机相比，本主机使用廉价的CD作媒介：CD版游戏零售价为每张49美元至79美元，而盒装版游戏价格为300美元。日版主机首发价49,800日元，美版首发价为399美元，英国版首发价399英镑。",
+    // INTRO_PS1
+    "PlayStation（プレイステーション，简称为PS）是由索尼旗下的索尼互动娱乐（原索尼电脑娱乐）创立并开发，从第五到第九世代的一系列电子游戏机品牌。品牌于1994年12月3日随着初代PlayStation游戏机在日本发售而首次推出。",
+    // INTRO_NGP
+    "Neo Geo Pocket Color（简称NGPC）是一款由SNK制造的16位彩色掌上游戏机。本游戏机为Neo Geo Pocket继任机种，于1999年3月19日在日本发行，于8月6日在北美地区发行，10月1日在欧洲发行。",
+    // INTRO_WSC
+    "WonderSwan（日语：ワンダースワン，简称为WS）是日本玩具制造商万代（后与南梦宫合并为万代南梦宫）推出的16位掌上游戏机、第五世代游戏机，由Game Boy设计者横井军平成立的公司Koto Laboratory和万代共同设计，亦是横井军平在1997年因车祸逝世前主导设计的最后一款硬件。初代WonderSwan于1999年3月于日本推出；派生机型包括于2000年推出的WonderSwan Color（日语：ワンダースワンカラー，简称为WSC），以及2002年推出的SwanCrystal（日语：スワンクリスタル，简称为SC）。在生命周期内，没有任何一款WonderSwan系列主机于日本以外的地区正式推出。WonderSwan系列主机在其生命周期中销量共计约350万部，于日本掌上游戏机市场市占率最高达8%。尽管在市场龙头任天堂Game Boy系列的竞争下表现并不算突出，多数舆论仍给予WonderSwan正面评价。",
+    // INTRO_GBA
+    "Game Boy Advance（日语：ゲームボーイアドバンス，简称GBA）是日本任天堂公司于2001年3月21日发售的掌上游戏机，其后2001年6月11日在北美发行，2001年6月22日在德国地区发行，并于2004年6月8日以“小神游GBA”的名义在中国发行。售价9800日元，可向下兼容上一代的的Game Boy和Game Boy Color的游戏。拥有8x8像素的位图显示和16种颜色（4bpp）或256种颜色（8bpp），一颗在1994年制造的ARM7TDMI32位的CPU，比起Game Boy与Game Boy Color这回大幅度提升2D图形、伪3D图形、半透明效果及堆栈图形处理能力。频率为16.78 MHz，32kb的内部工作RAM，256kb的外部RAM和96kb的VRAM。在开发者的立场却不是强大的掌上游戏机，因为Game Boy Advance不支持3D图形功能及缺少浮点运算器，尽管仍有一些游戏开发商尝试设计3D的Game Boy Advance游戏，因无法呈现光源效果及动态光照（dynamic lighting）错觉，因此多数的游戏开发厂仍以2D图形游戏为首。",
+    // INTRO_ARC
+    "街机（英语：arcade cabinet或arcade machine，台湾作机台），即街边游戏机、步行街游戏机，又称大型电玩，是放置于公共娱乐场所或电子游乐场营业用的游戏机，最早的街机雏型于1971年诞生在美国，当时常放置于酒吧内。与街边游戏机相对则是的家用游戏机。",
+    // LANG_MANAGE_ICONS
+    "⇸ 管理图标",
+},
+
+// Japanese
+{
+    // INTRO_ATARI2600
+    "Atari 2600は、米国アタリ社が開発し1977年にリリースした家庭用ゲーム機である。マイクロプロセッサを用いたゲーム機であり、それまで一般的だったプログラムが固定されたゲーム機と異なり、前年1976年発売のフェアチャイルド・チャンネルF同様に、ロムカートリッジによりゲームソフトを交換できる方式のゲーム機として1977年に「Video Computer System」の名で発売された。発売時の価格は199ドル。当初は「Atari VCS」の通称で親しまれ、後に「Atari 2600」に改称された。",
+    // INTRO_ATARI5200
+    "Atari 2600のバイスペックモデルとして1982年11月に発売。発売の背景には米コレコ社がAtari 2600を超える性能の「コレコビジョン」を発売したことがあり、それに追従する形での市場投入となった。",
+    // INTRO_ATARI7800
+    "Atari 7800 はアタリの失敗作ともいえるAtari 5200にとってかわり、そして任天堂やセガに対して再び優位に立つために設計された。このシステムでアタリは Atari 5200 の欠点の解消に取り組んだ。Atari 7800 にはシンプルなデジタルジョイスティックが付いており、Atari 2600 とほぼ完全な後方互換性を持ち、手ごろな値段（当初の価格は140USドル）で手に入れることができた。",
+    // INTRO_C64
+    "コモドール64（Commodore 64）は、コモドール社が1982年1月に発表した8ビットホームコンピューターである。C64、C=64、C-64などと略記される。時に CBM 64 (Commodore Business Machines) あるいは VIC-64 とも称される。",
+    // INTRO_VECTREX
+    "光速船（こうそくせん、コンピュータービジョン 光速船）は、1983年7月にバンダイが日本国内用に発売したゲーム機である。ベクタースキャン・ディスプレイを備えたゲーム機である。",
+    // INTRO_ZXS
+    "ZX Spectrum（ゼットエックス スペクトラム）は、シンクレア・リサーチが1982年にイギリスでリリースしたホームコンピューターである。開発中は「ZX81 Colour」および「ZX82」と呼ばれていたが、それまで（ZX80とZX81）のモノクロ表示との違いを強調するため、クライブ・シンクレアが「Spectrum（=スペクトル、光をプリズムで分光したときに得られる色の帯）」と名づけた。最終的に8つの異なる機種をリリースしており、1982年にリリースした 16kB RAM の入門モデルから1987年のフロッピーディスクドライブ内蔵の 128kB RAM 搭載の ZX Spectrum +3 まである。クローンを除いても全世界で累計500万台以上を売り上げた。",
+    // INTRO_DOS
+    "MS-DOS（エムエス-ディーオーエス、エムエスドス）は、1981年よりマイクロソフトが開発・販売したパーソナルコンピュータ向けのオペレーティングシステム(OS)である。「MS-DOS」が製品名で、マイクロソフト ディスク・オペレーティングシステム(英: the Microsoft Disk Operating System)を意味する。",
+    // INTRO_PC98
+    "PC-9800シリーズは、日本電気が1982年（昭和57年）から2003年（平成15年）9月30日の受注終了まで、日本市場向けに販売した独自アーキテクチャのパーソナルコンピュータ（パソコン）の製品群である。同社の代表的な製品であり、98（キューハチ/キュッパチ）、PC-98、NEC98など略称されることもある。",
+    // INTRO_MSX
+    "1983年に最初の規格であるMSX（通称「MSX1」）が米マイクロソフトとアスキー（後のアスキー・メディアワークス）によって8ビットパソコンの共通規格として提唱された。",
+    // INTRO_NES
+    "ファミリーコンピュータ（Family Computer）は、任天堂より1983年7月15日に発売された家庭用ゲーム機。日本国内での略称・略記はファミコン（Famicom）、FC。",
+    // INTRO_CPC
+    "Amstrad CPCは、1980年代後半から1990年代前半にかけてイギリスのアムストラッドによって製造された、8ビットホームコンピューターのシリーズである。",
+    // INTRO_AMIGA
+    "Amiga（アミガもしくはアミーガ）は、1985年にコモドールより発売されたパーソナルコンピューターである。同ハードは1980年代後半から1990年代初頭にかけて、主に欧州市場において人気を博したパソコンである。3DCGやビデオ映像といったグラフィックに対応していることが主な利点であり、映像製作者、メガデモ製作者、アーティスト、ゲーマーなどに熱狂的に受け入れられた。 日本においても、『ウゴウゴルーガ』といったテレビ番組や、『Dの食卓』といったコンピュータゲームにおいて使用された。",
+    // INTRO_X68000
+    "X68000（エックス ろくまんはっせん）は、1987年（昭和62年）3月28日にシャープが発売したパーソナルコンピュータである。なお以下では、その初代に引き続く、1987年発売のX68000（CZ-600）シリーズとして現在扱われている製品関連の他、1993年（平成5年）発売のX68030（CZ-500/CZ-300）シリーズについても述べる。",
+    // INTRO_PCE
+    "PCエンジン（PC Engine）は、ハドソンと日本電気ホームエレクトロニクス（NECホームエレクトロニクス、以下NEC-HE）により共同開発され、1987年10月30日にNEC HEから発売されたHE-SYSTEM規格に基づく家庭用ゲーム機。当時のメーカー希望小売価格は24,800円。北米市場ではTurboGrafx-16（ターボグラフィックス16）の商品名で発売され、NECの米国法人から販売された。HE-SYSTEMの北米仕様であり、HE-SYSTEMのロゴだけは使用している。発売当初はファミリーコンピュータやセガ・マークIIIと競合し、後にスーパーファミコンやメガドライブとも競合した。トップシェアを占めることはなかったが、世界累計販売台数764万台を記録している。",
+    // INTRO_MD
+    "メガドライブ（MEGA DRIVE）は、セガ・エンタープライゼスが1988年10月29日に日本で発売した16ビットの家庭用ゲーム機である。発売時のキャッチコピーは「時代が求めた16ビット」「VISUAL SHOCK! SPEED SHOCK! SOUND SHOCK!。セガ・マークIIIおよびセガ・マスターシステムの後継機として開発された。日本では任天堂のスーパーファミコンやNEC HEのPCエンジンと競合した。米国・カナダ・メキシコではGENESIS（ジェネシス、Sega Genesisとも）という名称で1989年に、その他のヨーロッパ地域（イギリス・フランス・スペイン等）、オセアニア地域（オーストラリア・ニュージーランド）、南アメリカ地域（ブラジル等）、アジア地域といった大部分では日本と同じ名称で1990年に発売された。",
+    // INTRO_LYNX
+    "Atari Lynx（アタリ・リンクス）とは、アタリコープ社（アタリ社分割後の家庭用ゲーム機/パソコン部門）が1989年に発売した携帯型ゲーム機。",
+    // INTRO_GBC
+    "ゲームボーイカラー（GAME BOY COLOR）は、1998年10月21日に任天堂が発売した携帯型ゲーム機。略称は「GBC」。ゲームボーイ派生機の一つ。カラー液晶ディスプレイ搭載の携帯ゲーム機としては、日本国内では1990年のセガのゲームギア、NEC-HEのPCエンジンGT以来8年振りのリリースとなった。キャッチコピーは「色気のない生活なんて…」「色のあるよろこび。」「カラーがあれば、まいにちたのしい。」と数種類ある。",
+    // INTRO_SNES
+    "スーパーファミコン（SUPER Famicom）は、任天堂より日本・中国（台湾）・中国（香港）などで発売された家庭用ゲーム機。略記・略称はSFC、スーファミなど。日本発売は1990年11月21日、生産終了は2003年9月。ファミリーコンピュータの後継機として開発された。同世代機の中では後発であったが、ファミリーコンピュータに引き続き、最多出荷台数を記録した。北米・欧州・オーストラリア・ブラジルなどでは“Super Nintendo Entertainment System”（スーパーニンテンドーエンターテインメントシステム、略称：Super NES、またはSNES）、大韓民国では現代電子(現：SKハイニックス)・スーパーコンボイの名称で発売された。",
+    // INTRO_NEOCD
+    "ネオジオCD（NEOGEO CD）は、SNKが1994年9月9日に発売した家庭用ゲーム機。NGCDと略記される。標準価格は49,800円（税別）。キャッチコピーは「CDで遊べるネオジオ、誕生。」「ゲームをしよう、ネオジオCD。」。家庭用ネオジオが大容量のROMカセットを採用しており、1994年当時3万円以上で高価であった。カセット価格が高いというユーザーの意見を考慮し、ソフトの価格を下げるためゲームの供給媒体を安価なCD-ROMにしたモデルである。ネオジオCDでもアーケードのゲームがほぼそのまま遊べることをアピールしたため、ライトユーザーへの普及が期待されたが、数分におよぶロード時間が不評であり、ネオジオよりも早期に販売を終了した。",
+    // INTRO_PS1
+    "PlayStation（邦:プレイステーション）は、日本のソニー傘下のソニー・インタラクティブエンタテインメント（略: SIE）により開発・発売されている家庭用ゲーム機およびサービスのブランド名、トレードマーク（商標）である。世界中で一般的な略称は「PS」（ピーエス）。それに加えて、日本の俗称では「プレステ」と略されることもある。「PlayStation」という語は「ワークステーション」から造語したものである。「PlayStation」の名を冠したゲーム機の総称。",
+    // INTRO_NGP
+    "ネオジオポケットカラー（NEOGEO POCKET COLOR）は、1999年3月19日にエス・エヌ・ケイが発売した携帯型ゲーム機。ネオジオポケットの上位機種。略称は「NGPC」。",
+    // INTRO_WSC
+    "ワンダースワン（WonderSwan）は、1999年3月4日に発売されたバンダイの携帯型ゲーム機。定価4,800円。当時の据置機で最安値だったカセットビジョンJr.の定価5000円を更に下回る。略称は「WS」。上位機種としてワンダースワンカラーとスワンクリスタルがある。",
+    // INTRO_GBA
+    "ゲームボーイアドバンス（GAME BOY ADVANCE）は、任天堂が開発した携帯型ゲーム機。日本では2001年3月21日に発売された。略称は「GBA」。21世紀最初の任天堂の携帯型ゲーム機に当たる。任天堂最後の国産携帯機となった。1989年4月21日に発売したゲームボーイから約12年ぶりの完全新型携帯ゲーム機である。前世代機の一種であるゲームボーイカラーに比べ画面の大きさは約1.5倍、色数が増加し、32ビットCPUの採用など、ゲームボーイカラーに比べて大きく性能が上がっている。また、専用ソフトに使うメインの32ビットCPUに加え、8ビットCPUも搭載されているため、ゲームボーイやゲームボーイカラーとの後方互換性もある。2003年2月14日には、フロントライト搭載と充電式への変更、さらに折り畳み型に変わった上位モデルのゲームボーイアドバンスSPが発売された。2005年9月13日にはゲームボーイカラーとの後方互換性を削除し小型化、バックライト液晶化されたゲームボーイミクロが発売された。ちなみに後継機であるニンテンドーDS、ニンテンドーDS LiteでもGBAのソフトを遊ぶことができる。2012年には本体の公式修理サポートも終了した。",
+    // INTRO_ARC
+    "日本の業界ではアメリカを主に輸入元としていたこともあって業界ではアーケードゲームを業務用ゲーム機の意味で使ったが、1970年代中頃にはメダルゲームやコンピュータゲームを含むことはほとんどなく、業界ではそれが新興勢力として注目されたためとみられ、レトロニムではないがそれまでのゲーム機器の総称としてアーケードゲーム機の語が使われたと考えられる。その後、テレビゲームという言葉も広まったがゲームメーカーによっては広告、カタログなどでビデオゲームの語を使い続けたせいか1980年代初頭の一部マニアには業務用に対してだけビデオゲームと呼ぶようになった。パソコン雑誌の中には北米市場の影響を受けてPC向けアクションゲームなどをアーケードゲームと呼んでいたところもあった。",
+    // LANG_MANAGE_ICONS
+    "⇸ アイコンを管理",
+},
+
+// Italian
+{
+    // INTRO_ATARI2600
+    "L'Atari 2600 (pubblicizzata nei primi anni di commercializzazione come Atari VCS, sigla di Video Computer System) è una console per videogiochi prodotta da Atari e venduta a partire da agosto 1977 fino al 1992.",
+    // INTRO_ATARI5200
+    "L'Atari 5200 SuperSystem è una console da tavolo a colori prodotta da Atari e commercializzata a partire dal 1982. Venne creata per competere con la console Intellivision di Mattel ma dovette poi fronteggiare anche la concorrenza del ColecoVision, che venne messo in commercio poco dopo la 5200.",
+    // INTRO_ATARI7800
+    "L'Atari 7800 ProSystem, meglio noto come Atari 7800, è una console per videogiochi prodotta da Atari, presentata il 21 maggio 1984 come sostituta dell'Atari 5200 e commercializzata a partire dal 1986 fino al 1992. La console è retrocompatibile con le cartucce prodotte per l'Atari 2600.",
+    // INTRO_C64
+    "Commodore 64 (abbreviazioni diffuse: C64, CBM 64, C=64) è un home computer della Commodore Business Machines Inc. commercializzato dal 1982 al 1994.",
+    // INTRO_VECTREX
+    "Il Vectrex è una console a 8 bit ideata da Smith Engineering e distribuita dalla General Consumer Electric (una filiale della General Electric), e in seguito dalla Milton Bradley Company.",
+    // INTRO_ZXS
+    "Lo ZX Spectrum è un home computer creato e prodotto dal 1982 fino al 1986 dalla Sinclair Research Ltd, e dal 1986 al 1992 dalla Amstrad. In Europa fu il principale antagonista del Commodore 64 e conquistò un discreto settore di mercato grazie a un prezzo di listino più economico. Le piccole dimensioni, la velocità di calcolo e il prezzo relativamente contenuto lo resero popolare negli anni ottanta in vari Stati del mondo: ad esempio negli USA col nome Timex Sinclair 2068. Furono realizzati anche dei cloni, alcuni ufficiali come l'Inves Spectrum 48K plus in Spagna e altri no, come il \"Dubna 48k\" e poi il \"Baltica\" in Russia.",
+    // INTRO_DOS
+    "(pronuncia italiana \"dòs\"), acronimo di Disk Operating System cioè \"sistema operativo a disco, è una famiglia di sistemi operativi molto utilizzata per il mercato dei personal computer IBM compatibili fra l'inizio degli anni '80 e la metà degli anni '90 (o fino a circa il 2000 se si includono le versioni della famiglia Microsoft Windows 9x, ovvero Windows 95, 98 e ME, che sono basate parzialmente sul DOS e lo incorporano). Il più diffuso sistema della famiglia era l'MS-DOS, lanciato dalla Microsoft nel 1981, seguito da PC DOS lanciato da IBM sempre nel 1981 e da diversi altri DOS compatibili usciti più tardi.",
+    // INTRO_PC98
+    "La serie di NEC PC-9801 o PC-9800 (PC-9800, Pī Shī Kyūsen Happyaku Shirīzu), generalmente abbreviate in PC-98 o 98 (Kyū-hachi), è una linea di personal computer giapponesi a 16 e 32 bit prodotti da NEC dal 1982 al 2000.La piattaforma segnò il predominio della NEC sul mercato nipponico dei personal computer e, al 1999, ne erano stati venduti più di 18 milioni. Sebbene NEC non abbia immesso sul mercato occidentale questi computer nello specifico, commercializzò la serie NEC APC, che aveva hardware simile ai primi modelli di PC-98.",
+    // INTRO_MSX
+    "L'MSX (sigla di Machines with Software eXchangeability) è uno standard informatico per un gruppo di home computer sviluppato in Giappone e prodotto tra il 1983 e il 1995, trovando diffusione soprattutto in Asia, Europa e Sudamerica.",
+    // INTRO_NES
+    "Il Nintendo Entertainment System (NES), noto in Giappone con il nome di FamiCom (Famikon pronuncia, Fami(ly) Com(puter)), è una console per videogiochi a 8-bit prodotta da Nintendo tra il 1983 e il 1995.",
+    // INTRO_CPC
+    "L'Amstrad CPC è una serie di home computer a 8 bit prodotta dalla Amstrad tra la metà gli anni '80 e i primi anni '90.",
+    // INTRO_AMIGA
+    "Amiga è una famiglia di home/personal computer commercializzati dalla Commodore a partire dal 1985. La piattaforma informatica da cui derivarono fu originariamente sviluppata a partire dal 1982 dall'azienda Hi-Toro, che nel 1984 cambiò nome in Amiga Corporation; l'ideatore del progetto fu Jay Miner, che già aveva sviluppato i progetti dell'Atari 2600 e dei computer Atari a 8 bit.",
+    // INTRO_X68000
+    "Lo Sharp X68000, spesso abbreviato X68k o X68, è un home computer sviluppato dalla Sharp Corporation e commercializzato solo in Giappone tra il 1987 e metà anni '90. Si basa sul microprocessore Motorola 68000, dal quale prende il nome, come i contemporanei Amiga e Atari ST, ma nel complesso le prestazioni hardware sono superiori a entrambi, ed era particolarmente adatto a eseguire conversioni di videogiochi arcade molto fedeli.",
+    // INTRO_PCE
+    "PC Engine, nota come TurboGrafx-16 in Nordamerica, è una console da tavolo giapponese prodotta da NEC in collaborazione con Hudson Soft tra il 1987 e il 1994. La versione per il mercato nordamericano venne introdotta nel 1989, mentre in Europa la console ebbe una distribuzione ufficiale come PC Engine in Francia e una piuttosto limitata, con il nome Turbografx, in Regno Unito, Spagna e Portogallo; ci fu comunque una certa diffusione del PC Engine in Europa attraverso il mercato grigio.",
+    // INTRO_MD
+    "Il Sega Mega Drive (Sega Mega Doraibu), commercializzato come Sega Genesis negli Stati Uniti d'America e come Super Gam*Boy e Super Aladdin Boy in Corea del Sud, è una console per videogiochi prodotta da SEGA tra il 1988 e il 1998. Inaugurò l'epoca delle console dotate di microprocessore a 16 bit, basandosi sul Motorola 68000, all'epoca utilizzato da computer come l'Amiga.",
+    // INTRO_LYNX
+    "L'Atari Lynx è una console portatile sviluppata da Atari nel 1989, la prima console portatile con vero schermo a colori al mondo.",
+    // INTRO_GBC
+    "Il Game Boy Color (Gēmu Bōi Karā), abbreviato in GBC, è una console portatile successore dell'originale Nintendo Game Boy in bianco e nero. La console fu messa in commercio il 21 ottobre 1998 in Giappone e, soltanto un mese dopo, nel resto del mondo.",
+    // INTRO_SNES
+    "Il Super Nintendo Entertainment System (SNES), comunemente abbreviato in Super NES o Super Nintendo, è una console per videogiochi a 16 bit sviluppata dalla giapponese Nintendo e commercializzata nel 1990 in Giappone e Corea del Sud, nel 1991 in America del Nord, nel 1992 in Europa e Oceania e nel 1993 in America del Sud. In Giappone, la console è chiamata col nome di Super Famicom (Sūpā Famikon) (SFC); in Corea del Sud, dov'è è stata distribuita da Hyundai Electronics, è conosciuta invece come Super Comboy (Syupeo KeomboiLR).",
+    // INTRO_NEOCD
+    "Il Neo Geo CD è una console sviluppata dalla SNK e immessa nel mercato nel 1994. Questa versione è dotata di un lettore di CD-ROM a differenza del classico Neo Geo e lo scopo dell'unità era sostanzialmente quello di ridurre i costi di produzione della console. La macchina era venduta inizialmente a un prezzo di 300 Dollari statunitensi. L'unità è dotata di un lettore 1X, un lettore molto lento che costringe l'utente ad attese molto lunghe per il caricamento dei giochi. I giochi per Neo Geo CD costavano circa 50 dollari, mentre alcune cartucce per Neo Geo arrivavano a costare 300 dollari.",
+    // INTRO_PS1
+    "PlayStation (ufficialmente abbreviato in PS) è un marchio che identifica una serie di console da videogiochi prodotta da Sony Interactive Entertainment, divisione della Sony, a partire dagli anni 1990.",
+    // INTRO_NGP
+    "Il Neo Geo Pocket Color è una console portatile sviluppata da SNK e commercializzata nel 1999. La console è dotata di un display a colori a 16 bit ed è retrocompatibile con il precedente Neo Geo Pocket. Il nome della console deriva dal Neo Geo, famosa piattaforma per coin-op di SNK, per sfruttarne la scia del successo commerciale. La scelta di uno schermo non retroilluminato è stata fatta per aumentare la longevità delle batterie, stimata in 40 ore di gioco con due pile stilo. Sono state prodotte molte versioni della console dai più svariati colori.",
+    // INTRO_WSC
+    "Il WonderSwan è una console portatile creata per il mercato orientale e particolarmente per quello giapponese nel 1999. È stato sviluppato dalla Bandai e dalla Koto, società di Gunpei Yokoi. Una sua caratteristica è la possibilità di usarla orientata in orizzontale o in verticale in base al gioco.",
+    // INTRO_GBA
+    "Il Game Boy Advance, abbreviato ufficialmente GBA, è una console portatile a 32 bit sviluppata, prodotta e commercializzata da Nintendo nel 2001. Succede al Game Boy Color. Competeva commercialmente con il WonderSwan Color, il GP32 e il N-Gage, occupando comunque la maggior parte del mercato. È stata la prima console portatile Nintendo a superare le caratteristiche tecniche dell'Atari Lynx, caratteristiche che rendono il Game Boy Advance simile allo SNES. Pur utilizzando cartucce differenti rispetto a quelle del Game Boy e Game Boy Color, il Game Boy Advance rimane compatibile con queste ultime grazie alla presenza di un coprocessore Z80, che garantisce la retrocompatibilità. Il Game Boy Advance con il suo processore ARM7TDMI a 16,78 MHz, nonostante gestisca alcune basi del 3D, non è dotato di reale supporto hardware per la renderizzazione della grafica poligonale 3D, ma con la discreta potenza del processore era perfettamente possibile la realizzazione in software di mondi 3D fatti di un numero limitato di poligoni, texture mappate, sorgenti di luce e ombre.",
+    // INTRO_ARC
+    "Un videogioco arcade (chiamato anche coin-op, abbreviazione di coin-operated, in italiano \"macchina a gettoni\", sebbene il termine si possa riferire anche a giochi che non fanno uso di un monitor, come i flipper) è un videogioco che si gioca in una postazione pubblica apposita, azionata a gettoni o a monete e costituita fisicamente da un elaboratore posto all'interno di un cabinato. Il termine inglese arcade , che indica genericamente una galleria commerciale, significa in questo caso sala giochi.",
+    // LANG_MANAGE_ICONS
+    "⇸ Gestisci le icone",
+},
+
+// French
+{
+    // INTRO_ATARI2600
+    "L'Atari 2600 est une console de jeux vidéo de salon développée et produite par Atari, Inc. Sortie en septembre 1977 sous le nom d'Atari Video Computer System (Atari VCS), elle a popularisé le matériel à microprocesseur et les jeux stockés sur des cartouches ROM interchangeables, un format utilisé pour la première fois avec la Fairchild Channel F en 1976. La VCS était fournie avec deux joysticks, une paire de manettes et une cartouche de jeu, initialement Combat, puis Pac-Man. Sears a commercialisé la console sous le nom de Tele-Games Video Arcade. Atari a rebaptisé la VCS Atari 2600 en novembre 1982, parallèlement à la sortie de l'Atari 5200.",
+    // INTRO_ATARI5200
+    "L'Atari 5200 SuperSystem, ou simplement Atari 5200, est une console de jeux vidéo de salon lancée en 1982 par Atari, Inc. comme complément haut de gamme du populaire Atari Video Computer System. La VCS a été rebaptisée Atari 2600 lors du lancement de la 5200. Créée pour concurrencer l'Intellivision de Mattel, la 5200 est devenue un concurrent direct de la ColecoVision peu après sa sortie. Alors que la Coleco était livrée avec la première version de Donkey Kong de Nintendo, la 5200 incluait le jeu d'arcade Super Breakout de 1978, déjà présent sur les précédentes consoles Atari.",
+    // INTRO_ATARI7800
+    "L'Atari 7800 ProSystem, ou simplement Atari 7800, est une console de jeux vidéo de salon officiellement lancée par Atari Corporation en 1986, succédant à l'Atari 2600 et à l'Atari 5200. Compatible avec la quasi-totalité des cartouches Atari 2600, elle est l'une des premières consoles rétrocompatibles. Elle était livrée avec un joystick différent de celui de la CX40 standard de la 2600 et incluait Pole Position II comme jeu d'accompagnement. Le modèle européen est équipé d'une manette de jeu au lieu d'un joystick. La plupart des premières versions de la console sont des adaptations de jeux vidéo d'arcade de 1981-1983. La dernière vague de cartouches 7800 se rapproche davantage, par son style, de ce qui était disponible sur d'autres consoles de la fin des années 1980, comme Scrapyard Dog et Midnight Mutants.",
+    // INTRO_C64
+    "Le Commodore 64, également connu sous le nom de C64, est un ordinateur personnel 8 bits lancé en janvier 1982 par Commodore International (présenté pour la première fois au Consumer Electronics Show, du 7 au 10 janvier 1982, à Las Vegas). Il figure dans le Guinness des records comme le modèle d'ordinateur le plus vendu de tous les temps, des estimations indépendantes situant le nombre d'unités vendues entre 12,5 et 17 millions. La production en série a débuté début 1982 et a été commercialisée en août au prix de 595 $ US (équivalent à 1 940 $ en 2024). Précédé par le VIC-20 et le Commodore PET, le C64 tire son nom de ses 64 kilo-octets (65 536 octets) de RAM. Grâce à la prise en charge des sprites multicolores et à une puce personnalisée pour la génération de formes d'onde, le C64 pouvait créer des images et un son supérieurs à ceux des systèmes dépourvus de ce matériel personnalisé.",
+    // INTRO_VECTREX
+    "La Vectrex est une console de jeu vidéo de salon à affichage vectoriel, la seule jamais conçue et commercialisée pour le marché des consoles de salon. Elle a été développée par Smith Engineering et fabriquée et commercialisée par General Consumer Electronics. Elle a d'abord été commercialisée en Amérique du Nord en octobre 1982, puis en Europe et au Japon en 1983. Produite à l'origine par General Consumer Electronics, elle a ensuite été concédée sous licence à Milton Bradley après son acquisition par cette société. Bandai a commercialisé la console au Japon.",
+    // INTRO_ZXS
+    "Le ZX Spectrum est un ordinateur de salon 8 bits développé et commercialisé par Sinclair Research. L'un des ordinateurs les plus influents jamais fabriqués et l'un des ordinateurs britanniques les plus vendus de tous les temps, plus de cinq millions d'unités ont été vendues. Il est sorti au Royaume-Uni le 23 avril 1982, et dans le monde entier au cours des années suivantes, notamment en Europe, aux États-Unis et dans les pays du bloc de l'Est.",
+    // INTRO_DOS
+    "DOS est une famille de systèmes d'exploitation sur disque dur pour ordinateurs compatibles IBM PC. La famille DOS se compose principalement d'IBM PC DOS et d'une version renommée, MS-DOS de Microsoft, tous deux lancés en 1981. Parmi les systèmes compatibles ultérieurs d'autres fabricants, on trouve DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993) et FreeDOS (1994). MS-DOS a dominé le marché des systèmes compatibles IBM PC entre 1981 et 1995.",
+    // INTRO_PC98
+    "La série PC-9800, communément abrégée en PC-98 ou simplement 98 (Kyū-hachi), est une gamme d'ordinateurs personnels japonais 16 et 32 ​​bits fabriqués par NEC de 1982 à 2003. Bien que basée sur des processeurs Intel, elle utilise une architecture interne la rendant incompatible avec les clones IBM ; certains PC-98 utilisaient le processeur V30 de NEC. Cette plateforme a établi la domination de NEC sur le marché japonais des ordinateurs personnels et, en 1999, plus de 18 millions d'unités avaient été vendues. Bien que NEC ne commercialise pas ces machines spécifiques en Occident, elle propose la série NEC APC, dont le matériel est similaire à celui des premiers modèles PC-98.",
+    // INTRO_MSX
+    "MSX est une architecture standardisée d'ordinateurs de salon, annoncée par ASCII Corporation le 16 juin 1983. Initialement conçue par Microsoft pour le marché oriental, elle fut commercialisée conjointement par Kazuhiko Nishi, directeur d'ASCII Corporation. Microsoft et Nishi avaient conçu ce projet pour créer des normes unifiées entre les différents fabricants de systèmes informatiques de l'époque, à l'instar de la norme VHS pour les magnétoscopes. Le premier ordinateur MSX vendu au public fut un Mitsubishi ML-8000, commercialisé le 21 octobre 1983, marquant ainsi sa date de sortie officielle.",
+    // INTRO_NES
+    "",
+    // INTRO_CPC
+    "L'Amstrad CPC est un ordinateur personnel 8 bits produit par Amstrad dans les années 1980. CPC est le sigle de Colour Personal Computer, « ordinateur personnel couleur », même si une version dotée d'un moniteur monochrome était disponible.",
+    // INTRO_AMIGA
+    "Amiga est une famille d'ordinateurs personnels produite par Commodore de 1985 jusqu'à la faillite de l'entreprise en 1994, puis produite par d'autres par la suite. Le modèle original fait partie d'une série d'ordinateurs du milieu des années 1980 dotés de processeurs 16 bits ou 16/32 bits, de 256 Ko ou plus de RAM, d'interfaces utilisateur graphiques à la souris et de performances graphiques et audio nettement améliorées par rapport aux systèmes 8 bits précédents. Parmi ces ordinateurs, on compte l'Atari ST, sorti plus tôt la même année, ainsi que le Macintosh et l'Acorn Archimedes. L'Amiga se distingue de ses contemporains par un matériel spécifique pour accélérer les graphismes et le son, notamment des sprites, un blitter et quatre canaux audio basés sur des échantillons. Il exécute un système d'exploitation multitâche préemptif appelé AmigaOS, avec un environnement de bureau appelé Workbench.",
+    // INTRO_X68000
+    "Le X68000 (Hepburn : Ekkusu Rokuman Hassen) est un ordinateur personnel créé par Sharp Corporation. Il a été lancé en 1987 et vendu uniquement au Japon. Le modèle initial était équipé d'un processeur Motorola 68000 à 10 MHz, de 1 Mo de RAM et était dépourvu de disque dur. Le modèle final, sorti en 1993, était équipé d'un processeur Motorola 68030 à 25 MHz, de 4 Mo de RAM et d'un disque dur SCSI optionnel de 80 Mo. La RAM de ces systèmes est extensible jusqu'à 12 Mo, bien que la plupart des jeux et applications ne nécessitent pas plus de 2 Mo.",
+    // INTRO_PCE
+    "La TurboGrafx-16, connue sous le nom de PC Engine hors d'Amérique du Nord, est une console de jeux vidéo de salon conçue par Hudson Soft et commercialisée par NEC Home Electronics. Il s'agit de la première console commercialisée de la quatrième génération, communément appelée l'ère 16 bits. Elle est sortie au Japon en 1987 et en Amérique du Nord en 1989. En Europe, le modèle japonais a été importé et distribué officieusement au Royaume-Uni et en France à partir de 1988. Au Japon, la console a été lancée comme concurrente de la Famicom, mais son lancement tardif aux États-Unis l'a amenée à concurrencer la Sega Genesis, puis la Super NES.",
+    // INTRO_MD
+    "La Sega Genesis, connue sous le nom de Mega Drive hors d'Amérique du Nord, est une console de jeux vidéo 16 bits de quatrième génération développée et commercialisée par Sega. Troisième console de Sega, elle succède à la Master System. Sega la commercialise en 1988 au Japon sous le nom de Mega Drive, puis en 1989 en Amérique du Nord sous le nom de Genesis. En 1990, elle est distribuée sous le nom de Mega Drive par Virgin Mastertronic en Europe, Ozisoft en Australasie et Tectoy au Brésil. En Corée du Sud, elle est distribuée par Samsung Electronics sous le nom de Super Gam*Boy, puis de Super Aladdin Boy.",
+    // INTRO_LYNX
+    "L'Atari Lynx fut la seule console portable d'Atari et la première portable avec un écran LCD couleur. Elle est sortie en 1989, la même année que le Game Boy (original monochrome) de Nintendo.",
+    // INTRO_GBC
+    "La Game Boy Color (GBC ou CGB) est une console de jeu portable 8 bits fabriquée par Nintendo, commercialisée au Japon le 21 octobre 1998 et sur les marchés internationaux en novembre de la même année. Comparée à la Game Boy originale, la Game Boy Color est dotée d'un écran TFT couleur plutôt que monochrome, d'un processeur deux fois plus rapide et de quatre fois plus de mémoire. Elle conserve la rétrocompatibilité avec les jeux initialement développés pour sa prédécesseure.",
+    // INTRO_SNES
+    "La Super Nintendo Entertainment System, communément abrégée en Super Nintendo, Super NES ou SNES, est une console de jeux vidéo de salon 16 bits développée par Nintendo. Elle est sortie en 1990 au Japon et en Corée du Sud, en 1991 en Amérique du Nord, en 1992 en Europe et en Océanie, et en 1993 en Amérique du Sud. Au Japon, elle est appelée Super Famicom (SFC). En Corée du Sud, elle est appelée Super Comboy et distribuée par Hyundai Electronics. La console est sortie au Brésil le 30 août 1993 par Playtronic. En Russie et dans la CEI, elle a été distribuée par Steepler de 1994 à 1996. Bien que chaque version soit essentiellement identique, plusieurs formes de verrouillage régional empêchent l'utilisation des cartouches d'une version dans d'autres versions.",
+    // INTRO_NEOCD
+    "La Neo Geo CD (Neo Jio Shī Dī) est une console de jeux vidéo de salon produite par SNK Corporation, sortie le 9 septembre 1994. Le système est la même plate-forme que la Neo Geo à cartouche sortie quatre ans plus tôt, mais convertie au format CD moins cher qui se vendait entre 49 et 79 $ par titre contre plus de 200 $ pour la cartouche équivalente.",
+    // INTRO_PS1
+    "PlayStation est une marque de jeux vidéo détenue et produite par Sony Interactive Entertainment (SIE), une division du conglomérat japonais Sony. Ses produits phares comprennent une série de consoles de jeux vidéo de salon produites sous la marque ; elle propose également des consoles portables, des services en ligne, des magazines et d'autres supports multimédias.",
+    // INTRO_NGP
+    "La Neo Geo Pocket Color (NGPC) est une console de jeu portable 16 bits développée et fabriquée par SNK, commercialisée le 19 mars 1999 au Japon, puis à l'international en août de la même année. Il s'agit d'une version améliorée de la Neo Geo Pocket originale, sortie en 1998 et principalement vendue au Japon. La Color est dotée d'un écran couleur au lieu d'un écran monochrome et est entièrement rétrocompatible.",
+    // INTRO_WSC
+    "La WonderSwan est une console de jeu portable commercialisée au Japon par Bandai. Développée par Koto Laboratory, la société de Gunpei Yokoi, et Bandai, elle fut la dernière console développée par Yokoi avant sa mort en 1997. Sortie en 1999, faisant partie de la sixième génération de consoles de jeux vidéo, la WonderSwan et ses deux modèles ultérieurs, la WonderSwan Color et la SwanCrystal, furent officiellement pris en charge jusqu'à leur abandon par Bandai en 2003. Durant son existence, aucune variante de la WonderSwan ne fut commercialisée hors du Japon.",
+    // INTRO_GBA
+    "La Game Boy Advance (GBA) est une console de jeu portable 32 bits, fabriquée par Nintendo, qui est sortie au Japon le 21 mars 2001 et sur les marchés internationaux en juin de la même année. Elle est ensuite sortie en Chine continentale en 2004, sous le nom d'iQue Game Boy Advance. Comparée à la Game Boy Color, elle a réussi, la console offrait un processeur ARM7 nettement plus puissant et des graphismes améliorés, tout en conservant une compatibilité descendante avec les jeux initialement développés pour son prédécesseur.",
+    // INTRO_ARC
+    "Un jeu vidéo d'arcade est un jeu qui capte les données du joueur via ses commandes, les traite via des composants électriques ou informatiques, et les affiche sur un écran électronique ou un écran similaire. Tous les jeux vidéo d'arcade fonctionnent avec des pièces ou acceptent d'autres moyens de paiement, sont hébergés dans une borne d'arcade et sont présents dans les salles de jeux, aux côtés d'autres types de jeux d'arcade. Jusqu'au début des années 2000, les jeux vidéo d'arcade constituaient le segment le plus important et le plus avancé technologiquement de l'industrie du jeu vidéo.",
+    // LANG_MANAGE_ICONS
+    "⇸ Gérer les icônes",
+},
+
+// Spanish
+{
+    // INTRO_ATARI2600
+    "La Atari 2600 es una consola de videojuegos doméstica desarrollada y producida por Atari, Inc. Lanzada en septiembre de 1977 como Atari Video Computer System (Atari VCS), popularizó el hardware basado en microprocesadores y los juegos almacenados en cartuchos ROM intercambiables, un formato utilizado por primera vez con el Fairchild Channel F en 1976. El VCS se incluía con dos controladores de joystick, un par de controladores de paleta unidos y un cartucho de juego, inicialmente Combat y más tarde Pac-Man. Sears vendió el sistema como Tele-Games Video Arcade. Atari rebautizó el VCS como Atari 2600 en noviembre de 1982, junto con el lanzamiento del Atari 5200.",
+    // INTRO_ATARI5200
+    "La Atari 5200 SuperSystem o simplemente Atari 5200 es una consola de videojuegos doméstica introducida en 1982 por Atari, Inc. como un complemento de gama alta para el popular Atari Video Computer System. El VCS fue rebautizado como Atari 2600 en el momento del lanzamiento del 5200. Creado para competir con Intellivision de Mattel, el 5200 terminó siendo un competidor directo de ColecoVision poco después de su lanzamiento. Mientras que el sistema Coleco se envió con la primera versión doméstica de Donkey Kong de Nintendo, el 5200 incluía el juego de arcade de 1978 Super Breakout, que ya había aparecido en plataformas domésticas anteriores de Atari.",
+    // INTRO_ATARI7800
+    "La Atari 7800 ProSystem, o simplemente la Atari 7800, es una consola de videojuegos doméstica lanzada oficialmente por Atari Corporation en 1986 como sucesora de la Atari 2600 y la Atari 5200. Puede ejecutar casi todos los cartuchos de Atari 2600, lo que la convierte en una de las primeras consolas con retrocompatibilidad. Se envió con un joystick diferente al CX40 estándar 2600 e incluyó Pole Position II como juego de paquete. El modelo europeo tiene un gamepad en lugar de un joystick. La mayoría de los primeros lanzamientos del sistema son adaptaciones de videojuegos de arcade de 1981-1983. La ola final de cartuchos 7800 está más cerca en estilo de lo que estaba disponible en otras consolas de finales de la década de 1980, como Scrapyard Dog y Midnight Mutants.",
+    // INTRO_C64
+    "El Commodore 64, también conocido como C64, es un ordenador doméstico de 8 bits presentado en enero de 1982 por Commodore International (mostrado por primera vez en el Consumer Electronics Show, del 7 al 10 de enero de 1982, en Las Vegas). Ha sido incluido en el Libro Guinness de los Récords como el modelo de ordenador individual más vendido de todos los tiempos, con estimaciones independientes que sitúan el número de unidades vendidas entre 12,5 y 17 millones de unidades. La producción en volumen comenzó a principios de 1982, comercializándose en agosto por US$595 (equivalente a US$1.940 en 2024). Precedido por el VIC-20 y el Commodore PET, el C64 tomó su nombre de sus 64 kilobytes (65.536 bytes) de RAM. Con soporte para sprites multicolor y un chip personalizado para la generación de formas de onda, el C64 podría crear imágenes y audio superiores en comparación con los sistemas sin dicho hardware personalizado.",
+    // INTRO_VECTREX
+    "La Vectrex es una consola de videojuegos doméstica basada en pantalla vectorial, la única diseñada y lanzada para el mercado doméstico, que fue desarrollada por Smith Engineering y fabricada y vendida por General Consumer Electronics. Se lanzó por primera vez para el mercado de América del Norte en octubre de 1982 y luego para Europa y Japón en 1983. Originalmente producido por General Consumer Electronics, más tarde fue licenciado a Milton Bradley después de que adquirieran la compañía. Bandai lanzó el sistema en Japón.",
+    // INTRO_ZXS
+    "El ZX Spectrum es un ordenador doméstico de 8 bits desarrollado y comercializado por Sinclair Research. Uno de los ordenadores más influyentes de la historia y uno de los ordenadores británicos más vendidos de todos los tiempos, se vendieron más de cinco millones de unidades. Fue lanzado en el Reino Unido el 23 de abril de 1982, y en todo el mundo en los años siguientes, sobre todo en Europa, Estados Unidos y los países del Bloque del Este.",
+    // INTRO_DOS
+    "DOS es una familia de sistemas operativos basados en disco para ordenadores compatibles con IBM PC. La familia DOS se compone principalmente de IBM PC DOS y una versión renombrada, MS-DOS de Microsoft, ambas introducidas en 1981. Los sistemas compatibles posteriores de otros fabricantes incluyen DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993) y FreeDOS (1994). MS-DOS dominó el mercado compatible con IBM PC entre 1981 y 1995.",
+    // INTRO_PC98
+    "La serie PC-9800, comúnmente abreviada como PC-98 o simplemente 98 (Kyū-hachi), es una línea de computadoras personales japonesas de 16 bits y 32 bits fabricadas por NEC desde 1982 hasta 2003. Aunque se basa en procesadores Intel, utiliza una arquitectura interna que lo hace incompatible con los clones de IBM; algunas computadoras PC-98 usaban el propio procesador V30 de NEC. La plataforma estableció el dominio de NEC en el mercado japonés de computadoras personales y, para 1999, se habían vendido más de 18 millones de unidades. Si bien NEC no comercializó estas máquinas específicas en Occidente, vendió la serie APC de NEC, que tenía un hardware similar a los primeros modelos PC-98.",
+    // INTRO_MSX
+    "MSX es una arquitectura estandarizada de ordenador doméstico, anunciada por ASCII Corporation el 16 de junio de 1983. Fue concebido inicialmente por Microsoft como un producto para el sector oriental, y comercializado conjuntamente por Kazuhiko Nishi, director de ASCII Corporation. Microsoft y Nishi concibieron el proyecto como un intento de crear estándares unificados entre varios fabricantes de sistemas de computación doméstica de la época, de la misma manera que el estándar VHS para máquinas de cinta de video domésticas. El primer ordenador MSX vendido al público fue un Mitsubishi ML-8000, lanzado el 21 de octubre de 1983, marcando así su fecha oficial de lanzamiento.",
+    // INTRO_NES
+    "La Nintendo Entertainment System (NES) es una consola de videojuegos doméstica de 8 bits producida por Nintendo. Fue lanzado por primera vez en Japón el 15 de julio de 1983, como Family Computer (Famicom). Fue lanzado en los mercados de prueba de EE.UU. como la NES rediseñada en octubre de 1985, y se lanzó completamente en los EE.UU. al año siguiente. La NES se distribuyó en Europa, Australia y partes de Asia a lo largo de la década de 1980 bajo varios nombres. Como consola de tercera generación, compitió principalmente con la Master System de Sega.",
+    // INTRO_CPC
+    "Amstrad CPC (acrónimo del inglés Colour Personal Computer) fue una serie de ordenadores personales de 8 bits producidos por Amstrad durante la década de 1980 y a principios de la década de 1990.",
+    // INTRO_AMIGA
+    "Amiga es una familia de computadoras personales producidas por Commodore desde 1985 hasta la bancarrota de la compañía en 1994, con la producción de otros después. El modelo original es uno de una serie de ordenadores de mediados de la década de 1980 con procesadores de 16 bits o 16/32 bits, 256 KB o más de RAM, interfaces gráficas de usuario basadas en ratón y gráficos y audio significativamente mejorados en comparación con los sistemas anteriores de 8 bits. Estos incluyen el Atari ST, lanzado a principios del mismo año, así como el Macintosh y el Acorn Archimedes. El Amiga se diferencia de sus contemporáneos por el hardware personalizado para acelerar los gráficos y el sonido, incluyendo sprites, un brillo y cuatro canales de audio basado en muestras. Ejecuta un sistema operativo multitarea preventivo llamado AmigaOS, con un entorno de escritorio llamado Workbench.",
+    // INTRO_X68000
+    "El X68000 (Hepburn: Ekkusu Rokuman Hassen) es un ordenador doméstico creado por Sharp Corporation. Fue lanzado por primera vez en 1987 y vendido solo en Japón.El modelo inicial tiene una CPU Motorola 68000 de 10 MHz, 1 MB de RAM y carece de disco duro. El modelo final se lanzó en 1993 con una CPU Motorola 68030 de 25 MHz, 4 MB de RAM y un disco duro SCSI opcional de 80 MB. La memoria RAM en estos sistemas se puede expandir a 12 MB, aunque la mayoría de los juegos y aplicaciones no requieren más de 2 MB.",
+    // INTRO_PCE
+    "La TurboGrafx-16, conocida como PC Engine fuera de América del Norte, es una consola de videojuegos doméstica diseñada por Hudson Soft y vendida por NEC Home Electronics. Fue la primera consola comercializada en la cuarta generación, comúnmente conocida como la era de los 16 bits. Fue lanzado en Japón en 1987 y en Norteamérica en 1989. En Europa, el modelo japonés fue importado extraoficialmente y distribuido en el Reino Unido y Francia a partir de 1988. En Japón, el sistema se lanzó como un competidor de la Famicom, pero el retraso en el lanzamiento en Estados Unidos significó que terminó compitiendo con la Sega Genesis y más tarde con la Super NES.",
+    // INTRO_MD
+    "La Sega Genesis, conocida como Mega Drive fuera de América del Norte, es una consola de videojuegos doméstica de cuarta generación de 16 bits desarrollada y vendida por Sega. Fue la tercera consola de Sega y la sucesora de la Master System. Sega lo lanzó en 1988 en Japón como Mega Drive, y en 1989 en América del Norte como Genesis. En 1990, fue distribuida como Mega Drive por Virgin Mastertronic en Europa, Ozisoft en Australasia y Tectoy en Brasil. En Corea del Sur, fue distribuido por Samsung Electronics como Super GameBoy y más tarde como Super Aladdin Boy.",
+    // INTRO_LYNX
+    "La Atari Lynx es una videoconsola portátil de 8 bits producida por Atari. Fue lanzada en 1989, siendo la primera con LCD en color. Si bien era superior técnicamente a la Game Boy y a la Game Gear, no obtuvo demasiado éxito comercial debido a su elevado precio, su enorme tamaño y a la corta duración de las baterías. ",
+    // INTRO_GBC
+    "La Game Boy Color (GBC o CGB) es una consola de videojuegos portátil de 8 bits, fabricada por Nintendo, que fue lanzada en Japón el 21 de octubre de 1998 y en los mercados internacionales en noviembre de ese año. En comparación con la Game Boy original, la Game Boy Color cuenta con una pantalla TFT a color en lugar de monocromática, un procesador que puede funcionar dos veces más rápido y cuatro veces más memoria. Conserva la compatibilidad con los juegos desarrollados inicialmente para su predecesor.",
+    // INTRO_SNES
+    "La Super Nintendo Entertainment System, comúnmente abreviada como Super Nintendo, Super NES o SNES, es una consola de videojuegos doméstica de 16 bits desarrollada por Nintendo que fue lanzada en 1990 en Japón y Corea del Sur, 1991 en América del Norte, 1992 en Europa y Oceanía y 1993 en América del Sur. En Japón, se llama Super Famicom (SFC). En Corea del Sur, se llama Super Comboy y fue distribuido por Hyundai Electronics. El sistema fue lanzado en Brasil el 30 de agosto de 1993 por Playtronic. En Rusia y la CEI, el sistema fue distribuido por Steepler desde 1994 hasta 1996. Aunque cada versión es esencialmente la misma, varias formas de bloqueo regional impiden que los cartuchos de una versión se utilicen en otras versiones.",
+    // INTRO_NEOCD
+    "La Neo Geo CD (Neo Jio Shī Dī) es una consola de videojuegos doméstica producida por SNK Corporation, lanzada el 9 de septiembre de 1994. El sistema es la misma plataforma que el Neo Geo basado en cartuchos lanzado cuatro años antes, pero convertido al formato de CD más barato que se vendía entre 49 y 79 dólares por título, en comparación con los más de 200 dólares del cartucho equivalente.",
+    // INTRO_PS1
+    "PlayStation es una marca de videojuegos propiedad y producida por Sony Interactive Entertainment (SIE), una división del conglomerado japonés Sony. Sus productos estrella consisten en una serie de consolas de videojuegos domésticas producidas bajo la marca; También consta de dispositivos portátiles, servicios en línea, revistas y otras formas de medios.",
+    // INTRO_NGP
+    "La Neo Geo Pocket Color (NGPC) es una consola de videojuegos portátil de 16 bits desarrollada y fabricada por SNK, lanzada el 19 de marzo de 1999 en Japón y en los mercados internacionales en agosto de ese año. Es una actualización del Neo Geo Pocket original, que se lanzó en 1998 y se vendió principalmente en Japón; el Color cuenta con una pantalla a color en lugar de una monocromática, y es totalmente compatible con versiones anteriores.",
+    // INTRO_WSC
+    "La WonderSwan es una consola de juegos portátil lanzada en Japón por Bandai. Fue desarrollado por la compañía de Gunpei Yokoi, Koto Laboratory y Bandai, y fue la última pieza de hardware que Yokoi desarrolló antes de su muerte en 1997. Lanzado en 1999 en la sexta generación de consolas de videojuegos, el WonderSwan y sus dos modelos posteriores, el WonderSwan Color y el SwanCrystal, fueron oficialmente compatibles hasta que fueron descontinuados por Bandai en 2003. Durante su vida útil, ninguna variación del WonderSwan fue lanzada fuera de Japón.",
+    // INTRO_GBA
+    "La Game Boy Advance (GBA) es una consola de videojuegos portátil de 32 bits, fabricada por Nintendo, que fue lanzada en Japón el 21 de marzo de 2001 y en los mercados internacionales en junio de ese año. Más tarde fue lanzado en China continental en 2004, bajo el nombre de iQue Game Boy Advance. En comparación con la Game Boy Color a la que triunfó, la consola ofrecía un procesador ARM7 significativamente más potente y gráficos mejorados, al tiempo que conservaba la compatibilidad con los juegos desarrollados inicialmente para su predecesora.",
+    // INTRO_ARC
+    "Un videojuego de arcade es un juego de arcade que toma la entrada del jugador de sus controles, la procesa a través de componentes eléctricos o computarizados y muestra la salida a un monitor electrónico o pantalla similar. Todos los videojuegos de arcade funcionan con monedas o aceptan otros medios de pago, alojados en un gabinete de arcade y ubicados en salas de juegos junto con otros tipos de juegos de arcade. Hasta principios de la década de 2000, los videojuegos arcade eran el segmento más grande y tecnológicamente avanzado de la industria de los videojuegos.",
+    // LANG_MANAGE_ICONS
+    "⇸ Administrar los iconos",
+},
+
+// Russian
+{
+    // INTRO_ATARI2600
+    "Atari 2600 — домашняя игровая консоль второго поколения, выпущенная компанией Atari в 1977 году. Первоначально называлась Atari Video Computer System (сокращённо Atari VCS) и была переименована в Atari 2600 в 1982 году с выходом модели Atari 5200. Atari 2600 не была первой консолью, использовавшей сменные картриджи с ПЗУ (ROM) в качестве носителя игр, но помогла популяризировать их использование.",
+    // INTRO_ATARI5200
+    "Atari 5200 SuperSystem (или просто Atari 5200) — домашняя игровая консоль второго поколения, выпущенная компанией Atari в 1982 году в качестве замены получившей широкую популярность Atari 2600. Atari 5200 отметилась неудачной конструкцией аналоговых джойстиков, изначальным отсутствием обратной совместимости с обширной библиотекой игр для Atari 2600 и малым количеством новых игр, способных продемонстрировать возможности системы.",
+    // INTRO_ATARI7800
+    "Atari 7800 ProSystem (или просто Atari 7800) — домашняя игровая консоль третьего поколения, выпущенная компанией Atari в 1986 году в качестве преемника Atari 2600 и неудачной Atari 5200. Atari 7800 получила простые и надёжные цифровые джойстики и могла запускать практически все картриджи Atari 2600, что делает её одной из первых консолей с обратной совместимостью.",
+    // INTRO_C64
+    "Commodore 64 (также известный как C64) — 8-разрядный домашний компьютер с 64 КБ оперативной памяти, выпущенный компанией Commodore в 1982 году. C64 можно было подключить напрямую к телевизору и играть в игры, так же как это делалось с игровыми приставками, такими как Atari 2600. Благодаря поддержке многоцветных спрайтов и специальному чипу для генерации звуковых сигналов, C64 мог создавать превосходные визуальные эффекты и звук по сравнению с системами без такого оборудования.",
+    // INTRO_VECTREX
+    "Vectrex — домашняя игровая консоль второго поколения, выпущенная в 1982 году. В отличие от других игровых систем того времени, Vectrex не нуждалась в подключении к телевизору, у неё был встроенный монохромный векторный ЭЛТ-монитор. Съёмная проводная панель управления могла складываться в основание консоли. Игры поставлялись с полупрозрачными цветными накладками для размещения на экране.",
+    // INTRO_ZXS
+    "ZX Spectrum — 8-разрядный домашний компьютер, выпущенный компанией Sinclair в 1982 году. В начале 1980-х ZX Spectrum, благодаря невысокой цене, был одним из самых популярных компьютеров в Европе, а его многочисленные клоны в начале 1990-х получили широкое распространение на территории бывшего СССР.",
+    // INTRO_DOS
+    "Microsoft DOS (сокращённо MS-DOS) — основная операционная система для IBM-PC-совместимых компьютеров в 1980-х годах. В совокупности MS-DOS, её ребрендинг как IBM PC DOS и ещё несколько операционных систем, пытавшихся быть совместимыми с MS-DOS, иногда называют просто DOS.",
+    // INTRO_PC98
+    "PC-9800 (сокращённо PC-98) — линейка японских 16- и 32-разрядных персональных компьютеров, выпускавшихся компанией NEC с 1982 года. Основанная на процессорах Intel, она использовала собственную архитектуру, что делало её несовместимой с IBM-PC-клонами. Эта платформа позволила NEC занять доминирующее положение на японском рынке персональных компьютеров более чем на десять лет.",
+    // INTRO_MSX
+    "MSX — стандартизированная архитектура домашних компьютеров, анонсированная ASCII Corporation и японским отделением компании Microsoft в 1983 году. Компьютеры стандарта MSX получили большую популярность в Японии и ряде других стран, однако, несмотря на поддержку Microsoft, почти не получили известности в США и Европе. До успеха Famicom от Nintendo, MSX была платформой, игры для которой разрабатывали такие игровые студии, как Konami и Hudson Soft.",
+    // INTRO_NES
+    "Nintendo Entertainment System (сокращённо NES) — 8-разрядная домашняя игровая консоль третьего поколения, выпущенная компанией Nintendo в 1983 году. В Японии называлась Famicom (FC). NES считается одной из самых влиятельных консолей. Она помогла возродить американскую игровую индустрию после краха 1983 года и стала первопроходцем в ставшей ныне стандартной бизнес-модели лицензирования сторонних разработчиков для производства и распространения игр.",
+    // INTRO_CPC
+    "Amstrad CPC — линейка 8-разрядных домашних компьютеров, выпускавшихся компанией Amstrad с 1984 по 1990 год. CPC в названии означало Colour Personal Computer (Цветной Персональный Компьютер), хотя можно было приобрести как модель с монохромным (зелёным), так и с цветным монитором. Компьютеры Amstrad CPC успешно зарекомендовали себя в первую очередь в Великобритании, Франции, Испании и немецкоязычных частях Европы, а также в Канаде.",
+    // INTRO_AMIGA
+    "Amiga — семейство персональных компьютеров, выпускавшихся компанией Commodore с 1985 года и до банкротства компании в 1994 году, после чего их производство перешло к другим компаниям. Amiga отличалась от своих современников наличием собственного аппаратного обеспечения для ускорения графики и звука, включая спрайты, блиттер и четыре независимых канала аудио на основе сэмплов.",
+    // INTRO_X68000
+    "X68000 — дорогой, но впечатляюще мощный на момент выхода домашний компьютер, выпущенный компанией Sharp в 1987 году и продававшийся только в Японии. Примечателен в первую очередь тем, что имел графическую подсистему, не уступавшую тем, что были в аркадных автоматах того времени — с собственными сопроцессорами, поддерживающими прокрутку, плиточные фоны и большое количество спрайтов. Поэтому видеоигры изначально были одним из основных применений X68000.",
+    // INTRO_PCE
+    "PC Engine (известная как TurboGrafx-16 в Северной Америке) — 8/16-разрядная домашняя игровая консоль, разработанная Hudson Soft и продаваемая компанией NEC, была выпущена в Японии в 1987 году, а в Северной Америке — в 1989 году. Это была первая консоль, появившаяся на рынке в четвёртом поколении, обычно известном как 16-битная эра.",
+    // INTRO_MD
+    "Sega Mega Drive (в Северной Америке известна как Sega Genesis) — 16-разрядная домашняя игровая консоль четвёртого поколения, выпущенная компанией Sega в 1988 году. Успеху консоли способствовали библиотека портированных аркадных игр, популярность серии Sonic the Hedgehog от Sega, несколько популярных спортивных франшиз и агрессивный молодёжный маркетинг, позиционировавший её как крутую консоль для подростков.",
+    // INTRO_LYNX
+    "Atari Lynx — портативная игровая консоль четвёртого поколения, выпущенная компанией Atari в сентябре 1989 года в Северной Америке и в 1990 году в Европе и Японии. Это была первая портативная игровая консоль с цветным жидкокристаллическим дисплеем. Хотя технически Atari Lynx и превосходила Game Boy и Game Gear, она не имела коммерческого успеха из-за высокой цены, огромных размеров, сравнительно небольшой библиотеки игр и короткого времени работы от батареек.",
+    // INTRO_GBC
+    "Game Boy Color (сокращённо GBC) — 8-разрядная портативная игровая консоль пятого поколения, выпущенная компанией Nintendo в 1998 году. Это улучшенная версия Game Boy, самой большой особенностью которой, по сравнению с оригинальным Game Boy, является использование цветного экрана.",
+    // INTRO_SNES
+    "Super Nintendo Entertainment System (сокращённо SNES) — 16-разрядная домашняя игровая консоль четвёртого поколения, выпущенная компанией Nintendo в 1990 году. В Японии называлась Super Famicom (SFC). Консоль обладала расширенными графическими и звуковыми возможностями по сравнению с другими системами того времени, такими как Sega Mega Drive/Genesis, и была разработана с учётом постоянного развития различных улучшающих чипов, интегрированных в игровые картриджи, чтобы быть более конкурентоспособной.",
+    // INTRO_NEOCD
+    "Neo Geo CD — домашняя игровая консоль четвёртого поколения, выпущенная компанией SNK в 1994 году. Система представляет собой ту же платформу, что и картриджная Neo Geo, выпущенная четырьмя годами ранее, но переведённая на более дешёвый формат носителей игр — CD-диски.",
+    // INTRO_PS1
+    "PlayStation (кодовое название PSX, сокращённо PS, а позже PS1/PSone) — 32-разрядная домашняя игровая консоль пятого поколения, выпущенная компанией Sony в 1994 году. Консоль стала популярной благодаря своей обширной библиотеке игр, популярным франшизам, низкой розничной цене и агрессивному маркетингу, рекламирующему её как предпочтительную консоль для подростков и взрослых.",
+    // INTRO_NGP
+    "Neo Geo Pocket Color — 16-разрядная портативная игровая консоль шестого поколения, выпущенная компанией SNK в 1999 году. Это обновление оригинальной модели Neo Geo Pocket, которая была выпущена в 1998 году и продавалась только в Японии. Neo Geo Pocket Color оснащена цветным дисплеем вместо монохромного и полностью совместима с предыдущей версией. Библиотека игр состоит в основном из конверсий известных аркадных франшиз с Neo Geo.",
+    // INTRO_WSC
+    "WonderSwan (сокращённо WS) — 16-разрядная портативная игровая консоль шестого поколения, выпущенная компанией Bandai в 1999 году. Для WonderSwan было выпущено достаточно большое количество игр, в которые можно было играть как с вертикальным, так и с горизонтальным положением экрана. Поскольку консоль была разработана для японского рынка, то игры были в основном на японском языке, хотя в некоторых из них всё же присутствует английский язык.",
+    // INTRO_GBA
+    "Game Boy Advance (сокращённо GBA) — 32-разрядная портативная игровая консоль шестого поколения, выпущенная компанией Nintendo в 2001 году. По сравнению с Game Boy Color, которую она сменила, консоль получила более мощный процессор и улучшенную графику, сохранив при этом обратную совместимость с играми, изначально разработанными для её предшественницы.",
+    // INTRO_ARC
+    "Аркадные видеоигры — игры для аркадных игровых автоматов. В аркадных видеоиграх часто очень короткие, но динамичные уровни, простые и интуитивно понятные схемы управления и быстро нарастающая сложность. Это связано с природой зала игровых автоматов, где игрок арендует игру до тех пор, пока его игровое воплощение может оставаться в живых, или пока у игрока не закончатся жетоны для оплаты игры. Большинство аркадных игровых автоматов оснащены специализированными контроллерами — джойстиками, кнопками и трекболами, приспособленными к игровому процессу.",
+    // LANG_MANAGE_ICONS
+    "⇸ Управление значками",
+},
+
+};

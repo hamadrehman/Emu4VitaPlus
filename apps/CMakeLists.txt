@@ -58,6 +58,8 @@ include_directories(
     ../frontend/source/ui
     ../frontend/source/core_spec
     ../deps/libretro-common/include
+    ${CMAKE_BINARY_DIR}/include
+    ../deps/libs/include
     ../deps/7-Zip/C
     ../deps/rcheevos/include
     ../share/source)
@@ -87,13 +89,10 @@ target_link_libraries(
     SimpleIni
     png
     jpeg
-    lzma
     minizip
     7zip
     lz4
     pthread
-    FLAC
-    ogg
     zstd
     SceLibJson_stub
     ScePvf_stub
@@ -141,7 +140,7 @@ if(NOT BUILD_SELF)
         ${PRIVATE_PKG_FILES}
         ${PUBLIC_PKG_FILES})
 
-    add_custom_target(${VPK_NAME} ALL
+    add_custom_target(VPK_${CORE_SHORT} ALL
         COMMAND ${CMAKE_COMMAND} -E rename ${VPK_NAME} ${OUT_PATH}/${VPK_NAME})
 
     get_directory_property(DEFINES COMPILE_DEFINITIONS)
@@ -151,16 +150,20 @@ if(NOT BUILD_SELF)
     endif()
 
     if(${CMAKE_VERSION} VERSION_LESS "3.20.0")
-        add_dependencies(${VPK_NAME} ${VPK_NAME} ${ARC_TAG})
+        add_dependencies(VPK_${CORE_SHORT} ${VPK_NAME} ${ARC_TAG})
     else()
-        add_dependencies(${VPK_NAME} ${VPK_NAME}-vpk ${ARC_TAG})
+        add_dependencies(VPK_${CORE_SHORT} ${VPK_NAME}-vpk ${ARC_TAG})
     endif()
 
     if(NOT BUILD STREQUAL "All")
         add_custom_target(send COMMAND curl -T ${EBOOT_NAME} "ftp://\${PSVITAIP}:1337/ux0:/app/${SFO_TITLE_ID}/eboot.bin")
-        add_dependencies(send ${EBOOT_NAME}-self)
+        if(${CMAKE_VERSION} VERSION_LESS "3.20.0")
+            add_dependencies(send ${EBOOT_NAME})
+        else()
+            add_dependencies(send ${EBOOT_NAME}-self)
+        endif()
 
         add_custom_target(sendvpk COMMAND curl -T ${OUT_PATH}/${VPK_NAME} "ftp://\${PSVITAIP}:1337/ux0:")
-        add_dependencies(sendvpk ${VPK_NAME})
+        add_dependencies(sendvpk VPK_${CORE_SHORT})
     endif()
 endif()

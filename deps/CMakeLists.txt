@@ -163,8 +163,8 @@ option(MZ_ZSTD "" OFF)
 option(MZ_PKCRYPT "" OFF)
 option(MZ_WZAES "" OFF)
 option(MZ_DECOMPRESS_ONLY "" ON)
-option(MZ_FETCH_LIBS " " ON)
-option(MZ_FORCE_FETCH_LIBS " " ON)
+option(MZ_FETCH_LIBS " " OFF)
+option(MZ_FORCE_FETCH_LIBS " " OFF)
 set(SKIP_INSTALL_ALL ON)
 
 # zlib-ng options
@@ -175,6 +175,8 @@ option(WITH_NATIVE_INSTRUCTIONS "" ON)
 option(WITH_ARMV8 "" OFF)
 set(BUILD_SHARED_LIBS OFF)
 set(WITH_ACLE OFF)
+set(ZLIB_INCLUDE_DIR "$ENV{VITASDK}/arm-vita-eabi/include" CACHE PATH "" FORCE)
+set(ZLIB_LIBRARY "$ENV{VITASDK}/arm-vita-eabi/lib/libz.a" CACHE FILEPATH "" FORCE)
 
 add_subdirectory(minizip-ng)
 

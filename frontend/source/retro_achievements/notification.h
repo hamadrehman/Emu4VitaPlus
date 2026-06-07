@@ -2,7 +2,7 @@
 #include <string>
 #include <stdint.h>
 #include <vita2d.h>
-#include <psp2/kernel/threadmgr/thread.h>
+#include <psp2/kernel/threadmgr.h>
 #include <map>
 #include <locker.h>
 

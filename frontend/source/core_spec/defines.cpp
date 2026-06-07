@@ -1,4 +1,4 @@
-#include <psp2common/ctrl.h>
+#include <psp2/ctrl.h>
 #include <libretro.h>
 #include "defines.h"
 #include "input.h"

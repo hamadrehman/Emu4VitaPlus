@@ -43,6 +43,7 @@ endif()
 
 include_directories(
     ${CMAKE_BINARY_DIR}/include
+    ../deps/minizip-ng
     ../deps/libretro-common/include
     ../deps/7-Zip/C
     ../deps/lz4/lib)
