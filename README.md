@@ -3,24 +3,24 @@
 # Emu4Vita++
 这是一个在 PlayStation Vita 使用的, 基于 [Libretro API](https://github.com/libretro/libretro-common) 的模拟器前端。
 
-这个分支是面向 RetroFlow 集成的非官方修改分支，原项目及主要署名仍归 `noword` 所有。
+This fork is an unofficial integration branch for RetroFlow. Original project credit remains with `noword`.
 
-## 这个分支适合什么用途
+## Use this fork if you want
 
-- 使用 `Emu4VitaPlus_v0.68_boot-uri.vpk` 搭配 RetroFlow 集成方案
-- 让 RetroFlow 通过 boot URI 直接指定核心和 ROM 启动 Emu4Vita++
-- 继续保留打包内的独立 `eboot_<core>.self` 核心
-- 使用已经接入共享多手柄输入路由的核心版本，目前覆盖 Genesis Plus GX、PicoDrive、FBALite、Snes9x、Snes9x2005+
+- `Emu4VitaPlus_v0.68_boot-uri.vpk` for the RetroFlow integration setup
+- boot-URI launch support from RetroFlow directly into a selected core and ROM
+- the packaged standalone `eboot_<core>.self` cores preserved in one VPK
+- shared multiplayer controller routing rebuilt into the current Genesis Plus GX, PicoDrive, FBALite, Snes9x, and Snes9x2005+ standalone cores
 
-如果你需要原版 Emu4Vita++ 行为，请使用上游项目。
+If you want stock Emu4Vita++ behavior, use the upstream project instead.
 
-## 这个分支的改动
+## What changed in this fork
 
-- 增加 boot URI 启动能力，使 RetroFlow 可以直接指定核心和 ROM 启动 Emu4Vita++
-- 加强 URI 解析和解码，尽量兼容带空格和特殊字符的 ROM 路径
-- 保留打包内的独立核心 `eboot_<core>.self` 文件，不影响各核心的独立使用
-- 通过前端共享输入层，为主要本地双人/多人核心接入统一的多手柄路由
-- 增加 GitHub Actions，用于重建补丁后的 `eboot.bin` 并重新打包 `Emu4VitaPlus_v0.68_boot-uri.vpk`
+- adds boot-URI handling so RetroFlow can launch Emu4Vita++ directly into a selected core and ROM
+- hardens URI parsing and decoding for ROM paths with spaces and special characters
+- keeps the packaged standalone core `eboot_<core>.self` files intact
+- adds shared multiplayer controller routing for major local-coop cores through the frontend input layer
+- adds a GitHub Actions workflow that rebuilds the patched `eboot.bin` and repacks `Emu4VitaPlus_v0.68_boot-uri.vpk`
 
 * [下载](#下载)
 * [功能说明](#功能说明)
@@ -34,11 +34,11 @@
 ## 下载
 [Fork release](https://github.com/hamadrehman/Emu4VitaPlus/releases/latest)
 
-这个分支额外产出：
+For this forked branch, the patched build output is:
 
 - `Emu4VitaPlus_v0.68_boot-uri.vpk`
 
-此分支不是官方 Emu4Vita++ 发布分支。
+This branch does not claim to be the upstream Emu4Vita++ project.
 
 [百度网盘](https://pan.baidu.com/s/1chcOOw9G1GBtlkM9K4MtRg?pwd=E4VP)
 
