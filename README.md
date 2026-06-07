@@ -5,11 +5,21 @@
 
 这个分支是面向 RetroFlow 集成的非官方修改分支，原项目及主要署名仍归 `noword` 所有。
 
+## 这个分支适合什么用途
+
+- 使用 `Emu4VitaPlus_v0.68_boot-uri.vpk` 搭配 RetroFlow 集成方案
+- 让 RetroFlow 通过 boot URI 直接指定核心和 ROM 启动 Emu4Vita++
+- 继续保留打包内的独立 `eboot_<core>.self` 核心
+- 使用已经接入共享多手柄输入路由的核心版本，目前覆盖 Genesis Plus GX、PicoDrive、FBALite、Snes9x、Snes9x2005+
+
+如果你需要原版 Emu4Vita++ 行为，请使用上游项目。
+
 ## 这个分支的改动
 
 - 增加 boot URI 启动能力，使 RetroFlow 可以直接指定核心和 ROM 启动 Emu4Vita++
 - 加强 URI 解析和解码，尽量兼容带空格和特殊字符的 ROM 路径
 - 保留打包内的独立核心 `eboot_<core>.self` 文件，不影响各核心的独立使用
+- 通过前端共享输入层，为主要本地双人/多人核心接入统一的多手柄路由
 - 增加 GitHub Actions，用于重建补丁后的 `eboot.bin` 并重新打包 `Emu4VitaPlus_v0.68_boot-uri.vpk`
 
 * [下载](#下载)
@@ -22,7 +32,7 @@
 * [特别感谢](#特别感谢)
 
 ## 下载
-[Release](https://github.com/noword/Emu4VitaPlus/releases)
+[Fork release](https://github.com/hamadrehman/Emu4VitaPlus/releases/latest)
 
 这个分支额外产出：
 
