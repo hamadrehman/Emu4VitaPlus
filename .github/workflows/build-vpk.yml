@@ -9,9 +9,6 @@ on:
 permissions:
   contents: write
 
-env:
-  R2_PUBLIC_BASE: https://pub-130a2a321e314a818868d6b171b3da8b.r2.dev
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -65,21 +62,6 @@ jobs:
           cd out
           sha256sum Emu4VitaPlus_v0.68_boot-uri.vpk > SHA256SUMS.txt
 
-      - name: Upload mirror to R2
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_R2_BUCKET: ${{ secrets.CLOUDFLARE_R2_BUCKET }}
-        run: |
-          curl --fail -X PUT \
-            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/r2/buckets/${CLOUDFLARE_R2_BUCKET}/objects/Emu4VitaPlus_v0.68_boot-uri.vpk" \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            --data-binary @out/Emu4VitaPlus_v0.68_boot-uri.vpk
-          curl --fail -X PUT \
-            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/r2/buckets/${CLOUDFLARE_R2_BUCKET}/objects/Emu4VitaPlus_SHA256SUMS.txt" \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            --data-binary @out/SHA256SUMS.txt
-
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
@@ -93,10 +75,6 @@ jobs:
             Assets:
             - `Emu4VitaPlus_v0.68_boot-uri.vpk`
             - `SHA256SUMS.txt`
-            
-            R2 mirror:
-            - `${{ env.R2_PUBLIC_BASE }}/Emu4VitaPlus_v0.68_boot-uri.vpk`
-            - `${{ env.R2_PUBLIC_BASE }}/Emu4VitaPlus_SHA256SUMS.txt`
           files: |
             out/Emu4VitaPlus_v0.68_boot-uri.vpk
             out/SHA256SUMS.txt
