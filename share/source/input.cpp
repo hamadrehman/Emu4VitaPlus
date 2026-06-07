@@ -5,7 +5,6 @@
 #include "input.h"
 #include "log.h"
 
-#define N_CTRL_PORTS 4
 #define ANALOG_CENTER 128
 #define ANALOG_THRESHOLD 64
 
@@ -57,11 +56,13 @@ namespace Emu4VitaPlus
                      _turbo_start_ms(DEFAULT_TURBO_START_TIME),
                      _turbo_interval_ms(DEFAULT_TURBO_INTERVAL),
                      _enable_key_up(true),
-                     _left_analog{0},
-                     _right_analog{0}
+                     _key_states{0},
+                     _left_analog{{0}},
+                     _right_analog{{0}}
     {
         LogFunctionName;
         memset(_turbo_key_states, 0, sizeof(_turbo_key_states));
+        _controller_routing.Refresh(true);
     }
 
     Input::~Input()
@@ -141,42 +142,86 @@ namespace Emu4VitaPlus
         _turbo_key &= ~key;
     }
 
+    uint32_t Input::GetCtrlPortForPlayer(uint32_t port) const
+    {
+        return _controller_routing.GetCtrlPortForPlayer(port);
+    }
+
+    uint32_t Input::_PollPort(uint32_t port, bool waiting)
+    {
+        if (port == 0)
+        {
+            _controller_routing.RefreshPeriodic();
+        }
+
+        SceCtrlData ctrl_data{0};
+        int read;
+        if (port == 0)
+        {
+            read = waiting ? sceCtrlReadBufferPositiveExt2(port, &ctrl_data, 1)
+                           : sceCtrlPeekBufferPositiveExt2(port, &ctrl_data, 1);
+        }
+        else
+        {
+            read = waiting ? sceCtrlReadBufferPositive2(port, &ctrl_data, 1)
+                           : sceCtrlPeekBufferPositive2(port, &ctrl_data, 1);
+            if (read < 0)
+            {
+                read = waiting ? sceCtrlReadBufferPositiveExt2(port, &ctrl_data, 1)
+                               : sceCtrlPeekBufferPositiveExt2(port, &ctrl_data, 1);
+            }
+        }
+        if (read <= 0)
+        {
+            _key_states[port] = 0;
+            _left_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            _right_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            return 0;
+        }
+
+        uint32_t key = ctrl_data.buttons;
+        key &= ~SCE_CTRL_HEADPHONE;
+        if (ctrl_data.lx < (ANALOG_CENTER - ANALOG_THRESHOLD))
+            key |= SCE_CTRL_LSTICK_LEFT;
+        else if (ctrl_data.lx > (ANALOG_CENTER + ANALOG_THRESHOLD))
+            key |= SCE_CTRL_LSTICK_RIGHT;
+
+        if (ctrl_data.ly < (ANALOG_CENTER - ANALOG_THRESHOLD))
+            key |= SCE_CTRL_LSTICK_UP;
+        else if (ctrl_data.ly > (ANALOG_CENTER + ANALOG_THRESHOLD))
+            key |= SCE_CTRL_LSTICK_DOWN;
+
+        if (ctrl_data.rx < (ANALOG_CENTER - ANALOG_THRESHOLD))
+            key |= SCE_CTRL_RSTICK_LEFT;
+        else if (ctrl_data.rx > (ANALOG_CENTER + ANALOG_THRESHOLD))
+            key |= SCE_CTRL_RSTICK_RIGHT;
+
+        if (ctrl_data.ry < (ANALOG_CENTER - ANALOG_THRESHOLD))
+            key |= SCE_CTRL_RSTICK_UP;
+        else if (ctrl_data.ry > (ANALOG_CENTER + ANALOG_THRESHOLD))
+            key |= SCE_CTRL_RSTICK_DOWN;
+
+        _left_analog[port].x = ctrl_data.lx;
+        _left_analog[port].y = ctrl_data.ly;
+        _right_analog[port].x = ctrl_data.rx;
+        _right_analog[port].y = ctrl_data.ry;
+        _key_states[port] = key;
+
+        return key;
+    }
+
     void Input::Poll(bool waiting)
     {
-        SceCtrlData ctrl_data{0};
-        if ((waiting ? sceCtrlReadBufferPositiveExt2(0, &ctrl_data, 1) : sceCtrlPeekBufferPositiveExt2(0, &ctrl_data, 1)) > 0)
+        for (uint32_t port = 0; port < INPUT_MAX_CTRL_PORTS; ++port)
         {
-            uint32_t key = ctrl_data.buttons;
-            key &= ~SCE_CTRL_HEADPHONE;
-            if (ctrl_data.lx < (ANALOG_CENTER - ANALOG_THRESHOLD))
-                key |= SCE_CTRL_LSTICK_LEFT;
-            else if (ctrl_data.lx > (ANALOG_CENTER + ANALOG_THRESHOLD))
-                key |= SCE_CTRL_LSTICK_RIGHT;
-
-            if (ctrl_data.ly < (ANALOG_CENTER - ANALOG_THRESHOLD))
-                key |= SCE_CTRL_LSTICK_UP;
-            else if (ctrl_data.ly > (ANALOG_CENTER + ANALOG_THRESHOLD))
-                key |= SCE_CTRL_LSTICK_DOWN;
-
-            if (ctrl_data.rx < (ANALOG_CENTER - ANALOG_THRESHOLD))
-                key |= SCE_CTRL_RSTICK_LEFT;
-            else if (ctrl_data.rx > (ANALOG_CENTER + ANALOG_THRESHOLD))
-                key |= SCE_CTRL_RSTICK_RIGHT;
-
-            if (ctrl_data.ry < (ANALOG_CENTER - ANALOG_THRESHOLD))
-                key |= SCE_CTRL_RSTICK_UP;
-            else if (ctrl_data.ry > (ANALOG_CENTER + ANALOG_THRESHOLD))
-                key |= SCE_CTRL_RSTICK_DOWN;
-
-            _left_analog.x = ctrl_data.lx;
-            _left_analog.y = ctrl_data.ly;
-            _right_analog.x = ctrl_data.rx;
-            _right_analog.y = ctrl_data.ry;
-
-            key = _ProcTurbo(key);
-            _ProcCallbacks(key);
-
-            _last_key = key;
+            uint32_t key = _PollPort(port, waiting);
+            if (port == 0)
+            {
+                key = _ProcTurbo(key);
+                _key_states[port] = key;
+                _ProcCallbacks(key);
+                _last_key = key;
+            }
         }
 
         _front_touch.Poll();
@@ -301,6 +346,12 @@ namespace Emu4VitaPlus
     void Input::Reset()
     {
         _turbo_key = 0;
+        _last_key = 0;
+        memset(_key_states, 0, sizeof(_key_states));
+        _controller_routing.Reset();
+        _controller_routing.Refresh(true);
+        memset(_left_analog, ANALOG_CENTER, sizeof(_left_analog));
+        memset(_right_analog, ANALOG_CENTER, sizeof(_right_analog));
         _key_down_callbacks.clear();
         _key_up_callbacks.clear();
         _turbo_start_ms = DEFAULT_TURBO_START_TIME;

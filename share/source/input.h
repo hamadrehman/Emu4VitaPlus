@@ -6,6 +6,7 @@
 #include <psp2/ctrl.h>
 #include "rect.h"
 #include "touch.h"
+#include "controller_routing.h"
 
 const uint32_t SCE_CTRL_LSTICK_UP = 0x00400000;
 const uint32_t SCE_CTRL_LSTICK_RIGHT = 0x00800000;
@@ -114,18 +115,19 @@ namespace Emu4VitaPlus
 
         void Reset();
 
-        const uint32_t &GetKeyStates() const { return _last_key; };
+        uint32_t GetCtrlPortForPlayer(uint32_t port) const;
+        const uint32_t &GetKeyStates(uint32_t port = 0) const { return _key_states[GetCtrlPortForPlayer(port)]; };
 
-        const AnalogAxis &GetLeftAnalogAxis() const { return _left_analog; };
-        const AnalogAxis &GetRightAnalogAxis() const { return _right_analog; };
+        const AnalogAxis &GetLeftAnalogAxis(uint32_t port = 0) const { return _left_analog[GetCtrlPortForPlayer(port)]; };
+        const AnalogAxis &GetRightAnalogAxis(uint32_t port = 0) const { return _right_analog[GetCtrlPortForPlayer(port)]; };
 
-        const int16_t GetMapedLeftAnalogX() const { return _analog_map_table[_left_analog.x]; };
-        const int16_t GetMapedLeftAnalogY() const { return _analog_map_table[_left_analog.y]; };
-        const int16_t GetReverseMapedLeftAnalogY() const { return _analog_map_table[0xff - _left_analog.y]; };
+        const int16_t GetMapedLeftAnalogX(uint32_t port = 0) const { return _analog_map_table[GetLeftAnalogAxis(port).x]; };
+        const int16_t GetMapedLeftAnalogY(uint32_t port = 0) const { return _analog_map_table[GetLeftAnalogAxis(port).y]; };
+        const int16_t GetReverseMapedLeftAnalogY(uint32_t port = 0) const { return _analog_map_table[0xff - GetLeftAnalogAxis(port).y]; };
 
-        const int16_t GetMapedRightAnalogX() const { return _analog_map_table[_right_analog.x]; };
-        const int16_t GetMapedRightAnalogY() const { return _analog_map_table[_right_analog.y]; };
-        const int16_t GetReverseMapedRightAnalogY() const { return _analog_map_table[0xff - _right_analog.y]; };
+        const int16_t GetMapedRightAnalogX(uint32_t port = 0) const { return _analog_map_table[GetRightAnalogAxis(port).x]; };
+        const int16_t GetMapedRightAnalogY(uint32_t port = 0) const { return _analog_map_table[GetRightAnalogAxis(port).y]; };
+        const int16_t GetReverseMapedRightAnalogY(uint32_t port = 0) const { return _analog_map_table[0xff - GetRightAnalogAxis(port).y]; };
 
         void PushCallbacks();
         void PopCallbacks();
@@ -139,14 +141,16 @@ namespace Emu4VitaPlus
 
         TurboKeyState _turbo_key_states[32];
         uint32_t _last_key;
+        uint32_t _key_states[INPUT_MAX_CTRL_PORTS];
         uint32_t _current_hotkey;
         uint32_t _turbo_key;
         uint64_t _turbo_start_ms;
         uint64_t _turbo_interval_ms;
 
         bool _enable_key_up;
-        AnalogAxis _left_analog;
-        AnalogAxis _right_analog;
+        ControllerRouting _controller_routing;
+        AnalogAxis _left_analog[INPUT_MAX_CTRL_PORTS];
+        AnalogAxis _right_analog[INPUT_MAX_CTRL_PORTS];
         // map to retro's analog
         // -0x7fff to 0x7fff
         static const int16_t _analog_map_table[0x100];
@@ -157,6 +161,7 @@ namespace Emu4VitaPlus
         std::stack<std::vector<KeyBinding>> _callback_stack;
 
         uint32_t _ProcTurbo(uint32_t key);
+        uint32_t _PollPort(uint32_t port, bool waiting);
         virtual void _ProcCallbacks(uint32_t key);
     };
 }

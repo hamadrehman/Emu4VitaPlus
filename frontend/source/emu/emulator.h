@@ -131,8 +131,8 @@ private:
     void _SetupVideoOutput(unsigned width, unsigned height);
     void _SetControllerInfo(retro_controller_info *info);
 
-    inline int16_t _GetJoypadState(unsigned index, unsigned id);
-    inline int16_t _GetAnalogState(unsigned index, unsigned id);
+    inline int16_t _GetJoypadState(unsigned port, unsigned index, unsigned id);
+    inline int16_t _GetAnalogState(unsigned port, unsigned index, unsigned id);
     inline int16_t _GetMouseState(unsigned index, unsigned id);
     inline int16_t _GetLightGunState(unsigned index, unsigned id);
     inline int16_t _GetPointerState(unsigned index, unsigned id);

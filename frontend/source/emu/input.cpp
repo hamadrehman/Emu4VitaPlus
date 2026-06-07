@@ -16,13 +16,10 @@ int16_t InputStateCallback(unsigned port, unsigned device, unsigned index, unsig
 
     // LogDebug("port:%d device:%d index:%d id:%d", port, device, index, id);
 
-    if ((device == RETRO_DEVICE_JOYPAD || device == RETRO_DEVICE_ANALOG) && port != 0)
-        return 0;
-
     switch (device)
     {
     case RETRO_DEVICE_JOYPAD:
-        return gEmulator->_GetJoypadState(index, id);
+        return gEmulator->_GetJoypadState(port, index, id);
 
     case RETRO_DEVICE_MOUSE:
         return gEmulator->_GetMouseState(index, id);
@@ -35,7 +32,7 @@ int16_t InputStateCallback(unsigned port, unsigned device, unsigned index, unsig
         return 0;
 
     case RETRO_DEVICE_ANALOG:
-        return gEmulator->_GetAnalogState(index, id);
+        return gEmulator->_GetAnalogState(port, index, id);
 
     case RETRO_DEVICE_LIGHTGUN:
         return gEmulator->_GetLightGunState(index, id);
@@ -101,13 +98,14 @@ float SensorGetInputCallback(unsigned port, unsigned id)
     return 0.f;
 }
 
-int16_t Emulator::_GetJoypadState(unsigned index, unsigned id)
+int16_t Emulator::_GetJoypadState(unsigned port, unsigned index, unsigned id)
 {
     static const uint32_t button_map[] = {SCE_CTRL_L2, SCE_CTRL_R2, SCE_CTRL_L3, SCE_CTRL_R3};
-    uint32_t key_states = _input.GetKeyStates();
+    uint32_t key_states = _input.GetKeyStates(port);
+    const uint32_t ctrl_port = _input.GetCtrlPortForPlayer(port);
 
     Touch *touch = _input.GetRearTouch();
-    if (unlikely(gConfig->sim_button_rear && touch->IsTouched()))
+    if (ctrl_port == 0 && unlikely(gConfig->sim_button_rear && touch->IsTouched()))
     {
         const auto axis = touch->GetAxis();
         const auto center = touch->GetCenter();
@@ -116,7 +114,7 @@ int16_t Emulator::_GetJoypadState(unsigned index, unsigned id)
     }
 
     touch = _input.GetFrontTouch();
-    if (unlikely(gConfig->sim_button_front && touch->IsTouched()))
+    if (ctrl_port == 0 && unlikely(gConfig->sim_button_front && touch->IsTouched()))
     {
         const auto axis = touch->GetAxis();
         const auto center = touch->GetCenter();
@@ -146,17 +144,17 @@ int16_t Emulator::_GetJoypadState(unsigned index, unsigned id)
     }
 }
 
-int16_t Emulator::_GetAnalogState(unsigned index, unsigned id)
+int16_t Emulator::_GetAnalogState(unsigned port, unsigned index, unsigned id)
 {
     if (_video_rotation == VIDEO_ROTATION_0 || _video_rotation == VIDEO_ROTATION_180)
     {
         if (index == RETRO_DEVICE_INDEX_ANALOG_LEFT)
         {
-            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetMapedLeftAnalogX() : _input.GetMapedLeftAnalogY();
+            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetMapedLeftAnalogX(port) : _input.GetMapedLeftAnalogY(port);
         }
         else
         {
-            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetMapedRightAnalogX() : _input.GetMapedRightAnalogY();
+            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetMapedRightAnalogX(port) : _input.GetMapedRightAnalogY(port);
         }
 
         // const AnalogAxis aa = index == RETRO_DEVICE_INDEX_ANALOG_LEFT ? _input.GetLeftAnalogAxis() : _input.GetRightAnalogAxis();
@@ -166,11 +164,11 @@ int16_t Emulator::_GetAnalogState(unsigned index, unsigned id)
     {
         if (index == RETRO_DEVICE_INDEX_ANALOG_LEFT)
         {
-            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetReverseMapedRightAnalogY() : _input.GetMapedRightAnalogX();
+            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetReverseMapedRightAnalogY(port) : _input.GetMapedRightAnalogX(port);
         }
         else
         {
-            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetReverseMapedLeftAnalogY() : _input.GetMapedLeftAnalogX();
+            return id == RETRO_DEVICE_ID_ANALOG_X ? _input.GetReverseMapedLeftAnalogY(port) : _input.GetMapedLeftAnalogX(port);
         }
         // const AnalogAxis aa = index == RETRO_DEVICE_INDEX_ANALOG_LEFT ? _input.GetRightAnalogAxis() : _input.GetLeftAnalogAxis();
         // return id == RETRO_DEVICE_ID_ANALOG_X ? -(ANALOG_PSV_TO_RETRO(aa.y) + 1) : ANALOG_PSV_TO_RETRO(aa.x);
@@ -617,5 +615,5 @@ int16_t Emulator::GetInputInfo(AnalogAxis &left, AnalogAxis &right, TouchAxis &t
         }
     }
 
-    return _GetJoypadState(0, RETRO_DEVICE_ID_JOYPAD_MASK);
+    return _GetJoypadState(0, 0, RETRO_DEVICE_ID_JOYPAD_MASK);
 };
