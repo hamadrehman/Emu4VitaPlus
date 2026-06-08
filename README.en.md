@@ -8,7 +8,7 @@ This fork is an unofficial integration branch for RetroFlow. Original project cr
 - `Emu4VitaPlus_v0.68_boot-uri.vpk` for the RetroFlow integration setup
 - boot-URI launch support from RetroFlow directly into a selected core and ROM
 - the packaged standalone `eboot_<core>.self` cores preserved in one VPK
-- shared multiplayer controller routing rebuilt into the current Genesis Plus GX, PicoDrive, FBALite, Snes9x, and Snes9x2005+ standalone cores
+- shared multiplayer controller routing rebuilt into the current Genesis Plus GX, PicoDrive, FBALite, Snes9x, Snes9x2005+, and ChimeraSNES standalone cores
 
 If you want stock Emu4Vita++ behavior, use the upstream project instead.
 
@@ -18,6 +18,7 @@ If you want stock Emu4Vita++ behavior, use the upstream project instead.
 - hardens URI parsing and decoding for ROM paths with spaces and special characters
 - keeps the packaged standalone core `eboot_<core>.self` files intact
 - adds shared multiplayer controller routing for major local-coop cores through the frontend input layer
+- adds UI and hotkey controller failover so PSTV sessions can keep menu control if the original primary controller drops out
 - adds a GitHub Actions workflow that rebuilds the patched `eboot.bin` and repacks `Emu4VitaPlus_v0.68_boot-uri.vpk`
 
 * [Download](#Download)

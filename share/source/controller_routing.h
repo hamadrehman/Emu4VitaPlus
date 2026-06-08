@@ -16,6 +16,7 @@ namespace Emu4VitaPlus
         void Refresh(bool force_log = false);
         void RefreshPeriodic();
         uint32_t GetCtrlPortForPlayer(uint32_t player_port) const;
+        uint32_t GetPrimaryUiPort() const;
 
     private:
         void _LogControllerPorts(const SceCtrlPortInfo &info, int supported);

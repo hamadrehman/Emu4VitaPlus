@@ -212,17 +212,25 @@ namespace Emu4VitaPlus
 
     void Input::Poll(bool waiting)
     {
+        uint32_t ui_port = 0;
         for (uint32_t port = 0; port < INPUT_MAX_CTRL_PORTS; ++port)
         {
             uint32_t key = _PollPort(port, waiting);
             if (port == 0)
-            {
-                key = _ProcTurbo(key);
-                _key_states[port] = key;
-                _ProcCallbacks(key);
-                _last_key = key;
-            }
+                ui_port = _controller_routing.GetPrimaryUiPort();
         }
+
+        uint32_t ui_key = _key_states[ui_port];
+        ui_key = _ProcTurbo(ui_key);
+        _key_states[ui_port] = ui_key;
+
+        if (ui_port != 0)
+        {
+            _key_states[0] = ui_key;
+        }
+
+        _ProcCallbacks(ui_key);
+        _last_key = ui_key;
 
         _front_touch.Poll();
         _rear_touch.Poll();

@@ -104,4 +104,38 @@ namespace Emu4VitaPlus
         uint32_t mapped = _player_port_map[player_port];
         return mapped < INPUT_MAX_CTRL_PORTS ? mapped : 0;
     }
+
+    uint32_t ControllerRouting::GetPrimaryUiPort() const
+    {
+        uint32_t primary = GetCtrlPortForPlayer(0);
+        if (!_has_last_info)
+        {
+            return primary;
+        }
+
+        if (primary < INPUT_MAX_CTRL_PORTS &&
+            _last_info.port[primary] != SCE_CTRL_TYPE_UNPAIRED &&
+            _last_info.port[primary] != SCE_CTRL_TYPE_VIRT)
+        {
+            return primary;
+        }
+
+        for (uint32_t player = 0; player < INPUT_MAX_CTRL_PORTS; ++player)
+        {
+            uint32_t mapped = GetCtrlPortForPlayer(player);
+            if (mapped < INPUT_MAX_CTRL_PORTS &&
+                _last_info.port[mapped] != SCE_CTRL_TYPE_UNPAIRED &&
+                _last_info.port[mapped] != SCE_CTRL_TYPE_VIRT)
+            {
+                return mapped;
+            }
+        }
+
+        if (_last_info.port[0] != SCE_CTRL_TYPE_UNPAIRED)
+        {
+            return 0;
+        }
+
+        return primary;
+    }
 }
