@@ -266,6 +266,7 @@ bool CoreOptions::Load(CSimpleIniA &ini)
         if (iter == this->end())
         {
             this->emplace(key.pItem, CoreOption{value});
+            _order.emplace_back(key.pItem);
         }
         else
         {
