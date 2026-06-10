@@ -68,7 +68,7 @@ for core in "${CORES[@]}"; do
   fi
 
   if [[ "$core" == "picodrive" ]]; then
-    perl -0pi -e 's/\r\n/\n/g' "$ROOT/cores/picodrive/tools/mkoffsets.sh"
+    sed -i 's/\r$//' "$ROOT/cores/picodrive/tools/mkoffsets.sh"
   fi
 
   target="${TARGETS[$core]}"
