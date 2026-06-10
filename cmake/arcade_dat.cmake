@@ -6,6 +6,11 @@ macro(gen_arc_dat OUTPUT_PATH ARC_DAT_NAME)
     file(RELATIVE_PATH rel ${OUTPUT_PATH} ${ARC_DAT_PATH})
     list(APPEND PRIVATE_PKG_FILES FILE ${ARC_DAT_PATH} ${rel})
 
+    file(GLOB FBNEO_DAT_FILES CONFIGURE_DEPENDS
+        ${CMAKE_SOURCE_DIR}/cores/libretro-fbneo/dats/*.dat)
+    file(GLOB MAME2003PLUS_META_FILES CONFIGURE_DEPENDS
+        ${CMAKE_SOURCE_DIR}/cores/mame2003-plus-libretro/metadata/*.xml)
+
     set(ARC_SCRIPT grab_arc_dat.py)
     set(ARC_TAG ${APP_NAME}_${ARC_DAT_NAME}_ARC_DAT)
 
@@ -20,8 +25,8 @@ macro(gen_arc_dat OUTPUT_PATH ARC_DAT_NAME)
 
         DEPENDS
         ${CMAKE_SOURCE_DIR}/script/${ARC_SCRIPT}
-        ${CMAKE_SOURCE_DIR}/cores/libretro-fbneo/dats/*
-        ${CMAKE_SOURCE_DIR}/cores/mame2003-plus-libretro/metadata/*
+        ${FBNEO_DAT_FILES}
+        ${MAME2003PLUS_META_FILES}
     )
 
     add_custom_target(${ARC_TAG}
