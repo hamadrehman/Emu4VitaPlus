@@ -151,7 +151,7 @@ int Network::_RunThread(SceSize args, void *argp)
 
 void Network::_ThreadLoop()
 {
-    while (IsRunning() && (gStatus.Get() & (APP_STATUS_EXIT | APP_STATUS_RETURN_ARCH | APP_STATUS_REBOOT_WITH_LOADING)) == 0)
+    while (IsRunning() && (gStatus.Get() & (APP_STATUS_EXIT | APP_STATUS_RETURN_ARCH | APP_STATUS_REBOOT_WITH_LOADING | APP_STATUS_RETURN_RETROFLOW)) == 0)
     {
         if (AllCompleted())
         {

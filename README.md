@@ -11,6 +11,7 @@ This fork is an unofficial integration branch for RetroFlow. Original project cr
 - boot-URI launch support from RetroFlow directly into a selected core and ROM
 - the packaged standalone `eboot_<core>.self` cores preserved in one VPK
 - shared multiplayer controller routing rebuilt into the current Genesis Plus GX, PicoDrive, FBALite, Snes9x, Snes9x2005+, and ChimeraSNES standalone cores
+- `Start + Select` hotkey support in the rebuilt standalone cores to return from gameplay back to the RetroFlow bubble
 
 If you want stock Emu4Vita++ behavior, use the upstream project instead.
 
@@ -21,7 +22,8 @@ If you want stock Emu4Vita++ behavior, use the upstream project instead.
 - keeps the packaged standalone core `eboot_<core>.self` files intact
 - adds shared multiplayer controller routing for major local-coop cores through the frontend input layer
 - adds UI and hotkey controller failover so PSTV sessions can keep menu control if the original primary controller drops out
-- adds a GitHub Actions workflow that rebuilds the patched `eboot.bin` and repacks `Emu4VitaPlus_v0.68_boot-uri.vpk`
+- adds a RetroFlow return hotkey (`Start + Select`) for gameplay cores
+- adds a GitHub Actions workflow that rebuilds the patched `eboot.bin`, rebuilds the supported standalone gameplay cores, and repacks `Emu4VitaPlus_v0.68_boot-uri.vpk`
 
 * [下载](#下载)
 * [功能说明](#功能说明)

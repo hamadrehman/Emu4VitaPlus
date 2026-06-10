@@ -13,7 +13,7 @@ int RetroAchievements::_RaThread(SceSize args, void *argp)
     uint32_t idle_time;
     APP_STATUS status = gStatus.Get();
     int try_login_count = 0;
-    while (ra->IsRunning() && (status & (APP_STATUS_EXIT | APP_STATUS_RETURN_ARCH | APP_STATUS_REBOOT_WITH_LOADING)) == 0)
+    while (ra->IsRunning() && (status & (APP_STATUS_EXIT | APP_STATUS_RETURN_ARCH | APP_STATUS_REBOOT_WITH_LOADING | APP_STATUS_RETURN_RETROFLOW)) == 0)
     {
         if (gNetwork->Connected() && ra->_online)
         {

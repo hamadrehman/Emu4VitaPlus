@@ -205,6 +205,18 @@
     },
     {
         "No.": "18",
+        "Tag": "LANG_BACK_TO_RETROFLOW",
+        "English": "Back to RetroFlow",
+        "Chinese": "Back to RetroFlow",
+        "Japanese": "Back to RetroFlow",
+        "Italian": "Back to RetroFlow",
+        "French": "Back to RetroFlow",
+        "Spanish": "Back to RetroFlow",
+        "Russian": "Back to RetroFlow",
+        "Comments": ""
+    },
+    {
+        "No.": "19",
         "Tag": "LANG_CLEAN_CACHE",
         "English": "Clean Cache",
         "Chinese": "清理缓存",
@@ -216,7 +228,7 @@
         "Comments": ""
     },
     {
-        "No.": "19",
+        "No.": "20",
         "Tag": "LANG_EXIT",
         "English": "Exit App",
         "Chinese": "退出程序",

@@ -14,6 +14,7 @@ enum APP_STATUS
     APP_STATUS_RETURN_ARCH = 1 << 6,
     APP_STATUS_REBOOT_WITH_LOADING = 1 << 7,
     APP_STATUS_EXIT = 1 << 8,
+    APP_STATUS_RETURN_RETROFLOW = 1 << 9,
 };
 
 class AppStatus

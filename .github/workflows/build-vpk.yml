@@ -37,13 +37,19 @@ jobs:
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git submodule sync --recursive
-          git submodule update --init \
+          git submodule update --init --recursive \
             deps/simpleini \
             deps/minizip-ng \
             deps/7-Zip \
             deps/libretro-common \
             deps/lz4 \
-            deps/rcheevos
+            deps/rcheevos \
+            cores/libretro-fba-lite \
+            cores/Genesis-Plus-GX \
+            cores/picodrive \
+            cores/snes9x \
+            cores/snes9x2005 \
+            cores/chimerasnes
 
       - name: Fetch upstream release VPK
         run: |
@@ -56,6 +62,11 @@ jobs:
         run: |
           chmod +x scripts/build_boot_uri_vpk.sh
           scripts/build_boot_uri_vpk.sh
+
+      - name: Rebuild patched standalone cores
+        run: |
+          chmod +x scripts/rebuild_release_cores.sh
+          scripts/rebuild_release_cores.sh
 
       - name: Generate checksums
         run: |

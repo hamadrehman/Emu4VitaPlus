@@ -148,6 +148,7 @@ private:
     // void _OnHotkeyCtrlPortUp(Input *input);
     // void _OnHotkeyCtrlPortDown(Input *input);
     void _OnHotkeyExitGame(Input *input);
+    void _OnHotkeyReturnToRetroFlow(Input *input);
     void _OnHotkeyKeyboard(Input *input);
     void _OnHotkeyKeyboardUp(Input *input);
     void _OnHotkeyKeyboardDown(Input *input);

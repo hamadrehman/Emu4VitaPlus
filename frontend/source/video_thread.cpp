@@ -39,7 +39,7 @@ namespace Emu4VitaPlus
 
         int vcount = 0;
         APP_STATUS status = gStatus.Get();
-        while (video->IsRunning() && (status & (APP_STATUS_EXIT | APP_STATUS_RETURN_ARCH | APP_STATUS_REBOOT_WITH_LOADING)) == 0)
+        while (video->IsRunning() && (status & (APP_STATUS_EXIT | APP_STATUS_RETURN_ARCH | APP_STATUS_REBOOT_WITH_LOADING | APP_STATUS_RETURN_RETROFLOW)) == 0)
         {
             status = gStatus.Get();
             if (status == APP_STATUS_RUN_GAME && !gEmulator->NeedRender())

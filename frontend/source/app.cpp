@@ -2,6 +2,7 @@
 #include <psp2/power.h>
 #include <psp2/touch.h>
 #include <psp2/apputil.h>
+#include <psp2/appmgr.h>
 #include <psp2/display.h>
 #include <vita2d.h>
 #include "my_imgui.h"
@@ -279,6 +280,17 @@ void App::Run()
         {
             char *argv[] = {NULL};
             sceAppMgrLoadExec("app0:eboot.bin", argv, NULL);
+            gStatus.Set(APP_STATUS_EXIT);
+        }
+        break;
+
+        case APP_STATUS_RETURN_RETROFLOW:
+        {
+            int result = sceAppMgrLaunchAppByUri(0xFFFFF, "psgm:play?titleid=RETROFLOW");
+            if (result != SCE_OK)
+            {
+                LogError("sceAppMgrLaunchAppByUri RETROFLOW failed: %08x", result);
+            }
             gStatus.Set(APP_STATUS_EXIT);
         }
         break;

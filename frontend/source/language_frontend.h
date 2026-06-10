@@ -19,6 +19,7 @@ enum TEXT_ENUM{
     LANG_RESET_GAME,     // "Reset game"
     LANG_EXIT_GAME,      // "Exit game"
     LANG_BACK_TO_ARCH,   // "Back to Arch"
+    LANG_BACK_TO_RETROFLOW, // "Back to RetroFlow"
     LANG_CLEAN_CACHE,    // "Clean Cache"
     LANG_EXIT,           // "Exit App"
     LANG_LANGUAGE,       // "Language"

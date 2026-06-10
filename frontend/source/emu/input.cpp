@@ -375,6 +375,7 @@ void Emulator::SetupKeys()
     BIND_HOTKEY(SAVE_STATE, _OnHotkeySave);
     BIND_HOTKEY(LOAD_STATE, _OnHotkeyLoad);
     BIND_HOTKEY(EXIT_GAME, _OnHotkeyExitGame);
+    BIND_HOTKEY(RETURN_TO_RETROFLOW, _OnHotkeyReturnToRetroFlow);
     BIND_HOTKEY(GAME_SPEED_UP, _OnHotkeySpeedUp);
     BIND_HOTKEY(GAME_SPEED_DOWN, _OnHotkeySpeedDown);
     BIND_HOTKEY(GAME_REWIND, _OnHotkeyRewind);
@@ -544,6 +545,13 @@ void Emulator::_OnHotkeyExitGame(Input *input)
 {
     LogFunctionName;
     UnloadGame();
+}
+
+void Emulator::_OnHotkeyReturnToRetroFlow(Input *input)
+{
+    LogFunctionName;
+    UnloadGame();
+    gStatus.Set(APP_STATUS_RETURN_RETROFLOW);
 }
 
 void Emulator::_OnHotkeyKeyboard(Input *input)
