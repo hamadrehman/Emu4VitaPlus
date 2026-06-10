@@ -5,6 +5,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_BASE_DIR="${BUILD_BASE_DIR:-$ROOT/build-release-cores}"
 VPK_PATH="${VPK_PATH:-$ROOT/out/Emu4VitaPlus_v0.68_boot-uri.vpk}"
 VITASDK="${VITASDK:-/usr/local/vitasdk}"
+BUILD_ONLY="${BUILD_ONLY:-0}"
+STAGE_OUT_DIR="${STAGE_OUT_DIR:-$ROOT/out/cores}"
 
 export VITASDK
 export PATH="$VITASDK/bin:$PATH"
@@ -14,9 +16,13 @@ if [[ ! -x "$VITASDK/bin/arm-vita-eabi-gcc" ]]; then
   exit 1
 fi
 
-if [[ ! -f "$VPK_PATH" ]]; then
+if [[ "$BUILD_ONLY" != "1" && ! -f "$VPK_PATH" ]]; then
   echo "Missing VPK to patch: $VPK_PATH" >&2
   exit 1
+fi
+
+if [[ "$BUILD_ONLY" == "1" ]]; then
+  mkdir -p "$STAGE_OUT_DIR"
 fi
 
 require_cmd() {
@@ -111,11 +117,20 @@ for core in "${CORES[@]}"; do
     exit 1
   fi
 
-  tmpdir="$(mktemp -d)"
-  cp "$output_bin" "$tmpdir/$entry"
-  zip -qj "$VPK_PATH" "$tmpdir/$entry"
-  rm -rf "$tmpdir"
+  if [[ "$BUILD_ONLY" == "1" ]]; then
+    cp "$output_bin" "$STAGE_OUT_DIR/$entry"
+    echo "Staged: $STAGE_OUT_DIR/$entry"
+  else
+    tmpdir="$(mktemp -d)"
+    cp "$output_bin" "$tmpdir/$entry"
+    zip -qj "$VPK_PATH" "$tmpdir/$entry"
+    rm -rf "$tmpdir"
+  fi
 done
 
-echo "Updated:"
-echo "  $VPK_PATH"
+if [[ "$BUILD_ONLY" == "1" ]]; then
+  echo "Built cores staged in: $STAGE_OUT_DIR"
+else
+  echo "Updated:"
+  echo "  $VPK_PATH"
+fi

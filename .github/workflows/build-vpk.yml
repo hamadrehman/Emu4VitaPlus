@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  prepare-vpk:
     runs-on: ubuntu-latest
     container:
       image: vitasdk/vitasdk:latest
@@ -33,23 +33,24 @@ jobs:
           vdpm update
           vdpm install -f libjpeg-turbo imgui-vita2d
 
-      - name: Init required submodules
+      - name: Init main app submodules
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git submodule sync --recursive
-          git submodule update --init --recursive \
-            deps/simpleini \
-            deps/minizip-ng \
-            deps/7-Zip \
-            deps/libretro-common \
-            deps/lz4 \
-            deps/rcheevos \
-            cores/libretro-fba-lite \
-            cores/Genesis-Plus-GX \
-            cores/picodrive \
-            cores/snes9x \
-            cores/snes9x2005 \
-            cores/chimerasnes
+          for attempt in 1 2 3; do
+            if git submodule update --init --recursive \
+                deps/simpleini \
+                deps/minizip-ng \
+                deps/7-Zip \
+                deps/libretro-common \
+                deps/lz4 \
+                deps/rcheevos; then
+              break
+            fi
+            echo "Submodule init attempt $attempt failed, retrying..." >&2
+            sleep 5
+            [[ $attempt -eq 3 ]] && exit 1
+          done
 
       - name: Fetch upstream release VPK
         run: |
@@ -63,15 +64,123 @@ jobs:
           chmod +x scripts/build_boot_uri_vpk.sh
           scripts/build_boot_uri_vpk.sh
 
-      - name: Rebuild patched standalone cores
+      - name: Upload base VPK
+        uses: actions/upload-artifact@v4
+        with:
+          name: base-vpk
+          path: out/Emu4VitaPlus_v0.68_boot-uri.vpk
+          retention-days: 1
+          if-no-files-found: error
+
+  build-core:
+    runs-on: ubuntu-latest
+    container:
+      image: vitasdk/vitasdk:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - core: genesis_plus_gx
+            submodule: cores/Genesis-Plus-GX
+            entry: eboot_genesis_plus_gx.self
+          - core: picodrive
+            submodule: cores/picodrive
+            entry: eboot_picodrive.self
+          - core: fba_lite
+            submodule: cores/libretro-fba-lite
+            entry: eboot_fba_lite.self
+          - core: snes9x
+            submodule: cores/snes9x
+            entry: eboot_snes9x.self
+          - core: snes9x2005_plus
+            submodule: cores/snes9x2005
+            entry: eboot_snes9x2005_plus.self
+          - core: chimerasnes
+            submodule: cores/chimerasnes
+            entry: eboot_chimerasnes.self
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          if command -v apk >/dev/null 2>&1; then
+            apk add --no-cache curl py3-lz4 py3-openpyxl unzip zip git g++ file binutils make
+          else
+            apt-get update
+            apt-get install -y curl python3-lz4 python3-openpyxl unzip zip git g++ file binutils make
+          fi
+
+      - name: Install VitaSDK packages
+        run: |
+          vdpm update
+          vdpm install -f libjpeg-turbo imgui-vita2d
+
+      - name: Init submodules for ${{ matrix.core }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git submodule sync --recursive
+          for attempt in 1 2 3; do
+            if git submodule update --init --recursive \
+                deps/simpleini \
+                deps/minizip-ng \
+                deps/7-Zip \
+                deps/libretro-common \
+                deps/lz4 \
+                deps/rcheevos \
+                ${{ matrix.submodule }}; then
+              break
+            fi
+            echo "Submodule init attempt $attempt failed, retrying..." >&2
+            sleep 5
+            [[ $attempt -eq 3 ]] && exit 1
+          done
+
+      - name: Build ${{ matrix.core }}
+        env:
+          BUILD_ONLY: "1"
         run: |
           chmod +x scripts/rebuild_release_cores.sh
-          scripts/rebuild_release_cores.sh
+          scripts/rebuild_release_cores.sh ${{ matrix.core }}
 
-      - name: Generate checksums
+      - name: Upload ${{ matrix.core }} artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-${{ matrix.core }}
+          path: out/cores/${{ matrix.entry }}
+          retention-days: 1
+          if-no-files-found: error
+
+  package:
+    runs-on: ubuntu-latest
+    needs: [prepare-vpk, build-core]
+    steps:
+      - name: Install packaging tools
         run: |
+          sudo apt-get update
+          sudo apt-get install -y zip unzip coreutils
+
+      - name: Download base VPK
+        uses: actions/download-artifact@v4
+        with:
+          name: base-vpk
+          path: out
+
+      - name: Download core artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: core-artifacts
+          pattern: core-*
+          merge-multiple: true
+
+      - name: Assemble final VPK
+        run: |
+          ls -la out core-artifacts
           cd out
+          zip -qj Emu4VitaPlus_v0.68_boot-uri.vpk ../core-artifacts/*.self
           sha256sum Emu4VitaPlus_v0.68_boot-uri.vpk > SHA256SUMS.txt
+          cat SHA256SUMS.txt
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
