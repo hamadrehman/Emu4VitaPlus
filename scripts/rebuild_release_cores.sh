@@ -19,6 +19,14 @@ if [[ ! -f "$VPK_PATH" ]]; then
   exit 1
 fi
 
+require_cmd() {
+  local cmd="$1"
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "Missing required host tool: $cmd" >&2
+    exit 1
+  fi
+}
+
 declare -A TARGETS=(
   [genesis_plus_gx]="eboot_GenesisPlusGX.bin"
   [picodrive]="eboot_PicoDrive.bin"
@@ -68,6 +76,11 @@ for core in "${CORES[@]}"; do
   fi
 
   if [[ "$core" == "picodrive" ]]; then
+    require_cmd gcc
+    require_cmd g++
+    require_cmd file
+    require_cmd readelf
+    require_cmd make
     sed -i 's/\r$//' "$ROOT/cores/picodrive/tools/mkoffsets.sh"
   fi
 
