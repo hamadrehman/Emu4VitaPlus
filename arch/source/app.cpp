@@ -103,6 +103,8 @@ App::App()
                        {{"fuse", "fuse"}}),
         new CoreButton(DOS, // 1981
                        {{"DOS BOX Pure", "dosbox_pure"}}),
+        new CoreButton(PC88, // 1981
+                       {{"QUASI88", "quasi88"}}),
         new CoreButton(PC98, // 1982
                        {{"Neko Project II", "nekop2"},
                         {"Neko Project II kai", "np2kai"}}),
@@ -129,6 +131,8 @@ App::App()
         new CoreButton(LYNX, // 1989
                        {{"Beetle Lynx", "mednafen_lynx"},
                         {"Handy", "handy"}}),
+        new CoreButton(VB, // 1995
+                       {{"Beetle VB", "mednafen_vb"}}),
         new CoreButton(GBC, // 1989,1998
                        {{"Gambatte", "gambatte"},
                         {"TGB Dual", "tgbdual"}}),

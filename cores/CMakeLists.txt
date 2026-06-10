@@ -6,6 +6,12 @@ set(CORE_ARGS platform=vita EXTERNAL_ZLIB=1)
 set(LIBRETRO_LIBRARY "")
 set(CORE_LTO ON)
 set(PRE_CORE_TAG "PRE_${CORE}_TAG")
+set(C_FLAG_OPTIMIZATION -marm -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=hard
+    -mword-relocations -fno-optimize-sibling-calls -fsingle-precision-constant
+    -fno-unwind-tables -fno-asynchronous-unwind-tables
+    -ffast-math -ftree-vectorize -O3
+    -funsafe-math-optimizations -mvectorize-with-neon-quad
+    -fdata-sections -ffunction-sections)
 
 # set(CORE_CFLAGS -save-temps)
 if(CORE STREQUAL "gpsp")
@@ -107,6 +113,7 @@ elseif(CORE STREQUAL "vice")
 elseif(CORE STREQUAL "px68k")
     set(CORE_MAKEFILE_NAME Makefile.libretro)
 elseif(CORE STREQUAL "mednafen_lynx")
+    set(CORE_ARGS ${CORE_ARGS} NEED_CRC32=0)
 elseif(CORE STREQUAL "handy")
 elseif(CORE STREQUAL "cap32")
 elseif(CORE STREQUAL "crocods")
@@ -116,6 +123,10 @@ elseif(CORE STREQUAL "snes9x")
     set(CORE_MAKEFILE_NAME ${CMAKE_CURRENT_SOURCE_DIR}/../apps/${CORE}/Makefile)
 elseif(CORE STREQUAL "mgba")
     set(CORE_MAKEFILE_NAME ${CMAKE_CURRENT_SOURCE_DIR}/../apps/${CORE}/Makefile.libretro)
+elseif(CORE STREQUAL "quasi88")
+    set(CORE_CFLAGS ${CORE_CFLAGS} ${C_FLAG_OPTIMIZATION} -Wno-error=incompatible-pointer-typess)
+elseif(CORE STREQUAL "mednafen_vb")
+    set(CORE_CFLAGS ${CORE_CFLAGS} ${C_FLAG_OPTIMIZATION})
 else()
     message(FATAL_ERROR "unknown core: " ${CORE})
 endif()

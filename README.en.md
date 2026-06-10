@@ -67,6 +67,9 @@ This branch does not claim to be the upstream Emu4Vita++ project.
 
 <img src="screenshots/control_test.jpg" width="720">
 
+### Theme
+<img src="screenshots/theme.jpg" width="720">
+
 ### In game
 <img src="screenshots/game.jpg" alt="drawing" width="720"/>
 

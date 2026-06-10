@@ -5,6 +5,7 @@ from colorthief import ColorThief
 import shutil
 from cores import *
 import os
+import subprocess
 
 # svg from https://gitlab.com/recalbox/recalbox-themes
 
@@ -137,11 +138,14 @@ def gen_startup(console, cores, color):
     im = Image.new('RGBA', (STARTUP_WIDTH, STARTUP_HEIGHT), '#cccccc66')
     im.paste(_im, ((STARTUP_WIDTH - ICON_WIDTH) // 2, 18), _im)
     for core in cores:
+        name = f'../apps/{core}/pkg/sce_sys/livearea/contents/startup.png'
+        if os.path.exists(name):
+            continue
+
         _im = im.copy()
         draw = ImageDraw.Draw(_im)
         length = draw.textlength(NAMES[core], font=TINY_FONT)
-        draw.text(((STARTUP_WIDTH - length) // 2, ICON_WIDTH), NAMES[core], font=TINY_FONT, fill=color)
-        name = f'../apps/{core}/pkg/sce_sys/livearea/contents/startup.png'
+        draw.text(((STARTUP_WIDTH - length) // 2, min(h + 24, ICON_WIDTH)), NAMES[core], font=TINY_FONT, fill=color)
         try:
             os.makedirs(os.path.split(name)[0])
         except:
@@ -153,11 +157,28 @@ for console, cores in CORES.items():
     color = gen_bg(console, cores)
     gen_startup(console, cores, color)
 
-os.environ['PATH'] += os.pathsep + 'C:/Program Files/GIMP 2/bin'
 
-os.system(
-    '''gimp-2.10.exe -idf --batch-interpreter python-fu-eval  -b "import sys;sys.path+=['.'];import apply_filters;apply_filters.apply_filters()"  -b "pdb.gimp_quit(1)"'''
+GIMP_PATH = 'C:/Program Files/GIMP 3/bin'
+GIMP_EXE = f'{GIMP_PATH}/gimp-3.exe'
+GIMP_SCRIPT = 'apply_filters.py'
+
+os.environ['PATH'] += os.pathsep + GIMP_PATH
+
+scripts = open('cores.py').read()
+scripts += open(GIMP_SCRIPT).read()
+
+subprocess.run(
+    [
+        GIMP_EXE,
+        "-i",
+        "--batch-interpreter=python-fu-eval",
+        "-b",
+        scripts,
+        "--quit",
+    ],
+    check=True,
 )
+
 
 for console, cores in CORES.items():
     name = f'{console}.png'
