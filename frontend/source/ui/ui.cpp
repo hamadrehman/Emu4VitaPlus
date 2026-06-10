@@ -371,11 +371,16 @@ void Ui::UpdateCoreOptions()
 
     std::vector<ItemBase *> options;
     options.reserve(gConfig->core_options.size() + 1);
-    for (auto &iter : gConfig->core_options)
+    for (auto &key : gConfig->core_options.GetOrder())
     {
-        if (iter.second.values.size() > 0)
+        auto iter = gConfig->core_options.find(key);
+        if (iter == gConfig->core_options.end())
         {
-            options.emplace_back(new ItemCore(&iter.second));
+            continue;
+        }
+        if (iter->second.values.size() > 0)
+        {
+            options.emplace_back(new ItemCore(&iter->second));
         }
     }
     options.emplace_back(new ItemBase(LANG_RESET_CONFIGS,

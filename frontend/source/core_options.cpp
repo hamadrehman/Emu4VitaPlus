@@ -80,6 +80,7 @@ void CoreOptions::Load(retro_variable *variables)
                                                             desc,
                                                             "",
                                                             values});
+            _order.emplace_back(variables->key);
         }
         else
         {
@@ -174,13 +175,14 @@ void CoreOptions::_Load(const T *define)
 
     const auto &iter = this->find(define->key);
     CoreOption *option;
-    if (iter == this->end())
-    {
-        option = &((*this)[define->key] = CoreOption{default_value,
-                                                     define->desc ? define->desc : "",
-                                                     define->info ? define->info : "",
-                                                     default_value});
-    }
+        if (iter == this->end())
+        {
+            option = &((*this)[define->key] = CoreOption{default_value,
+                                                         define->desc ? define->desc : "",
+                                                         define->info ? define->info : "",
+                                                         default_value});
+            _order.emplace_back(define->key);
+        }
     else
     {
         option = &(iter->second);
@@ -217,6 +219,12 @@ void CoreOptions::Default()
     {
         iter.second.Default();
     }
+}
+
+void CoreOptions::Clear()
+{
+    std::map<std::string, CoreOption>::clear();
+    _order.clear();
 }
 
 bool CoreOptions::Get(retro_variable *var)

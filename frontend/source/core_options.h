@@ -44,8 +44,13 @@ public:
     bool Get(retro_variable *var);
     void Default();
     void SetVisable(const struct retro_core_option_display *option_display);
+    void Clear();
+    const std::vector<std::string> &GetOrder() const { return _order; }
+    void AddOrder(const std::string &key) { _order.emplace_back(key); }
 
 private:
     template <typename T>
     void _Load(const T *define);
+
+    std::vector<std::string> _order;
 };

@@ -224,9 +224,11 @@ namespace Emu4VitaPlus
     void Config::DefaultCoreOptions()
     {
         LogFunctionName;
+        core_options.Clear();
         for (const auto &setting : DEFAULT_CORE_SETTINGS)
         {
             core_options.emplace(setting.first, CoreOption{setting.second});
+            core_options.AddOrder(setting.first);
         }
     }
 
