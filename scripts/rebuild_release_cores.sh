@@ -46,6 +46,15 @@ declare -A VPK_ENTRIES=(
   [chimerasnes]="eboot_chimerasnes.self"
 )
 
+declare -A BUILD_TARGETS=(
+  [genesis_plus_gx]="VPK_GenesisPlusGX"
+  [picodrive]="VPK_PicoDrive"
+  [fba_lite]="VPK_FBALite"
+  [snes9x]="VPK_Snes9x"
+  [snes9x2005_plus]="VPK_Snes9x2005Plus"
+  [chimerasnes]="VPK_ChimeraSNES"
+)
+
 CORES=("$@")
 if [[ ${#CORES[@]} -eq 0 ]]; then
   CORES=(genesis_plus_gx picodrive fba_lite snes9x snes9x2005_plus chimerasnes)
@@ -65,6 +74,7 @@ for core in "${CORES[@]}"; do
   target="${TARGETS[$core]}"
   app_dir="${APP_DIRS[$core]}"
   entry="${VPK_ENTRIES[$core]}"
+  build_target="${BUILD_TARGETS[$core]}"
   build_dir="$BUILD_BASE_DIR/$core"
   output_bin="$build_dir/apps/$app_dir/$target"
 
@@ -80,8 +90,8 @@ for core in "${CORES[@]}"; do
     -DZLIB_LIBRARY="$VITASDK/arm-vita-eabi/lib/libz.a" \
     -DFETCHCONTENT_UPDATES_DISCONNECTED=ON
 
-  echo "Building $core -> $target"
-  cmake --build "$build_dir" --target "$target" -- -j"$(nproc)"
+  echo "Building $core -> $build_target"
+  cmake --build "$build_dir" --target "$build_target" -- -j"$(nproc)"
 
   if [[ ! -f "$output_bin" ]]; then
     echo "Expected build output missing: $output_bin" >&2
