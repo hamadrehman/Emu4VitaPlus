@@ -15,7 +15,6 @@ enum HotKeyConfig
     SAVE_STATE = 0,
     LOAD_STATE,
     EXIT_GAME,
-    RETURN_TO_RETROFLOW,
     GAME_SPEED_UP,
     GAME_SPEED_DOWN,
     GAME_REWIND,

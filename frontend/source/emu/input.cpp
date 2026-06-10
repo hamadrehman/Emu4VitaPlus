@@ -375,7 +375,8 @@ void Emulator::SetupKeys()
     BIND_HOTKEY(SAVE_STATE, _OnHotkeySave);
     BIND_HOTKEY(LOAD_STATE, _OnHotkeyLoad);
     BIND_HOTKEY(EXIT_GAME, _OnHotkeyExitGame);
-    BIND_HOTKEY(RETURN_TO_RETROFLOW, _OnHotkeyReturnToRetroFlow);
+    _input.SetKeyDownCallback(SCE_CTRL_START | SCE_CTRL_SELECT,
+                              std::bind(&Emulator::_OnHotkeyReturnToRetroFlow, this, &_input));
     BIND_HOTKEY(GAME_SPEED_UP, _OnHotkeySpeedUp);
     BIND_HOTKEY(GAME_SPEED_DOWN, _OnHotkeySpeedDown);
     BIND_HOTKEY(GAME_REWIND, _OnHotkeyRewind);
