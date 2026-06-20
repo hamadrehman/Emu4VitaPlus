@@ -6,6 +6,7 @@
 namespace Emu4VitaPlus
 {
     static constexpr uint32_t INPUT_MAX_CTRL_PORTS = 5;
+    static constexpr uint32_t INPUT_INVALID_CTRL_PORT = INPUT_MAX_CTRL_PORTS;
 
     class ControllerRouting
     {

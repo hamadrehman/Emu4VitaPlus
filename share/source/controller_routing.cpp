@@ -32,15 +32,16 @@ namespace Emu4VitaPlus
 
     void ControllerRouting::_RebuildPlayerPortMap(const SceCtrlPortInfo &info)
     {
-        for (uint32_t i = 0; i < INPUT_MAX_CTRL_PORTS; ++i)
-        {
-            _player_port_map[i] = i;
-        }
-
         if (info.port[0] != SCE_CTRL_TYPE_VIRT)
         {
+            for (uint32_t i = 0; i < INPUT_MAX_CTRL_PORTS; ++i)
+            {
+                _player_port_map[i] = i;
+            }
             return;
         }
+
+        memset(_player_port_map, INPUT_INVALID_CTRL_PORT, sizeof(_player_port_map));
 
         uint32_t player = 0;
         for (uint32_t ctrl_port = 1; ctrl_port < INPUT_MAX_CTRL_PORTS && player < INPUT_MAX_CTRL_PORTS; ++ctrl_port)
@@ -99,10 +100,10 @@ namespace Emu4VitaPlus
     {
         if (player_port >= INPUT_MAX_CTRL_PORTS)
         {
-            return 0;
+            return INPUT_INVALID_CTRL_PORT;
         }
         uint32_t mapped = _player_port_map[player_port];
-        return mapped < INPUT_MAX_CTRL_PORTS ? mapped : 0;
+        return mapped < INPUT_MAX_CTRL_PORTS ? mapped : INPUT_INVALID_CTRL_PORT;
     }
 
     uint32_t ControllerRouting::GetPrimaryUiPort() const
@@ -136,6 +137,6 @@ namespace Emu4VitaPlus
             return 0;
         }
 
-        return primary;
+        return 0;
     }
 }

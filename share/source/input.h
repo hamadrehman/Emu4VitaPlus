@@ -116,10 +116,22 @@ namespace Emu4VitaPlus
         void Reset();
 
         uint32_t GetCtrlPortForPlayer(uint32_t port) const;
-        const uint32_t &GetKeyStates(uint32_t port = 0) const { return _key_states[GetCtrlPortForPlayer(port)]; };
+        uint32_t GetKeyStates(uint32_t port = 0) const
+        {
+            uint32_t ctrl_port = GetCtrlPortForPlayer(port);
+            return ctrl_port < INPUT_MAX_CTRL_PORTS ? _key_states[ctrl_port] : 0;
+        };
 
-        const AnalogAxis &GetLeftAnalogAxis(uint32_t port = 0) const { return _left_analog[GetCtrlPortForPlayer(port)]; };
-        const AnalogAxis &GetRightAnalogAxis(uint32_t port = 0) const { return _right_analog[GetCtrlPortForPlayer(port)]; };
+        AnalogAxis GetLeftAnalogAxis(uint32_t port = 0) const
+        {
+            uint32_t ctrl_port = GetCtrlPortForPlayer(port);
+            return ctrl_port < INPUT_MAX_CTRL_PORTS ? _left_analog[ctrl_port] : AnalogAxis{128, 128};
+        };
+        AnalogAxis GetRightAnalogAxis(uint32_t port = 0) const
+        {
+            uint32_t ctrl_port = GetCtrlPortForPlayer(port);
+            return ctrl_port < INPUT_MAX_CTRL_PORTS ? _right_analog[ctrl_port] : AnalogAxis{128, 128};
+        };
 
         const int16_t GetMapedLeftAnalogX(uint32_t port = 0) const { return _analog_map_table[GetLeftAnalogAxis(port).x]; };
         const int16_t GetMapedLeftAnalogY(uint32_t port = 0) const { return _analog_map_table[GetLeftAnalogAxis(port).y]; };
