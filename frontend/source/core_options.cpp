@@ -80,7 +80,6 @@ void CoreOptions::Load(retro_variable *variables)
                                                             desc,
                                                             "",
                                                             values});
-            _order.emplace_back(variables->key);
         }
         else
         {
@@ -89,6 +88,8 @@ void CoreOptions::Load(retro_variable *variables)
             option->default_value = values;
             option->values.clear();
         }
+
+        AddOrder(variables->key);
 
         do
         {
@@ -175,14 +176,13 @@ void CoreOptions::_Load(const T *define)
 
     const auto &iter = this->find(define->key);
     CoreOption *option;
-        if (iter == this->end())
-        {
-            option = &((*this)[define->key] = CoreOption{default_value,
-                                                         define->desc ? define->desc : "",
-                                                         define->info ? define->info : "",
-                                                         default_value});
-            _order.emplace_back(define->key);
-        }
+    if (iter == this->end())
+    {
+        option = &((*this)[define->key] = CoreOption{default_value,
+                                                     define->desc ? define->desc : "",
+                                                     define->info ? define->info : "",
+                                                     default_value});
+    }
     else
     {
         option = &(iter->second);
@@ -191,6 +191,8 @@ void CoreOptions::_Load(const T *define)
         option->default_value = default_value;
         option->values.clear();
     }
+
+    AddOrder(define->key);
 
     Utils::TrimString(&option->info);
 

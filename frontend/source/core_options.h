@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <map>
 #include <vector>
 #include <string>
@@ -46,7 +47,13 @@ public:
     void SetVisable(const struct retro_core_option_display *option_display);
     void Clear();
     const std::vector<std::string> &GetOrder() const { return _order; }
-    void AddOrder(const std::string &key) { _order.emplace_back(key); }
+    void AddOrder(const std::string &key)
+    {
+        if (std::find(_order.begin(), _order.end(), key) == _order.end())
+        {
+            _order.emplace_back(key);
+        }
+    }
 
 private:
     template <typename T>
