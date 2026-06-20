@@ -181,6 +181,14 @@ namespace Emu4VitaPlus
 
         uint32_t key = ctrl_data.buttons;
         key &= ~SCE_CTRL_HEADPHONE;
+        if (key & SCE_CTRL_INTERCEPTED)
+        {
+            _left_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            _right_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            _key_states[port] = SCE_CTRL_PSBUTTON;
+            return SCE_CTRL_PSBUTTON;
+        }
+
         if (ctrl_data.lx < (ANALOG_CENTER - ANALOG_THRESHOLD))
             key |= SCE_CTRL_LSTICK_LEFT;
         else if (ctrl_data.lx > (ANALOG_CENTER + ANALOG_THRESHOLD))
