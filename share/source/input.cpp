@@ -57,11 +57,13 @@ namespace Emu4VitaPlus
                      _turbo_interval_ms(DEFAULT_TURBO_INTERVAL),
                      _enable_key_up(true),
                      _key_states{0},
+                     _last_raw_key_states{0},
+                     _port_turbo_key_states{{0}},
+                     _ui_port(0),
                      _left_analog{{0}},
                      _right_analog{{0}}
     {
         LogFunctionName;
-        memset(_turbo_key_states, 0, sizeof(_turbo_key_states));
         _controller_routing.Refresh(true);
     }
 
@@ -220,22 +222,27 @@ namespace Emu4VitaPlus
 
     void Input::Poll(bool waiting)
     {
-        uint32_t ui_port = 0;
         for (uint32_t port = 0; port < INPUT_MAX_CTRL_PORTS; ++port)
         {
-            uint32_t key = _PollPort(port, waiting);
-            if (port == 0)
-                ui_port = _controller_routing.GetPrimaryUiPort();
+            uint32_t raw_key = _PollPort(port, waiting);
+            if ((raw_key & ~SCE_CTRL_PSBUTTON) != 0 &&
+                raw_key != _last_raw_key_states[port])
+            {
+                _ui_port = port;
+            }
+            _key_states[port] = _ProcTurbo(raw_key, port);
+            _last_raw_key_states[port] = raw_key;
         }
 
-        uint32_t ui_key = _key_states[ui_port];
-        ui_key = _ProcTurbo(ui_key);
-        _key_states[ui_port] = ui_key;
-
-        if (ui_port != 0)
+        if (_ui_port >= INPUT_MAX_CTRL_PORTS)
         {
-            _key_states[0] = ui_key;
+            _ui_port = _controller_routing.GetPrimaryUiPort();
         }
+
+        uint32_t ui_key = _key_states[_ui_port];
+        // The locked PS button is reported through virtual port 0 even when
+        // the active controller is assigned to another port.
+        ui_key |= _key_states[0] & SCE_CTRL_PSBUTTON;
 
         _ProcCallbacks(ui_key);
         _last_key = ui_key;
@@ -250,9 +257,9 @@ namespace Emu4VitaPlus
              _turbo_start_ms |  _turbo_interval_ms |  _turbo_interval_ms | ......
     Down   __________________|                     |_____________________|
     */
-    uint32_t Input::_ProcTurbo(uint32_t key)
+    uint32_t Input::_ProcTurbo(uint32_t key, uint32_t port)
     {
-        if (!_turbo_key)
+        if (!_turbo_key || port >= INPUT_MAX_CTRL_PORTS)
         {
             return key;
         }
@@ -264,11 +271,11 @@ namespace Emu4VitaPlus
             uint32_t k = 1 << i;
             if (k & _turbo_key)
             {
-                TurboKeyState *state = _turbo_key_states + i;
+                TurboKeyState *state = _port_turbo_key_states[port] + i;
 
                 if (k & key)
                 {
-                    if ((k & ~_last_key) && state->next_change_state_time == 0ll)
+                    if ((k & ~_last_raw_key_states[port]) && state->next_change_state_time == 0ll)
                     {
                         // first keydown
                         state->next_change_state_time = current + _turbo_start_ms;
@@ -364,8 +371,11 @@ namespace Emu4VitaPlus
         _turbo_key = 0;
         _last_key = 0;
         memset(_key_states, 0, sizeof(_key_states));
+        memset(_last_raw_key_states, 0, sizeof(_last_raw_key_states));
+        memset(_port_turbo_key_states, 0, sizeof(_port_turbo_key_states));
         _controller_routing.Reset();
         _controller_routing.Refresh(true);
+        _ui_port = _controller_routing.GetPrimaryUiPort();
         memset(_left_analog, ANALOG_CENTER, sizeof(_left_analog));
         memset(_right_analog, ANALOG_CENTER, sizeof(_right_analog));
         _key_down_callbacks.clear();

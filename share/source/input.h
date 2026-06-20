@@ -151,9 +151,11 @@ namespace Emu4VitaPlus
         std::vector<KeyBinding> _key_up_callbacks;
         std::vector<KeyBinding> _key_down_callbacks;
 
-        TurboKeyState _turbo_key_states[32];
         uint32_t _last_key;
         uint32_t _key_states[INPUT_MAX_CTRL_PORTS];
+        uint32_t _last_raw_key_states[INPUT_MAX_CTRL_PORTS];
+        TurboKeyState _port_turbo_key_states[INPUT_MAX_CTRL_PORTS][32];
+        uint32_t _ui_port;
         uint32_t _current_hotkey;
         uint32_t _turbo_key;
         uint64_t _turbo_start_ms;
@@ -172,7 +174,7 @@ namespace Emu4VitaPlus
 
         std::stack<std::vector<KeyBinding>> _callback_stack;
 
-        uint32_t _ProcTurbo(uint32_t key);
+        uint32_t _ProcTurbo(uint32_t key, uint32_t port);
         uint32_t _PollPort(uint32_t port, bool waiting);
         virtual void _ProcCallbacks(uint32_t key);
     };
