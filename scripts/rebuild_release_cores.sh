@@ -101,7 +101,7 @@ for core in "${CORES[@]}"; do
   echo "Configuring $core build tree..."
   cmake -S "$ROOT" -B "$build_dir" \
     -DBUILD="$core" \
-    -DWITH_LOG=ON \
+    -DWITH_LOG=OFF \
     -DMZ_FETCH_LIBS=OFF \
     -DMZ_FORCE_FETCH_LIBS=OFF \
     -DZLIB_COMPAT=ON \

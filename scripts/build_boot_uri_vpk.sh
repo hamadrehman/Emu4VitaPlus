@@ -30,7 +30,7 @@ fi
 
 mkdir -p "$OUT_DIR" "$RELEASE_DIR"
 
-cmake -S "$ROOT" -B "$BUILD_DIR" -DBUILD=Arch -DWITH_LOG=ON
+cmake -S "$ROOT" -B "$BUILD_DIR" -DBUILD=Arch -DWITH_LOG=OFF
 cmake --build "$BUILD_DIR" --target Emu4VitaPlus.elf-velf -- -j"$(nproc)"
 "$VITA_MAKE_FSELF" -a 0x2800000000000001 \
   "$BUILD_DIR/arch/Emu4VitaPlus.elf.velf" \
