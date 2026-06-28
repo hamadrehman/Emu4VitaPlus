@@ -17,6 +17,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "The ZX Spectrum is an 8-bit home computer developed and marketed by Sinclair Research. One of the most influential computers ever made and one of the all-time bestselling British computers, over five million units were sold. It was released in the United Kingdom on 23 April 1982, and around the world in the following years, most notably in Europe, the United States, and Eastern Bloc countries.",
     // INTRO_DOS
     "DOS is a family of disk-based operating systems for IBM PC compatible computers. The DOS family primarily consists of IBM PC DOS and a rebranded version, Microsoft's MS-DOS, both of which were introduced in 1981. Later compatible systems from other manufacturers include DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993), and FreeDOS (1994). MS-DOS dominated the IBM PC compatible market between 1981 and 1995.",
+    // INTRO_PC88
+    "The PC-8800 series (Japanese: PC-8800シリーズ, Hepburn: Pī Shī Hassen Happyaku Shirīzu), commonly shortened to PC-88, are a brand of Zilog Z80-based 8-bit home computers released by NEC in 1981 and primarily sold in Japan.",
     // INTRO_PC98
     "The PC-9800 series, commonly shortened to PC-98 or simply 98 (Kyū-hachi), is a lineup of Japanese 16-bit and 32-bit personal computers manufactured by NEC from 1982 to 2003. While based on Intel processors, it uses an in-house architecture making it incompatible with IBM clones; some PC-98 computers used NEC's own V30 processor. The platform established NEC's dominance in the Japanese personal computer market, and, by 1999, more than 18 million units had been sold. While NEC did not market these specific machines in the West, it sold the NEC APC series, which had similar hardware to early PC-98 models.",
     // INTRO_MSX
@@ -35,6 +37,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "The Sega Genesis, known as the Mega Drive outside North America, is a 16-bit fourth generation home video game console developed and sold by Sega. It was Sega's third console and the successor to the Master System. Sega released it in 1988 in Japan as the Mega Drive, and in 1989 in North America as the Genesis. In 1990, it was distributed as the Mega Drive by Virgin Mastertronic in Europe, Ozisoft in Australasia, and Tectoy in Brazil. In South Korea, it was distributed by Samsung Electronics as the Super Gam*Boy and later the Super Aladdin Boy.",
     // INTRO_LYNX
     "The Atari Lynx is a fourth-generation hand-held game console released by Atari Corporation in September 1989 in North America and 1990 in Europe and Japan. It was the first handheld game console with a color liquid-crystal display. ",
+    // INTRO_VB
+    "The Virtual Boy is a video game console developed and manufactured by Nintendo and released in Japan on July 21, 1995, and in North America on August 14, 1995. Promoted as the first system capable of rendering stereoscopic 3D graphics, it featured a red monochrome display viewed through a binocular eyepiece, with games employing a parallax effect to simulate depth. The console struggled commercially, and its limited market performance led Nintendo to discontinue production and game development in 1996, following the release of only 22 games.",
     // INTRO_GBC
     "The Game Boy Color (GBC or CGB) is an 8-bit handheld game console, manufactured by Nintendo, which was released in Japan on October 21, 1998, and to international markets that November. Compared to the original Game Boy, the Game Boy Color features a color TFT screen rather than monochrome, a processor that can operate twice as fast, and four times as much memory. It retains backward compatibility with games initially developed for its predecessor.",
     // INTRO_SNES
@@ -71,6 +75,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "ZX Spectrum是1982年由Sinclair公司生产的一款8位个人电脑。在产品开发期间，称作ZX81 Colour及ZX82,该款机器最后被Sinclair公司命名作ZX Spectrum，以强调其彩色显示，并有别于前款机器Sinclair ZX81的黑白显示。ZX Spectrum有8种不同的规格。1987年型号带有软盘驱动器。1980年代初，其竞争对手主要是Commodore 64。其后竞争对手有Amstrad CPC等。",
     // INTRO_DOS
     "DOS，是磁盘操作系统（英文：Disk Operating System）的缩写，是个人计算机上的一类操作系统。从1981年直到1995年的15年间，DOS在IBM PC兼容机市场中占有举足轻重的地位。且若将部分以DOS为基础的Microsoft Windows版本，如Windows 95、98和Me等都算入其寿命，那么其商业寿命至少可至2000年。",
+    // INTRO_PC88
+    "PC-8800系列，简称PC-88，是由日本电气（NEC）自1981年起在日本发行（之后移交NEC Home Electronics）的一系列家用电脑产品。系列首款产品是1981年12月推出的PC-8801，其采用Zilog Z80为中央处理器，在日本非常畅销。NEC后续推出了包括PC-8801mkII、PC-8801mkIISR、PC-88VA在内的多种机型。",
     // INTRO_PC98
     "PC9800系列，略称PC-98，是日本电气（NEC）独立设计的一系列16位至32位个人电脑产品，包括PC-9800、PC-9821、PC98-NX三个系列。从1982年问世以来，一度垄断日本电脑市场长达十多年，至1999年已售出1800万部以上；NEC亦曾于西方国家销售与早期的PC-98硬件构造相似的NEC APC系列电脑。微软推出Windows操作系统后，PC-98于2003年正式停产。",
     // INTRO_MSX
@@ -89,6 +95,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "Mega Drive（日版名：メガドライブ，美版名：Sega Genesis，简称MD，香港俗称世嘉五代）是世嘉在1988年推出的16-bit家用游戏机，1989年在美国推出，1990年在欧洲推出。Mega Drive在全球共售出3075万台。",
     // INTRO_LYNX
     "Atari Lynx是生产商雅达利公司（Atari Corporation）于1989年发布的手提式游戏机，是世上首款设有彩色液晶显示屏的手提电子游戏机，与任天堂的GameBoy游戏机同年推出。",
+    // INTRO_VB
+    "Virtual Boy 是由任天堂开发制造的桌面台式32位游戏机。于1995年发布，为第一个能够显示立体3D图形的游戏机。玩家可以像头戴式显示器一样使用游戏机，将头放在游戏机目镜上可以看到红色单色显示屏显示的游戏画面，游戏使用视差原理产生立体3D效果。1996年初，因为Virtual Boy未能达到销售量目标，任天堂停止了为Virtual Boy的游戏发行和生产。在Virtual Boy的整个发售生命期间，该游戏机总共仅发布了22款游戏。",
     // INTRO_GBC
     "Game Boy Color（日语：ゲームボーイカラー，简称GBC）是由任天堂开发的一款由电池驱动的彩色屏幕掌上游戏机，是Game Boy的加强版，于1998年10月21日在日本发行。其相对于原版Game Boy的最大特点是彩色屏幕的使用。",
     // INTRO_SNES
@@ -125,6 +133,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "ZX Spectrum（ゼットエックス スペクトラム）は、シンクレア・リサーチが1982年にイギリスでリリースしたホームコンピューターである。開発中は「ZX81 Colour」および「ZX82」と呼ばれていたが、それまで（ZX80とZX81）のモノクロ表示との違いを強調するため、クライブ・シンクレアが「Spectrum（=スペクトル、光をプリズムで分光したときに得られる色の帯）」と名づけた。最終的に8つの異なる機種をリリースしており、1982年にリリースした 16kB RAM の入門モデルから1987年のフロッピーディスクドライブ内蔵の 128kB RAM 搭載の ZX Spectrum +3 まである。クローンを除いても全世界で累計500万台以上を売り上げた。",
     // INTRO_DOS
     "MS-DOS（エムエス-ディーオーエス、エムエスドス）は、1981年よりマイクロソフトが開発・販売したパーソナルコンピュータ向けのオペレーティングシステム(OS)である。「MS-DOS」が製品名で、マイクロソフト ディスク・オペレーティングシステム(英: the Microsoft Disk Operating System)を意味する。",
+    // INTRO_PC88
+    "PC-8800シリーズは、1981年（昭和56年）から日本電気（NEC、後に日本電気ホームエレクトロニクスへ移管）が販売していた、パーソナルコンピュータ「PC-8801」及びその周辺機器のシリーズ名である。1980年代当時パソコン御三家の筆頭格と謳われたシリーズの一つである。",
     // INTRO_PC98
     "PC-9800シリーズは、日本電気が1982年（昭和57年）から2003年（平成15年）9月30日の受注終了まで、日本市場向けに販売した独自アーキテクチャのパーソナルコンピュータ（パソコン）の製品群である。同社の代表的な製品であり、98（キューハチ/キュッパチ）、PC-98、NEC98など略称されることもある。",
     // INTRO_MSX
@@ -143,6 +153,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "メガドライブ（MEGA DRIVE）は、セガ・エンタープライゼスが1988年10月29日に日本で発売した16ビットの家庭用ゲーム機である。発売時のキャッチコピーは「時代が求めた16ビット」「VISUAL SHOCK! SPEED SHOCK! SOUND SHOCK!。セガ・マークIIIおよびセガ・マスターシステムの後継機として開発された。日本では任天堂のスーパーファミコンやNEC HEのPCエンジンと競合した。米国・カナダ・メキシコではGENESIS（ジェネシス、Sega Genesisとも）という名称で1989年に、その他のヨーロッパ地域（イギリス・フランス・スペイン等）、オセアニア地域（オーストラリア・ニュージーランド）、南アメリカ地域（ブラジル等）、アジア地域といった大部分では日本と同じ名称で1990年に発売された。",
     // INTRO_LYNX
     "Atari Lynx（アタリ・リンクス）とは、アタリコープ社（アタリ社分割後の家庭用ゲーム機/パソコン部門）が1989年に発売した携帯型ゲーム機。",
+    // INTRO_VB
+    "バーチャルボーイ（VIRTUAL BOY）は、1995年7月21日に任天堂から発売された据置型ゲーム機。略称は「VB」。遊び方はスタンドに据え付けられたゴーグル型のディスプレイを覗き込むようにして行う。視差の概念を採り入れ、左右の画面に異なる映像を表示させることで立体画面を実現する。テレビに接続せず電池で駆動するが、視界を覆う専用ディスプレイが必要となるため、室内のデスクトップでのプレイが主となる。",
     // INTRO_GBC
     "ゲームボーイカラー（GAME BOY COLOR）は、1998年10月21日に任天堂が発売した携帯型ゲーム機。略称は「GBC」。ゲームボーイ派生機の一つ。カラー液晶ディスプレイ搭載の携帯ゲーム機としては、日本国内では1990年のセガのゲームギア、NEC-HEのPCエンジンGT以来8年振りのリリースとなった。キャッチコピーは「色気のない生活なんて…」「色のあるよろこび。」「カラーがあれば、まいにちたのしい。」と数種類ある。",
     // INTRO_SNES
@@ -179,6 +191,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "Lo ZX Spectrum è un home computer creato e prodotto dal 1982 fino al 1986 dalla Sinclair Research Ltd, e dal 1986 al 1992 dalla Amstrad. In Europa fu il principale antagonista del Commodore 64 e conquistò un discreto settore di mercato grazie a un prezzo di listino più economico. Le piccole dimensioni, la velocità di calcolo e il prezzo relativamente contenuto lo resero popolare negli anni ottanta in vari Stati del mondo: ad esempio negli USA col nome Timex Sinclair 2068. Furono realizzati anche dei cloni, alcuni ufficiali come l'Inves Spectrum 48K plus in Spagna e altri no, come il \"Dubna 48k\" e poi il \"Baltica\" in Russia.",
     // INTRO_DOS
     "(pronuncia italiana \"dòs\"), acronimo di Disk Operating System cioè \"sistema operativo a disco, è una famiglia di sistemi operativi molto utilizzata per il mercato dei personal computer IBM compatibili fra l'inizio degli anni '80 e la metà degli anni '90 (o fino a circa il 2000 se si includono le versioni della famiglia Microsoft Windows 9x, ovvero Windows 95, 98 e ME, che sono basate parzialmente sul DOS e lo incorporano). Il più diffuso sistema della famiglia era l'MS-DOS, lanciato dalla Microsoft nel 1981, seguito da PC DOS lanciato da IBM sempre nel 1981 e da diversi altri DOS compatibili usciti più tardi.",
+    // INTRO_PC88
+    "La serie di NEC PC-8801 o PC-8800 (PC-8800シリーズ, Pī Shī Hassen Happyaku Shirīzu), generalmente abbreviata in PC-88, è una linea di home computer a 8 bit basati sul processore NEC µPD780C, clone del Zilog Z80, prodotti dal 1981 da NEC e commercializzati prevalentemente in Giappone.",
     // INTRO_PC98
     "La serie di NEC PC-9801 o PC-9800 (PC-9800, Pī Shī Kyūsen Happyaku Shirīzu), generalmente abbreviate in PC-98 o 98 (Kyū-hachi), è una linea di personal computer giapponesi a 16 e 32 bit prodotti da NEC dal 1982 al 2000.La piattaforma segnò il predominio della NEC sul mercato nipponico dei personal computer e, al 1999, ne erano stati venduti più di 18 milioni. Sebbene NEC non abbia immesso sul mercato occidentale questi computer nello specifico, commercializzò la serie NEC APC, che aveva hardware simile ai primi modelli di PC-98.",
     // INTRO_MSX
@@ -197,6 +211,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "Il Sega Mega Drive (Sega Mega Doraibu), commercializzato come Sega Genesis negli Stati Uniti d'America e come Super Gam*Boy e Super Aladdin Boy in Corea del Sud, è una console per videogiochi prodotta da SEGA tra il 1988 e il 1998. Inaugurò l'epoca delle console dotate di microprocessore a 16 bit, basandosi sul Motorola 68000, all'epoca utilizzato da computer come l'Amiga.",
     // INTRO_LYNX
     "L'Atari Lynx è una console portatile sviluppata da Atari nel 1989, la prima console portatile con vero schermo a colori al mondo.",
+    // INTRO_VB
+    "Il Virtual Boy (Bācharu Bōi), chiamato VR-32 durante lo sviluppo, è una console stereoscopica sviluppata e prodotta da Nintendo, presentata il 21 luglio 1995 in Giappone e il 14 agosto 1995 negli USA. Il sistema, per diversi motivi, ha avuto uno scarso successo di pubblico e di critica, tanto che la produzione è terminata l'anno seguente alla commercializzazione. Dato l'insuccesso dopo appena un anno dalla sua commercializzazione, non fu mai creata una versione destinata ai paesi europei.",
     // INTRO_GBC
     "Il Game Boy Color (Gēmu Bōi Karā), abbreviato in GBC, è una console portatile successore dell'originale Nintendo Game Boy in bianco e nero. La console fu messa in commercio il 21 ottobre 1998 in Giappone e, soltanto un mese dopo, nel resto del mondo.",
     // INTRO_SNES
@@ -233,6 +249,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "Le ZX Spectrum est un ordinateur de salon 8 bits développé et commercialisé par Sinclair Research. L'un des ordinateurs les plus influents jamais fabriqués et l'un des ordinateurs britanniques les plus vendus de tous les temps, plus de cinq millions d'unités ont été vendues. Il est sorti au Royaume-Uni le 23 avril 1982, et dans le monde entier au cours des années suivantes, notamment en Europe, aux États-Unis et dans les pays du bloc de l'Est.",
     // INTRO_DOS
     "DOS est une famille de systèmes d'exploitation sur disque dur pour ordinateurs compatibles IBM PC. La famille DOS se compose principalement d'IBM PC DOS et d'une version renommée, MS-DOS de Microsoft, tous deux lancés en 1981. Parmi les systèmes compatibles ultérieurs d'autres fabricants, on trouve DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993) et FreeDOS (1994). MS-DOS a dominé le marché des systèmes compatibles IBM PC entre 1981 et 1995.",
+    // INTRO_PC88
+    "Le PC-88 (de son nom complet NEC PC-8801) est un micro-ordinateur japonais créé par NEC en 1981 et basé à sa sortie sur le microprocesseur Zilog Z80. Le PC-88 a connu un franc succès au Japon, mais n'a été commercialisé dans aucun autre pays.",
     // INTRO_PC98
     "La série PC-9800, communément abrégée en PC-98 ou simplement 98 (Kyū-hachi), est une gamme d'ordinateurs personnels japonais 16 et 32 ​​bits fabriqués par NEC de 1982 à 2003. Bien que basée sur des processeurs Intel, elle utilise une architecture interne la rendant incompatible avec les clones IBM ; certains PC-98 utilisaient le processeur V30 de NEC. Cette plateforme a établi la domination de NEC sur le marché japonais des ordinateurs personnels et, en 1999, plus de 18 millions d'unités avaient été vendues. Bien que NEC ne commercialise pas ces machines spécifiques en Occident, elle propose la série NEC APC, dont le matériel est similaire à celui des premiers modèles PC-98.",
     // INTRO_MSX
@@ -251,6 +269,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "La Sega Genesis, connue sous le nom de Mega Drive hors d'Amérique du Nord, est une console de jeux vidéo 16 bits de quatrième génération développée et commercialisée par Sega. Troisième console de Sega, elle succède à la Master System. Sega la commercialise en 1988 au Japon sous le nom de Mega Drive, puis en 1989 en Amérique du Nord sous le nom de Genesis. En 1990, elle est distribuée sous le nom de Mega Drive par Virgin Mastertronic en Europe, Ozisoft en Australasie et Tectoy au Brésil. En Corée du Sud, elle est distribuée par Samsung Electronics sous le nom de Super Gam*Boy, puis de Super Aladdin Boy.",
     // INTRO_LYNX
     "L'Atari Lynx fut la seule console portable d'Atari et la première portable avec un écran LCD couleur. Elle est sortie en 1989, la même année que le Game Boy (original monochrome) de Nintendo.",
+    // INTRO_VB
+    "Le Virtual Boy est une console de jeux vidéo créée par Nintendo et sortie en 1995 au Japon et aux États-Unis, se présentant sous la forme d'un visiocasque 3D.Tentant l'innovation avec un affichage stéréoscopique, la console est finalement un échec commercial. Malgré plusieurs baisses de prix, les ventes ne décollent pas et la commercialisation de la console en Europe sera annulée. Le projet est alors abandonné par Nintendo en 1996.",
     // INTRO_GBC
     "La Game Boy Color (GBC ou CGB) est une console de jeu portable 8 bits fabriquée par Nintendo, commercialisée au Japon le 21 octobre 1998 et sur les marchés internationaux en novembre de la même année. Comparée à la Game Boy originale, la Game Boy Color est dotée d'un écran TFT couleur plutôt que monochrome, d'un processeur deux fois plus rapide et de quatre fois plus de mémoire. Elle conserve la rétrocompatibilité avec les jeux initialement développés pour sa prédécesseure.",
     // INTRO_SNES
@@ -287,6 +307,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "El ZX Spectrum es un ordenador doméstico de 8 bits desarrollado y comercializado por Sinclair Research. Uno de los ordenadores más influyentes de la historia y uno de los ordenadores británicos más vendidos de todos los tiempos, se vendieron más de cinco millones de unidades. Fue lanzado en el Reino Unido el 23 de abril de 1982, y en todo el mundo en los años siguientes, sobre todo en Europa, Estados Unidos y los países del Bloque del Este.",
     // INTRO_DOS
     "DOS es una familia de sistemas operativos basados en disco para ordenadores compatibles con IBM PC. La familia DOS se compone principalmente de IBM PC DOS y una versión renombrada, MS-DOS de Microsoft, ambas introducidas en 1981. Los sistemas compatibles posteriores de otros fabricantes incluyen DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993) y FreeDOS (1994). MS-DOS dominó el mercado compatible con IBM PC entre 1981 y 1995.",
+    // INTRO_PC88
+    "La serie de computadoras NEC PC-8801 fue introducida por NEC Corporation en 1981 y comercializada hasta 1989, y es uno de los primeros computadores que estuvieron basados en el microprocesador Zilog Z80. El PC-88, como fue conocido informalmente, se hizo muy popular en Japón, pero no fue lanzado en otros mercados.",
     // INTRO_PC98
     "La serie PC-9800, comúnmente abreviada como PC-98 o simplemente 98 (Kyū-hachi), es una línea de computadoras personales japonesas de 16 bits y 32 bits fabricadas por NEC desde 1982 hasta 2003. Aunque se basa en procesadores Intel, utiliza una arquitectura interna que lo hace incompatible con los clones de IBM; algunas computadoras PC-98 usaban el propio procesador V30 de NEC. La plataforma estableció el dominio de NEC en el mercado japonés de computadoras personales y, para 1999, se habían vendido más de 18 millones de unidades. Si bien NEC no comercializó estas máquinas específicas en Occidente, vendió la serie APC de NEC, que tenía un hardware similar a los primeros modelos PC-98.",
     // INTRO_MSX
@@ -305,6 +327,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "La Sega Genesis, conocida como Mega Drive fuera de América del Norte, es una consola de videojuegos doméstica de cuarta generación de 16 bits desarrollada y vendida por Sega. Fue la tercera consola de Sega y la sucesora de la Master System. Sega lo lanzó en 1988 en Japón como Mega Drive, y en 1989 en América del Norte como Genesis. En 1990, fue distribuida como Mega Drive por Virgin Mastertronic en Europa, Ozisoft en Australasia y Tectoy en Brasil. En Corea del Sur, fue distribuido por Samsung Electronics como Super GameBoy y más tarde como Super Aladdin Boy.",
     // INTRO_LYNX
     "La Atari Lynx es una videoconsola portátil de 8 bits producida por Atari. Fue lanzada en 1989, siendo la primera con LCD en color. Si bien era superior técnicamente a la Game Boy y a la Game Gear, no obtuvo demasiado éxito comercial debido a su elevado precio, su enorme tamaño y a la corta duración de las baterías. ",
+    // INTRO_VB
+    "Virtual Boy (romanizado: Bācharu Bōi) es una consola de videojuegos portátil de sobremesa de 32 bits desarrollada y fabricada por Nintendo. Lanzada en 1995, se comercializó como la primera consola capaz de mostrar gráficos estereoscópicos «3D». El jugador usa la consola como una pantalla montada en la cabeza, colocando la cabeza contra el ocular para ver una pantalla monocromática roja con fondo negro. Los juegos utilizan un efecto de paralaje para crear la ilusión de profundidad. Las ventas no alcanzaron los objetivos y Nintendo dejó de distribuir y desarrollar juegos en 1996, habiendo lanzado solo 22 juegos para el sistema.",
     // INTRO_GBC
     "La Game Boy Color (GBC o CGB) es una consola de videojuegos portátil de 8 bits, fabricada por Nintendo, que fue lanzada en Japón el 21 de octubre de 1998 y en los mercados internacionales en noviembre de ese año. En comparación con la Game Boy original, la Game Boy Color cuenta con una pantalla TFT a color en lugar de monocromática, un procesador que puede funcionar dos veces más rápido y cuatro veces más memoria. Conserva la compatibilidad con los juegos desarrollados inicialmente para su predecesor.",
     // INTRO_SNES
@@ -341,6 +365,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "ZX Spectrum — 8-разрядный домашний компьютер, выпущенный компанией Sinclair в 1982 году. В начале 1980-х ZX Spectrum, благодаря невысокой цене, был одним из самых популярных компьютеров в Европе, а его многочисленные клоны в начале 1990-х получили широкое распространение на территории бывшего СССР.",
     // INTRO_DOS
     "Microsoft DOS (сокращённо MS-DOS) — основная операционная система для IBM-PC-совместимых компьютеров в 1980-х годах. В совокупности MS-DOS, её ребрендинг как IBM PC DOS и ещё несколько операционных систем, пытавшихся быть совместимыми с MS-DOS, иногда называют просто DOS.",
+    // INTRO_PC88
+    "NEC PC-8800 (неформальное название — PC-88) — семейство восьмибитных компьютеров компании NEC на базе Z80-совместимого процессора. Компьютеры семейства являлись одними из самых популярных в Японии благодаря сбалансированному соотношению «цена-характеристики». Начиная с модели mkIISR компьютеры поставлялись также в США, но там большой популярности им получить не удалось.",
     // INTRO_PC98
     "PC-9800 (сокращённо PC-98) — линейка японских 16- и 32-разрядных персональных компьютеров, выпускавшихся компанией NEC с 1982 года. Основанная на процессорах Intel, она использовала собственную архитектуру, что делало её несовместимой с IBM-PC-клонами. Эта платформа позволила NEC занять доминирующее положение на японском рынке персональных компьютеров более чем на десять лет.",
     // INTRO_MSX
@@ -359,6 +385,8 @@ const char *gArchs[][ARCH_ENUM::INTRO_COUNT] = {
     "Sega Mega Drive (в Северной Америке известна как Sega Genesis) — 16-разрядная домашняя игровая консоль четвёртого поколения, выпущенная компанией Sega в 1988 году. Успеху консоли способствовали библиотека портированных аркадных игр, популярность серии Sonic the Hedgehog от Sega, несколько популярных спортивных франшиз и агрессивный молодёжный маркетинг, позиционировавший её как крутую консоль для подростков.",
     // INTRO_LYNX
     "Atari Lynx — портативная игровая консоль четвёртого поколения, выпущенная компанией Atari в сентябре 1989 года в Северной Америке и в 1990 году в Европе и Японии. Это была первая портативная игровая консоль с цветным жидкокристаллическим дисплеем. Хотя технически Atari Lynx и превосходила Game Boy и Game Gear, она не имела коммерческого успеха из-за высокой цены, огромных размеров, сравнительно небольшой библиотеки игр и короткого времени работы от батареек.",
+    // INTRO_VB
+    "Virtual Boy (Ба:тяру Бо:й) — 32-битная настольная портативная игровая система, разработанная и произведённая компанией Nintendo. Выпущенная в 1995 году, она рекламировалась как первая игровая приставка, способная отображать стереоскопическую трёхмерную графику. Игрок использует приставку как навесной дисплей, прикладывая голову к окуляру, чтобы увидеть красный монохромный экран. В играх используется эффект параллакса для создания иллюзии глубины. Продажи не достигли запланированных показателей, и Nintendo прекратила распространение и разработку игр в 1996 году, выпустив для приставки всего 22 игры. В России приставка продавалась компанией «АОЗТ Денди» с 1995 года.",
     // INTRO_GBC
     "Game Boy Color (сокращённо GBC) — 8-разрядная портативная игровая консоль пятого поколения, выпущенная компанией Nintendo в 1998 году. Это улучшенная версия Game Boy, самой большой особенностью которой, по сравнению с оригинальным Game Boy, является использование цветного экрана.",
     // INTRO_SNES
