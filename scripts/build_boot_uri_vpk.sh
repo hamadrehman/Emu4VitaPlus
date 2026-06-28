@@ -39,6 +39,10 @@ cmake --build "$BUILD_DIR" --target Emu4VitaPlus.elf-velf -- -j"$(nproc)"
 rm -rf "$STAGE_DIR"
 mkdir -p "$STAGE_DIR"
 unzip -q "$RELEASE_VPK" -d "$STAGE_DIR"
+if [[ -d "$ROOT/arch/pkg/data" ]]; then
+  mkdir -p "$STAGE_DIR/data"
+  cp -a "$ROOT/arch/pkg/data/." "$STAGE_DIR/data/"
+fi
 cp "$BUILD_DIR/arch/eboot_Emu4VitaPlus.bin" "$STAGE_DIR/eboot.bin"
 
 rm -f "$OUTPUT_VPK"
