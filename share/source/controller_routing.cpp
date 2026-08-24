@@ -139,4 +139,18 @@ namespace Emu4VitaPlus
 
         return 0;
     }
+
+    bool ControllerRouting::IsVirtualPort(uint32_t ctrl_port) const
+    {
+        return _has_last_info &&
+               ctrl_port < INPUT_MAX_CTRL_PORTS &&
+               _last_info.port[ctrl_port] == SCE_CTRL_TYPE_VIRT;
+    }
+
+    bool ControllerRouting::IsUnpairedPort(uint32_t ctrl_port) const
+    {
+        return _has_last_info &&
+               ctrl_port < INPUT_MAX_CTRL_PORTS &&
+               _last_info.port[ctrl_port] == SCE_CTRL_TYPE_UNPAIRED;
+    }
 }

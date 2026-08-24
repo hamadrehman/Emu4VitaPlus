@@ -22,7 +22,7 @@ int16_t InputStateCallback(unsigned port, unsigned device, unsigned index, unsig
         return gEmulator->_GetJoypadState(port, index, id);
 
     case RETRO_DEVICE_MOUSE:
-        return gEmulator->_GetMouseState(index, id);
+        return gEmulator->_GetMouseState(port, index, id);
 
     case RETRO_DEVICE_KEYBOARD:
         if (ENABLE_KEYBOARD && gEmulator->_keyboard->Visable())
@@ -35,7 +35,7 @@ int16_t InputStateCallback(unsigned port, unsigned device, unsigned index, unsig
         return gEmulator->_GetAnalogState(port, index, id);
 
     case RETRO_DEVICE_LIGHTGUN:
-        return gEmulator->_GetLightGunState(index, id);
+        return gEmulator->_GetLightGunState(port, index, id);
 
     case RETRO_DEVICE_POINTER:
         return gEmulator->_GetPointerState(index, id);
@@ -175,7 +175,7 @@ int16_t Emulator::_GetAnalogState(unsigned port, unsigned index, unsigned id)
     }
 }
 
-int16_t Emulator::_GetMouseState(unsigned index, unsigned id)
+int16_t Emulator::_GetMouseState(unsigned port, unsigned index, unsigned id)
 {
     if (gConfig->mouse == CONFIG_MOUSE_DISABLE)
     {
@@ -194,10 +194,10 @@ int16_t Emulator::_GetMouseState(unsigned index, unsigned id)
             return touch->GetRelativeMovingY();
 
         case RETRO_DEVICE_ID_MOUSE_LEFT:
-            return (_input.GetKeyStates() & _keys[RETRO_DEVICE_ID_JOYPAD_L]) ? 1 : 0;
+            return (_input.GetKeyStates(port) & _keys[RETRO_DEVICE_ID_JOYPAD_L]) ? 1 : 0;
 
         case RETRO_DEVICE_ID_MOUSE_RIGHT:
-            return (_input.GetKeyStates() & _keys[RETRO_DEVICE_ID_JOYPAD_R]) ? 1 : 0;
+            return (_input.GetKeyStates(port) & _keys[RETRO_DEVICE_ID_JOYPAD_R]) ? 1 : 0;
 
         default:
             break;
@@ -206,7 +206,7 @@ int16_t Emulator::_GetMouseState(unsigned index, unsigned id)
     return 0;
 }
 
-int16_t Emulator::_GetLightGunState(unsigned index, unsigned id)
+int16_t Emulator::_GetLightGunState(unsigned port, unsigned index, unsigned id)
 {
     // LogDebug("index:%d id:%d", index, id);
     if (gConfig->lightgun == 0)
@@ -237,13 +237,13 @@ int16_t Emulator::_GetLightGunState(unsigned index, unsigned id)
     }
 
     case RETRO_DEVICE_ID_LIGHTGUN_AUX_A:
-        return (_input.GetKeyStates() & _keys[RETRO_DEVICE_ID_JOYPAD_A]) ? 1 : 0;
+        return (_input.GetKeyStates(port) & _keys[RETRO_DEVICE_ID_JOYPAD_A]) ? 1 : 0;
 
     case RETRO_DEVICE_ID_LIGHTGUN_AUX_B:
-        return (_input.GetKeyStates() & _keys[RETRO_DEVICE_ID_JOYPAD_B]) ? 1 : 0;
+        return (_input.GetKeyStates(port) & _keys[RETRO_DEVICE_ID_JOYPAD_B]) ? 1 : 0;
 
     case RETRO_DEVICE_ID_LIGHTGUN_START:
-        return (_input.GetKeyStates() & _keys[RETRO_DEVICE_ID_JOYPAD_START]) ? 1 : 0;
+        return (_input.GetKeyStates(port) & _keys[RETRO_DEVICE_ID_JOYPAD_START]) ? 1 : 0;
 
     case RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X:
         return front->GetMapedX(_video_rect);

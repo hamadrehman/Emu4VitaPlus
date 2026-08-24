@@ -156,6 +156,14 @@ namespace Emu4VitaPlus
             _controller_routing.RefreshPeriodic();
         }
 
+        if (_controller_routing.IsUnpairedPort(port))
+        {
+            _key_states[port] = 0;
+            _left_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            _right_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            return 0;
+        }
+
         SceCtrlData ctrl_data{0};
         int read;
         if (port == 0)
@@ -189,6 +197,15 @@ namespace Emu4VitaPlus
             _right_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
             _key_states[port] = SCE_CTRL_PSBUTTON;
             return SCE_CTRL_PSBUTTON;
+        }
+
+        if (port == 0 && _controller_routing.IsVirtualPort(port))
+        {
+            key &= SCE_CTRL_PSBUTTON;
+            _left_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            _right_analog[port] = {ANALOG_CENTER, ANALOG_CENTER};
+            _key_states[port] = key;
+            return key;
         }
 
         if (ctrl_data.lx < (ANALOG_CENTER - ANALOG_THRESHOLD))

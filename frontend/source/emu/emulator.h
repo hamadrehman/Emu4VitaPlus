@@ -133,8 +133,8 @@ private:
 
     inline int16_t _GetJoypadState(unsigned port, unsigned index, unsigned id);
     inline int16_t _GetAnalogState(unsigned port, unsigned index, unsigned id);
-    inline int16_t _GetMouseState(unsigned index, unsigned id);
-    inline int16_t _GetLightGunState(unsigned index, unsigned id);
+    inline int16_t _GetMouseState(unsigned port, unsigned index, unsigned id);
+    inline int16_t _GetLightGunState(unsigned port, unsigned index, unsigned id);
     inline int16_t _GetPointerState(unsigned index, unsigned id);
     inline int16_t _GetKeybaordState(unsigned index, unsigned id);
 
