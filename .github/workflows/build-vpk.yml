@@ -30,7 +30,6 @@ jobs:
 
       - name: Install VitaSDK packages
         run: |
-          vdpm update
           vdpm install -f libjpeg-turbo imgui-vita2d
 
       - name: Init main app submodules
@@ -114,7 +113,6 @@ jobs:
 
       - name: Install VitaSDK packages
         run: |
-          vdpm update
           vdpm install -f libjpeg-turbo imgui-vita2d
 
       - name: Init submodules for ${{ matrix.core }}

@@ -33,6 +33,22 @@ require_cmd() {
   fi
 }
 
+apply_core_patches() {
+  local core="$1"
+
+  if [[ "$core" == "fba_lite" ]]; then
+    local core_dir="$ROOT/cores/libretro-fba-lite"
+    local patch="$ROOT/patches/libretro-fba-lite-default-core-options.patch"
+
+    if git -C "$core_dir" apply --reverse --check "$patch" >/dev/null 2>&1; then
+      echo "FBALite core-options patch already applied."
+    else
+      echo "Applying FBALite core-options patch..."
+      git -C "$core_dir" apply "$patch"
+    fi
+  fi
+}
+
 declare -A TARGETS=(
   [genesis_plus_gx]="eboot_GenesisPlusGX.bin"
   [picodrive]="eboot_PicoDrive.bin"
@@ -89,6 +105,8 @@ for core in "${CORES[@]}"; do
     require_cmd make
     sed -i 's/\r$//' "$ROOT/cores/picodrive/tools/mkoffsets.sh"
   fi
+
+  apply_core_patches "$core"
 
   target="${TARGETS[$core]}"
   app_dir="${APP_DIRS[$core]}"

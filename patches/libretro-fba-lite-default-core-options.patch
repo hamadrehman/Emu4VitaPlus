@@ -1,0 +1,269 @@
+diff --git a/src/libretro/burner.h b/src/libretro/burner.h
+index be697d4..02e085c 100644
+--- a/src/libretro/burner.h
++++ b/src/libretro/burner.h
+@@ -198,6 +198,7 @@ void BurnCheevosInit();
+ void BurnCheevosExit();
+ 
+ // libretro_core_options.cpp
++void BurnSetDefaultVariables();
+ void BurnSetVariables();
+ void BurnUpdateVariables();
+ 
+@@ -216,4 +217,4 @@ extern char szAppExtDrvDatPath[MAX_PATH];
+ 
+ void BurnMakeAppPaths(const char *szRomPath);
+ 
+-#endif
+\ No newline at end of file
++#endif
+diff --git a/src/libretro/libretro.cpp b/src/libretro/libretro.cpp
+index cc9a8ea..4950b61 100644
+--- a/src/libretro/libretro.cpp
++++ b/src/libretro/libretro.cpp
+@@ -199,6 +199,7 @@ void retro_init()
+ 
+ 	snprintf(szAppBurnVer, sizeof(szAppBurnVer), "%x.%x.%x.%02x", nBurnVer >> 20, (nBurnVer >> 16) & 0x0F, (nBurnVer >> 8) & 0xFF, nBurnVer & 0xFF);
+ 	BurnLibInit();
++	BurnSetDefaultVariables();
+ }
+ 
+ void retro_deinit()
+diff --git a/src/libretro/libretro_core_options.cpp b/src/libretro/libretro_core_options.cpp
+index ba41243..73e1756 100644
+--- a/src/libretro/libretro_core_options.cpp
++++ b/src/libretro/libretro_core_options.cpp
+@@ -35,6 +35,33 @@ static bool bColorDepth32Enabled = false;
+ static bool bCycloneEnabled = false;
+ #endif
+ 
++void BurnSetDefaultVariables()
++{
++    const retro_core_option_definition *options[] = {
++        &var_fba_allow_depth_32,
++        &var_fba_sound_out,
++        &var_fba_frameskip,
++        &var_fba_cpu_speed_adjust,
++        &var_fba_samplerate,
++        &var_fba_sample_interpolation,
++        &var_fba_fm_interpolation,
++    };
++    const size_t optionCount = sizeof(options) / sizeof(options[0]);
++
++    option_defs_us = (retro_core_option_definition *)calloc(optionCount + 1, sizeof(retro_core_option_definition));
++    if (!option_defs_us)
++        return;
++
++    for (size_t i = 0; i < optionCount; i++)
++        option_defs_us[i] = *options[i];
++
++    option_defs_us[optionCount] = var_empty;
++    libretro_set_core_options(environ_cb);
++
++    free(option_defs_us);
++    option_defs_us = NULL;
++}
++
+ static void CheckNeoSystemSetEnabled()
+ {
+     struct BurnDIPInfo bdi;
+@@ -568,4 +595,4 @@ void BurnUpdateVariables()
+     // Override the NeoGeo bios DIP Switch by the option (for the moment)
+     if (IS_NEOGEO_GAME && bNeoSystemSetEnabled)
+         SetNeoSystem(nNeoBiosCateg);
+-}
+\ No newline at end of file
++}
+diff --git a/src/libretro/libretro_core_options.h b/src/libretro/libretro_core_options.h
+index ac1a8ea..2a02878 100644
+--- a/src/libretro/libretro_core_options.h
++++ b/src/libretro/libretro_core_options.h
+@@ -13,11 +13,11 @@ static const struct retro_core_option_definition var_empty = {NULL, NULL, NULL,
+ 
+ static const struct retro_core_option_definition var_fba_allow_depth_32 = {
+ 	"fba-allow-depth-32",
+-	"32位色深 (如果可用)",
++	"32-bit Color Depth (If Available)",
+ 	"Change pixel format, some games require this to render properly, it could impact performances on some platforms",
+ 	{
+-		{"disabled", "否"},
+-		{"enabled", "是"},
++		{"disabled", "No"},
++		{"enabled", "Yes"},
+ 		{NULL, NULL},
+ 	},
+ 	"enabled",
+@@ -25,11 +25,11 @@ static const struct retro_core_option_definition var_fba_allow_depth_32 = {
+ 
+ static const struct retro_core_option_definition var_fba_sound_out = {
+ 	"fba-sound-out",
+-	"输出声音",
++	"Sound Output",
+ 	NULL,
+ 	{
+-		{"disabled", "否"},
+-		{"enabled", "是"},
++		{"disabled", "No"},
++		{"enabled", "Yes"},
+ 		{NULL, NULL},
+ 	},
+ 	"enabled",
+@@ -37,7 +37,7 @@ static const struct retro_core_option_definition var_fba_sound_out = {
+ 
+ static const struct retro_core_option_definition var_fba_frameskip = {
+ 	"fba-frameskip",
+-	"跳帧",
++	"Frameskip",
+ 	NULL,
+ 	{
+ 		{"0", NULL},
+@@ -53,7 +53,7 @@ static const struct retro_core_option_definition var_fba_frameskip = {
+ 
+ static const struct retro_core_option_definition var_fba_cpu_speed_adjust = {
+ 	"fba-cpu-speed-adjust",
+-	"模拟CPU频率",
++	"Emulated CPU Frequency",
+ 	"Change emulated cpu frequency for various systems, by increasing you can fix native slowdowns in some games, by decreasing you can help performance on low-end devices",
+ 	{
+ 		{"100", "100%"},
+@@ -74,11 +74,11 @@ static const struct retro_core_option_definition var_fba_cpu_speed_adjust = {
+ 
+ static const struct retro_core_option_definition var_fba_hiscores = {
+ 	"fba-hiscores",
+-	"排名",
++	"Hiscores",
+ 	"Enable high scores support, you also need the file hiscore.dat in your system/fbneo/ folder",
+ 	{
+-		{"disabled", "否"},
+-		{"enabled", "是"},
++		{"disabled", "No"},
++		{"enabled", "Yes"},
+ 		{NULL, NULL},
+ 	},
+ 	"enabled",
+@@ -86,7 +86,7 @@ static const struct retro_core_option_definition var_fba_hiscores = {
+ 
+ static const struct retro_core_option_definition var_fba_samplerate = {
+ 	"fba-samplerate",
+-	"音频采样率",
++	"Audio Sample Rate",
+ 	"Configure samplerate, it could impact performances, closing & starting game again is required",
+ 	{
+ 		{"11025", NULL},
+@@ -100,12 +100,12 @@ static const struct retro_core_option_definition var_fba_samplerate = {
+ 
+ static const struct retro_core_option_definition var_fba_sample_interpolation = {
+ 	"fba-sample-interpolation",
+-	"样本插值 (会影响性能)",
++	"Sample Interpolation (Performance Impact)",
+ 	"Configure sample interpolation, it could impact performances",
+ 	{
+-		{"disabled", "否"},
+-		{"2-point 1st order", "两点一次"},
+-		{"4-point 3rd order", "四点三次"},
++		{"disabled", "Disabled"},
++		{"2-point 1st order", "2-point 1st order"},
++		{"4-point 3rd order", "4-point 3rd order"},
+ 		{NULL, NULL},
+ 	},
+ 	"disabled",
+@@ -113,11 +113,11 @@ static const struct retro_core_option_definition var_fba_sample_interpolation =
+ 
+ static const struct retro_core_option_definition var_fba_fm_interpolation = {
+ 	"fba-fm-interpolation",
+-	"FM插值 (会影响性能)",
++	"FM Interpolation (Performance Impact)",
+ 	"Configure FM interpolation, it could impact performances",
+ 	{
+-		{"disabled", "否"},
+-		{"4-point 3rd order", "四点三次"},
++		{"disabled", "Disabled"},
++		{"4-point 3rd order", "4-point 3rd order"},
+ 		{NULL, NULL},
+ 	},
+ 	"disabled",
+@@ -125,7 +125,7 @@ static const struct retro_core_option_definition var_fba_fm_interpolation = {
+ 
+ static const struct retro_core_option_definition var_fba_analog_speed = {
+ 	"fba-analog-speed",
+-	"模似控制器移动速度",
++	"Analog Controller Speed",
+ 	"Mitigate analog controls speed, some games might require low values to be playable",
+ 	{
+ 		{"0", NULL},
+@@ -147,11 +147,11 @@ static const struct retro_core_option_definition var_fba_analog_speed = {
+ #ifdef USE_CYCLONE
+ static struct retro_core_option_definition var_fba_cyclone = {
+ 	"fba-cyclone",
+-	"使用cyclone (可提升m68k速度)",
+-	"使用时风险自负，它可以提高低端设备的某些模拟系统的性能，但也存在已知的副作用：保存状态与普通解释器不兼容，某些系统无法工作",
++	"Use Cyclone (Faster M68K)",
++	"May improve performance on low-end devices, but save states are incompatible with the standard interpreter and some systems may not work",
+ 	{
+-		{"disabled", "否"},
+-		{"enabled", "是"},
++		{"disabled", "No"},
++		{"enabled", "Yes"},
+ 		{NULL, NULL},
+ 	},
+ 	"disabled",
+@@ -160,20 +160,20 @@ static struct retro_core_option_definition var_fba_cyclone = {
+ 
+ static const struct retro_core_option_definition var_fba_diagnostic_input = {
+ 	"fba-diagnostic-input",
+-	"诊断模式开启键",
++	"Diagnostic Mode Input",
+ 	"Configure button combination to enter cabinet service menu",
+ 	{
+-		{"None", "无"},
+-		{"Hold Start", "按住Start"},
++		{"None", "None"},
++		{"Hold Start", "Hold Start"},
+ 		{"Start + A + B", "Start+A+B"},
+-		{"Hold Start + A + B", "按住Start+A+B"},
++		{"Hold Start + A + B", "Hold Start+A+B"},
+ 		{"Start + L + R", "Start+L+R"},
+-		{"Hold Start + L + R", "按住Start+L+R"},
+-		{"Hold Select", "按住Select"},
++		{"Hold Start + L + R", "Hold Start+L+R"},
++		{"Hold Select", "Hold Select"},
+ 		{"Select + A + B", "Select+A+B"},
+-		{"Hold Select + A + B", "按住Select+A+B"},
++		{"Hold Select + A + B", "Hold Select+A+B"},
+ 		{"Select + L + R", "Select+L+R"},
+-		{"Hold Select + L + R", "按住Select+L+R"},
++		{"Hold Select + L + R", "Hold Select+L+R"},
+ 		{NULL, NULL},
+ 	},
+ 	"Hold Select",
+@@ -182,16 +182,16 @@ static const struct retro_core_option_definition var_fba_diagnostic_input = {
+ // Neo Geo core options
+ static const struct retro_core_option_definition var_fba_neogeo_mode = {
+ 	"fba-neogeo-mode",
+-	"Neo-Geo模式",
++	"Neo Geo Mode",
+ 	"Load appropriate bios depending on your choice, under the condition such a bios is compatible with the running game",
+ 	{
+ 		{"DIPSWITCH", "DIPSWITCH"},
+-		{"MVS_EUR_ASI", "街机 (欧/亚洲)"},
+-		{"MVS_USA", "街机 (美国)"},
+-		{"MVS_ASI", "街机 (亚洲)"},
+-		{"MVS_JAP", "街机 (日本)"},
+-		{"AES_ASI", "家用机 (亚洲)"},
+-		{"AES_JAP", "家用机 (日本)"},
++		{"MVS_EUR_ASI", "Arcade (Europe/Asia)"},
++		{"MVS_USA", "Arcade (USA)"},
++		{"MVS_ASI", "Arcade (Asia)"},
++		{"MVS_JAP", "Arcade (Japan)"},
++		{"AES_ASI", "Home Console (Asia)"},
++		{"AES_JAP", "Home Console (Japan)"},
+ 		{"UNIBIOS", "UNIBIOS"},
+ 		{NULL, NULL},
+ 	},
+@@ -322,4 +322,4 @@ static INLINE void libretro_set_core_options(retro_environment_t environ_cb)
+ 			variables = NULL;
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
